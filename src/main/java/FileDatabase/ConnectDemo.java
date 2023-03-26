@@ -1,7 +1,18 @@
 package FileDatabase;
 
-import java.sql.*;
+import com.itheima.mapper.UserMapper;
+import com.itheima.pojo.User;
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.*;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.*;
+import java.util.List;
+
+/*
+* JDBC快速入门
+* */
 public class ConnectDemo {
 
     private String driver = "com.mysql.cj.jdbc.Driver";
@@ -12,7 +23,9 @@ public class ConnectDemo {
     public void searchUser() {
 
         try {
-            Class.forName(driver);
+
+            //Class.forName(driver);
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, user, password);
             Statement statement = conn.createStatement();
             String sql = "select * from user";
@@ -24,13 +37,37 @@ public class ConnectDemo {
                     System.out.println(rs.getString("user_name"));
                 }
             }
+            //关闭连接
+            rs.close();
+            statement.close();
+            conn.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static void main(String[] args) {
-        new ConnectDemo().searchUser();
+    public static void main(String[] args) throws IOException {
+//        new ConnectDemo().searchUser();
+        //加载mybatis的核心配置文件 获取sqlSelSession
+
+
+        String resource = "mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+
+        //获取sqlsession对象 用它来执行sql
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        /* 方法一
+        //执行sql
+        List<User> users = sqlSession.selectList("test.selectAll");
+        System.out.println(users);
+        */
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> users = mapper.selectAll();
+        System.out.println(users);
+        //关闭资源
+        sqlSession.close();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.springboot_demo.config;
+package Random.springboot_demo.config;
 
 
 import org.springframework.beans.factory.annotation.Configurable;

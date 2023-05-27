@@ -3,11 +3,16 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<!--
-    environment 配置数据库的连接信息 可以配置多个环境 进行连接
--->
+
+    <settings>
+        <!-- 打印sql日志 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <!--
+        environment 配置数据库的连接信息 可以配置多个环境 进行连接
+    -->
     <typeAliases>
-<!--        别名 简化后续配置-->
+        <!--        别名 简化后续配置-->
         <package name="com.itheima.pojo"/>
     </typeAliases>
     <environments default="development">
@@ -19,9 +24,9 @@
                 <!--连接信息-->
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
-                          value="jdbc:mysql://localhost:3306/filetrandatabase?useSSL=false&amp;serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="!Lucifer031337"/>
+                          value="jdbc:mysql://8.130.77.8:3306/LyDBTest?useSSL=false&amp;serverTimezone=UTC"/>
+                <property name="username" value="Jeffrey"/>
+                <property name="password" value="Jeffrey"/>
             </dataSource>
         </environment>
     </environments>
@@ -29,6 +34,6 @@
         <!--        加载map文件-->
         <!--        <mapper resource="com/itheima/mapper/UserMapper.xml"/>-->
         <!--        Mapper代理 包扫描-->
-        <package name="com.itheima.mapper"/>
+        <package name="com.example.api.dao.impl"/>
     </mappers>
 </configuration>

@@ -1,7 +1,7 @@
-package FileDatabase;
+package Random.FileDatabase;
 
-import com.itheima.mapper.UserMapper;
-import com.itheima.pojo.User;
+import Random.springboot_demo.config.itheima.mapper.UserMapper;
+import Random.springboot_demo.config.itheima.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 

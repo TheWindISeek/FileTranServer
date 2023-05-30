@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script>
+        // alert("hello js!!!");
+    </script>
+
+    <script src="./js/demo.js">
+    </script>
+</head>
+
+<body>
+<h1>徐嘉福 臭小子</h1>
+
+<script src="./js/demo.js">
+</script>
+<form action="#" method="get" id="submit">
+    <label for="username">
+<!--        点击label选择对应id -->
+        用户名:
+    </label>
+
+    <input type="text" name="username" id="username">
+    <span id="username_err" class="err_msg" style="display: none">用户名已被使用</span>
+    <br>
+    密码:
+    <input type="password" name="password" id="password">
+    <span id="password_err" class="err_msg" style="display: none">密码格式有误</span>
+    <br>
+    <br>
+
+    <input class="cls" type="submit" value="免费注册">
+    <input class="cls" type="checkbox" name="hobby" value="1">
+    旅游
+    <input type="checkbox" name="hobby" value="2">
+    电影
+    <input type="checkbox" name="hobby" value="3">
+    游戏
+    <br>
+    <select>
+        <option>beijing</option>
+        <option>shanghai</option>
+        <option>guangzhou</option>
+    </select>
+    <br>
+    <input type="submit" value="免费注册">
+    <input type="reset" value="重置">
+    <input type="button" value="一个按钮" onclick="on()">
+    <textarea cols="20" rows="5"></textarea>
+</form>
+
+
+<script>
+    //只要是script 到时候都会是一块的
+    alert(ii);
+
+    //err num
+   var errNum = 2;
+
+    document.getElementById("submit").onsubmit = function () {
+        if(errNum <= 0) {
+            alert("submit");
+        } else {
+            alert("still have error");
+        }
+    };
+    var hobbys = document.getElementsByName("hobby");
+    for (let i = 0; i < hobbys.length; i++) {
+        console.log(hobbys[i]);
+    }
+
+    //1.验证用户名是否属于规则
+    var usernameInput = document.getElementById("username");
+    usernameInput.onblur = function () {
+        var username = usernameInput.value.trim();
+        // alert(username);
+        let reg = /^[a-zA-Z0-9]{6,12}$/;
+        let flag = reg.test(username);
+
+        //判断用户名是否符合规则 长度6-12
+        if(flag) {
+            document.getElementById("username_err").style.display = "none";
+            errNum--;
+        } else {
+            errNum++;
+            document.getElementById("username_err").style.display = "";
+        }
+    }
+    //2.验证密码是否属于规则
+    var passwordInput = document.getElementById("password");
+    passwordInput.onblur = function () {
+        var password = passwordInput.value.trim();
+        if(password.length >= 6 && password.length <= 12) {
+            document.getElementById("password_err").style.display = "none";
+            errNum--;
+        } else {
+            errNum++;
+            document.getElementById("password_err").style.display = "";
+        }
+    }
+</script>
+
+</body>
+
+<script src="./js/demo.js">
+</script>
+</html>

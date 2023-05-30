@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.api.dao.BlobsMapper">
+  <resultMap id="BaseResultMap" type="com.example.api.pojo.Blobs">
+    <id column="Blob_Id" jdbcType="INTEGER" property="blobId" />
+    <result column="Blob_Length" jdbcType="INTEGER" property="blobLength" />
+    <result column="Blob_Next" jdbcType="INTEGER" property="blobNext" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.api.pojo.Blobs">
+    <result column="Blob_Content" jdbcType="LONGVARBINARY" property="blobContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Blob_Id, Blob_Length, Blob_Next
+  </sql>
+  <sql id="Blob_Column_List">
+    Blob_Content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Blobs
+    where Blob_Id = #{blobId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Blobs
+    where Blob_Id = #{blobId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.api.pojo.Blobs">
+    insert into Blobs (Blob_Id, Blob_Length, Blob_Next, 
+      Blob_Content)
+    values (#{blobId,jdbcType=INTEGER}, #{blobLength,jdbcType=INTEGER}, #{blobNext,jdbcType=INTEGER}, 
+      #{blobContent,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.api.pojo.Blobs">
+    insert into Blobs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blobId != null">
+        Blob_Id,
+      </if>
+      <if test="blobLength != null">
+        Blob_Length,
+      </if>
+      <if test="blobNext != null">
+        Blob_Next,
+      </if>
+      <if test="blobContent != null">
+        Blob_Content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blobId != null">
+        #{blobId,jdbcType=INTEGER},
+      </if>
+      <if test="blobLength != null">
+        #{blobLength,jdbcType=INTEGER},
+      </if>
+      <if test="blobNext != null">
+        #{blobNext,jdbcType=INTEGER},
+      </if>
+      <if test="blobContent != null">
+        #{blobContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.api.pojo.Blobs">
+    update Blobs
+    <set>
+      <if test="blobLength != null">
+        Blob_Length = #{blobLength,jdbcType=INTEGER},
+      </if>
+      <if test="blobNext != null">
+        Blob_Next = #{blobNext,jdbcType=INTEGER},
+      </if>
+      <if test="blobContent != null">
+        Blob_Content = #{blobContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where Blob_Id = #{blobId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.api.pojo.Blobs">
+    update Blobs
+    set Blob_Length = #{blobLength,jdbcType=INTEGER},
+      Blob_Next = #{blobNext,jdbcType=INTEGER},
+      Blob_Content = #{blobContent,jdbcType=LONGVARBINARY}
+    where Blob_Id = #{blobId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.api.pojo.Blobs">
+    update Blobs
+    set Blob_Length = #{blobLength,jdbcType=INTEGER},
+      Blob_Next = #{blobNext,jdbcType=INTEGER}
+    where Blob_Id = #{blobId,jdbcType=INTEGER}
+  </update>
+</mapper>

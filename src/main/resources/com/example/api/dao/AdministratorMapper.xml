@@ -31,9 +31,8 @@
 
 
   <insert id="insert" parameterType="com.example.api.pojo.Administrator">
-    insert into Administrator (Adm_Id, Adm_Name, Adm_Password, 
-      Adm_Permission)
-    values (#{admId,jdbcType=INTEGER}, #{admName,jdbcType=VARCHAR}, #{admPassword,jdbcType=VARCHAR}, 
+    insert into Administrator (Adm_Name, Adm_Password,Adm_Permission)
+    values ( #{admName,jdbcType=VARCHAR}, #{admPassword,jdbcType=VARCHAR},
       #{admPermission,jdbcType=INTEGER})
   </insert>
 

@@ -19,6 +19,9 @@ import java.io.InputStream;
  */
 @SpringBootTest
 public class DaoTest {
+    /**
+     * 测试完毕
+     */
     @Test
     public void administratorTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -61,6 +64,9 @@ public class DaoTest {
         sqlSession.close();//释放连接
     }
 
+    /**
+     * 肯定得测
+     */
     @Test
     public void blobsTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -77,6 +83,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 最好测
+     */
     @Test
     public void blobUsageTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -93,6 +102,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 测试过 但是需要测试
+     */
     @Test
     public void commentsTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -107,6 +119,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 服务器自己添加的 不会被改变
+     */
     @Test
     public void defaultIconTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -121,6 +136,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 服务器自动完成 不需要测试
+     */
     @Test
     public void filesFilesTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -135,6 +153,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 不保证完全正确 需要测试
+     */
     @Test
     public void filesTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -149,6 +170,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 没写
+     */
     @Test
     public void filesTagsTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -163,6 +187,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 没写
+     */
     @Test
     public void tagsTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -177,6 +204,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 没写
+     */
     @Test
     public void tagTypesTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
@@ -191,6 +221,9 @@ public class DaoTest {
         sqlSession.close();
     }
 
+    /**
+     * 服务器测试完毕
+     */
     @Test
     public void usersTest() {
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();

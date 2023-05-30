@@ -30,7 +30,7 @@ public interface FilesMapper {
      * 文件强制删除 删掉文件A,假如文件夹B和C都包含A,那么B和C中都找不到A了
      * @param F_Id 文件id A
      */
-    int proc_File_Delete(int F_Id);
+    void proc_File_Delete(int F_Id);
     
     /**
      * 文件解除引用 从文件夹B删掉文件A,假如文件夹C也包含A,那么C不会受影响

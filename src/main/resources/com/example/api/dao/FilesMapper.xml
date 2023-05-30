@@ -193,7 +193,7 @@
           resultType="java.lang.Integer">
        {call File_CreateFolder(#{F_NAME,mode=IN,jdbcType=VARCHAR},#{F_CREATOR,mode=IN,jdbcType=INTEGER},#{F_Path,mode=IN,jdbcType=INTEGER},#{NEW_ID,mode=OUT,jdbcType=INTEGER})}
   </select>
-  <select id="proc_File_Delete" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.lang.Integer">
+  <select id="proc_File_Delete" statementType="CALLABLE" parameterType="java.util.Map">
        {call File_Delete(#{F_Id,mode=IN,jdbcType=INTEGER})}
   </select>
   <select id="proc_File_Dereference" statementType="CALLABLE" parameterType="java.util.Map"

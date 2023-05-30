@@ -10,6 +10,9 @@ public class FilesTagsKey {
         this.tag = tag;
     }
 
+    public FilesTagsKey() {
+    }
+
     @Override
     public String toString() {
         return "FilesTagsKey{" +

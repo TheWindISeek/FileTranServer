@@ -11,6 +11,9 @@ public class DefaultIcon {
 
     private byte[] icon;//图标具体的内容
 
+    public DefaultIcon() {
+    }
+
     @Override
     public String toString() {
         return "DefaultIcon{" +

@@ -25,6 +25,9 @@ public class Users {
                 '}';
     }
 
+    public Users() {
+    }
+
     public Users(Integer userId, String userName, String userPassword, Integer userFilelist, Integer userFavorites) {
         this.userId = userId;
         this.userName = userName;

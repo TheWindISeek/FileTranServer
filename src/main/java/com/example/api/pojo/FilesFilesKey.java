@@ -10,6 +10,9 @@ public class FilesFilesKey {
         this.subfile = subfile;
     }
 
+    public FilesFilesKey() {
+    }
+
     @Override
     public String toString() {
         return "FilesFilesKey{" +

@@ -13,6 +13,9 @@ public class BlobUsageKey {
         this.usageAsFileContent = usageAsFileContent;
     }
 
+    public BlobUsageKey() {
+    }
+
     @Override
     public String toString() {
         return "BlobUsageKey{" +

@@ -5,6 +5,9 @@ public class TagTypes {
 
     private String tagTypeName;//标签类型的名字
 
+    public TagTypes() {
+    }
+
     @Override
     public String toString() {
         return "TagTypes{" +

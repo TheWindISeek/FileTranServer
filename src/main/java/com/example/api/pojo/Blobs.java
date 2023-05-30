@@ -18,6 +18,8 @@ public class Blobs {
         this.blobContent = blobContent;
     }
 
+    public Blobs() {}
+    
     @Override
     public String toString() {
         return "Blobs{" +

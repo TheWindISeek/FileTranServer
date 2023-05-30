@@ -7,6 +7,9 @@ public class Tags {
 
     private Integer tagType;//标签的种类
 
+    public Tags() {
+    }
+
     @Override
     public String toString() {
         return "Tags{" +

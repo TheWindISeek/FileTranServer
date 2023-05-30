@@ -29,6 +29,8 @@ public class Files {
 
     private Integer fileData;//文件对应的blob id
 
+    public Files() {
+    }
 
     @Override
     public String toString() {

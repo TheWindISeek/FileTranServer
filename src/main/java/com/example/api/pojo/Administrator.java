@@ -9,6 +9,7 @@ public class Administrator {
 
     private Integer admPermission;//管理员访问权限
 
+    public Administrator() {}
     public Administrator(int admId, String admName, String admPassword, int admPermission) {
         this.admId = admId;
         this.admName = admName;

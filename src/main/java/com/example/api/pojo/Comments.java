@@ -13,6 +13,9 @@ public class Comments {
 
     private Date commentMod;//评论 创建时间
 
+    public Comments() {
+    }
+
     @Override
     public String toString() {
         return "Comments{" +

@@ -243,7 +243,7 @@
   <select id="proc_File_SetIcon" statementType="CALLABLE" parameterType="java.util.Map">
        {call File_SetIcon(#{F_Id,mode=IN,jdbcType=INTEGER},#{F_Icon,mode=IN,jdbcType=INTEGER},#{F_Icon_Custom,mode=IN,jdbcType=BLOB})}
   </select>
-  <select id="proc_File_Upload" statementType="CALLABLE" parameterType="java.util.Map">
+  <select id="proc_File_Upload" statementType="CALLABLE" parameterType="java.util.Map" resultType="java.lang.Integer">
        {call File_Upload(#{F_Name,mode=IN,jdbcType=VARCHAR},#{F_Creator,mode=IN,jdbcType=INTEGER},#{F_Path,mode=IN,jdbcType=INTEGER},#{F_Content,mode=IN,jdbcType=BLOB},#{NEW_ID,mode=OUT,jdbcType=INTEGER})}
   </select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.example.api.web;
 
 import com.example.api.pojo.Administrator;
+import com.example.api.service.AdministratorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/Admin")
 public class AdministratorController {
 
+    @Autowired
+    private AdministratorService administratorService;
     /**
      * 管理员登录
      * @param administrator 根据传入参数生成的管理员对象
@@ -24,16 +28,12 @@ public class AdministratorController {
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Administrator login(@RequestBody Administrator administrator) {
+    public boolean login(@RequestBody Administrator administrator) {
         System.out.println("admin/login");
-        System.out.println(administrator.toString());
+        //System.out.println(administrator.toString());
         //这里将来会被业务逻辑取代
-        administrator.setAdmPassword("lucifer");
-        administrator.setAdmName("jeffrey");
-        administrator.setAdmId(3);
-        administrator.setAdmPermission(3);
 
-        return administrator;
+        return administratorService.login(administrator);
     }
 
 
@@ -44,10 +44,9 @@ public class AdministratorController {
      */
     @RequestMapping("/register")
     @ResponseBody
-    public boolean register(@RequestBody Administrator administrator) {
+    public int register(@RequestBody Administrator administrator) {
         System.out.println("admin/register");
 
-
-        return true;
+        return administratorService.register(administrator);
     }
 }

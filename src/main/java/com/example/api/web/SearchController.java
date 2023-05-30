@@ -5,6 +5,8 @@ import com.example.api.pojo.Administrator;
 import com.example.api.pojo.Comments;
 import com.example.api.pojo.Files;
 import com.example.api.pojo.Users;
+import com.example.api.service.SearchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import java.util.Map;
 @RequestMapping("/Search")
 public class SearchController {
 
+    @Autowired
+    private SearchService searchService;
     /**
      * 按照关键字查询页码
      * @return list<files> 文件列表
@@ -29,17 +33,10 @@ public class SearchController {
     public List<Files> byKeyWords(@RequestBody String [] keyWords) {
         System.out.println("search/byKeyWords");
         //关键字是否被成功映射
-        for(String s:keyWords) {
-            System.out.println(s);
-        }
-
-        //这里将来会被业务逻辑取代
-        List<Files> files = new ArrayList<>();
-        Files file = new Files();
-        file.setFileComments(2);
-        file.setFileName("are you kidding me");
-
-        return files;
+//        for(String s:keyWords) {
+//            System.out.println(s);
+//        }
+        return searchService.byKeyWords(keyWords);
     }
 
     /**
@@ -52,10 +49,9 @@ public class SearchController {
         System.out.println("search/byLabels");
         Object usages = params.get("usages");
 
-        //这里将来会被业务逻辑取代
-        List<Files> files = new ArrayList<>();
+        //no implement
 
-        return files;
+        return new ArrayList<>();
     }
 
     /**
@@ -67,10 +63,7 @@ public class SearchController {
     public List<Files> allFiles() {
         System.out.println("search/allFiles");
 
-        //这里将来会被业务逻辑取代
-        List<Files> files = new ArrayList<>();
-
-        return files;
+        return searchService.allFiles();
     }
 
     /**
@@ -81,13 +74,10 @@ public class SearchController {
     @ResponseBody
     public List<Files> fileFromIndex(@RequestBody HashMap<String, Integer> params) {
         System.out.println("search/fileFromIndex");
+        int index = params.get("index");
+        int pageSize = params.get("pageSize");
 
-        System.out.println(params.get("index"));
-        System.out.println(params.get("pageSize"));
-        //这里将来会被业务逻辑取代
-        List<Files> files = new ArrayList<>();
-
-        return files;
+        return searchService.fileFromIndex(index, pageSize);
     }
 
     /**
@@ -103,12 +93,11 @@ public class SearchController {
         Users users = JSON.parseObject(userString, Users.class);
         String filesString = JSON.toJSONString(params.get("files"));
         Files files = JSON.parseObject(filesString, Files.class);
-        System.out.println(users.toString());
-        System.out.println(files.toString());
-        //这里将来会被业务逻辑取代
+//        System.out.println(users.toString());
+//        System.out.println(files.toString());
 
 
-        return new ArrayList<>();
+        return searchService.uploadFiles(users, files);
     }
 
     /**
@@ -124,10 +113,10 @@ public class SearchController {
         Users users = JSON.parseObject(userString, Users.class);
         String filesString = JSON.toJSONString(params.get("files"));
         Files files = JSON.parseObject(filesString, Files.class);
-        System.out.println(users.toString());
-        System.out.println(files.toString());
+//        System.out.println(users.toString());
+//        System.out.println(files.toString());
 
-        return new ArrayList<>();
+        return searchService.downloadFiles(users, files);
     }
 
     /**
@@ -143,10 +132,10 @@ public class SearchController {
         Users users = JSON.parseObject(userString, Users.class);
         String filesString = JSON.toJSONString(params.get("files"));
         Files files = JSON.parseObject(filesString, Files.class);
-        System.out.println(users.toString());
-        System.out.println(files.toString());
+//        System.out.println(users.toString());
+//        System.out.println(files.toString());
 
-        return new ArrayList<>();
+        return searchService.favoriteFiles(users, files);
     }
 
     /**
@@ -160,7 +149,7 @@ public class SearchController {
 
         System.out.println(files);
 
-        return new Comments();
+        return searchService.contentsFromFile(files);
     }
 
 

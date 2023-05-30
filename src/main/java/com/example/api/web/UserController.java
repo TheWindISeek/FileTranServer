@@ -1,6 +1,8 @@
 package com.example.api.web;
 
 import com.example.api.pojo.Users;
+import com.example.api.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,19 +12,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/User")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
     /**
      * 用户登录
      * @param users 由传入参数自动生成
-     * @return index页面
+     * @return 是否登录成功
      */
     @RequestMapping("/login")
     @ResponseBody
-    public Users login(@RequestBody Users users) {
+    public boolean login(@RequestBody Users users) {
         System.out.println("user/login");
-        users.setUserId(1);
-        users.setUserName("jzh");
 
-        return users;
+        return userService.login(users);
     }
 
 
@@ -33,10 +35,10 @@ public class UserController {
      */
     @RequestMapping("/register")
     @ResponseBody
-    public boolean register(@RequestBody Users users) {
+    public int register(@RequestBody Users users) {
         System.out.println("user/register");
 
 
-        return true;
+        return userService.register(users);
     }
 }

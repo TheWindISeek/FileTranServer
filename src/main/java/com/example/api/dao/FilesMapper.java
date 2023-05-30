@@ -128,7 +128,7 @@ public interface FilesMapper {
      * @param F_Path 文件路径,作为哪个文件夹的子文件
      * @param F_Content 文件内容,原本是BLOB,具体能否直接用byte[]上传不确定
      */
-    void proc_File_Upload(String F_Name,int F_Creator,int F_Path,byte[] F_Content);
+    Integer proc_File_Upload(String F_Name,int F_Creator,int F_Path,byte[] F_Content);
     
     /*底下这几个都用不着*/
 

@@ -574,7 +574,7 @@ boolean sendQuestion(int userId, String question);
 
 ## 管理员
 
-```
+```java
 增删改查四件套
 没想好 暂时先定一下功能
 
@@ -647,10 +647,13 @@ http://ip:port/
 ```java
 现需要实现的函数如下
 	
-boolean login(String userName, String userPassword);
+boolean admLogin(String userName, String userPassword);
 
-boolean register(String userName, String userPassword);
+boolean admRegister(String userName, String userPassword);
 
+boolean userLogin(String userName, String userPassword);
+
+boolean userRegister(String userName, String userPassword);
 
 //输入的关键词keyWords按照空格划分。
 List<File> searchByKeyWords(String[] keyWords);//文件名关键字

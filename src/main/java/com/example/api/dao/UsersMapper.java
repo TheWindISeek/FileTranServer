@@ -5,6 +5,11 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UsersMapper {
+    /**
+     * 用id查询用户信息
+     * @param userId 用户id
+     * @return pojo对象
+     */
     Users selectByPrimaryKey(Integer userId);
     
     /**

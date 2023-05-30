@@ -20,6 +20,28 @@
     File_Id, File_Type, File_Name, File_Creator, File_Update, File_Download_Count, File_Reference_Count, 
     File_Size, File_Level, File_Icon, File_Icon_Custom, File_Comments, File_Data
   </sql>
+  <!--以下是新增的查询-->
+  <!--根据名称查询文件 返回一个list-->
+  <select id="selectByFileName" parameterType="java.lang.String" resultType="com.example.api.pojo.Files">
+	select
+	<include refid="Base_Column_List" />
+	from Files
+	where File_Name like %#{keyword,jdbcType=VARCHAR}%
+  </select>
+  <!--查看所有可见文件,文件类型1和2是不可见的,另外需要提供一个查找位置 输入参数为起始位置和每页长度 返回一个list-->
+  <select id="selectAnyVisibleFiles" parameterType="java.lang.Integer" resultType="com.example.api.pojo.Files">
+	select
+	<include refid="Base_Column_List" />
+	from Files
+	where (File_Type=3)or(File_Type=4)
+	limit #{index,jdbcType=INTEGER},#{pageLength,jdbcType=INTEGER}
+  </select>
+  <!--查询可见文件的总数-->
+  <select id="selectVisibleFileCount" resultType="java.lang.Integer">
+	select count(*) from Files
+	where (File_Type=3)or(File_Type=4)
+  </select>
+  <!--以下是原有自动生成的查询-->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

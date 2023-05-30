@@ -1,13 +1,44 @@
 package com.example.api.dao;
 
 import com.example.api.pojo.Files;
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface FilesMapper {
+    /*新加的代码 */
+    /**
+     * 根据单一关键字查询文件
+     * @param keyword 关键字
+     * @return 查询结果,由pojo对象组成的list
+     */
+    List<Files> selectByFileName(String keyword);
+
+    /**
+     * 分页查找
+     * @param index 首个项的序号 (页号从1开始) (页号-1)*页长  假设我现在又的页号是3 页长是10 传入的参数就是(20, 10)
+     * @param pageLength 页长
+     * @return 查询结果,由pojo对象组成的list
+     */
+    List<Files> selectAnyVisibleFiles(Integer index,Integer pageLength);
+
+    /**
+     * 获取可见文件的总数
+     * @return 结果,文件数量
+     */
+    Integer selectVisibleFileCount();
+
+    /*这里缺了一个注释 */
+    /**
+     * 按id选择文件
+     * @param fileId 文件id
+     * @return 文件pojo对象
+     */
     Files selectByPrimaryKey(Integer fileId);
     
-    
+    /*以下是原有的 */
     /**
      * 文件复制
      * @param F_Path 文件路径,复制出来的文件放到哪个文件夹下

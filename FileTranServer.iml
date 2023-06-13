@@ -15,10 +15,8 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="FileTranServerApplication" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/example/api/config/FileTranServerApplication.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/Random/springboot_demo/SpringbootDemoApplication.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/Random/springboot_demo/config/WebMvcConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/com/example/api/config/WebMvcConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/web/FileTran/config/FileTranServerApplication.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/web/FileTran/config/WebMvcConfig.java</file>
         </fileset>
       </configuration>
     </facet>

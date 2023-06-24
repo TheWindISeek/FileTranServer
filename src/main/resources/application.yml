@@ -1,0 +1,28 @@
+server:
+  servlet:
+    context-path: /
+  servlet-path: /
+spring:
+  application:
+    name: springboot_filetranserver
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Jeffrey
+    url: jdbc:mysql://8.130.77.8:3306/LyDBTest?useSSL=false&serverTimezone=UTC
+    username: Jeffrey
+  mvc:
+    static-path-pattern:
+      /static/
+  thymeleaf:
+    cache: false
+    content-type: text/html
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/template/
+    suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+
+

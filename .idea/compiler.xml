@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FileTranServer" />
+        <module name="springboot_demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FileTranServer" options="-parameters" />
       <module name="mybatis-demo" options="-parameters" />
+      <module name="springboot_demo" options="-parameters" />
     </option>
   </component>
 </project>

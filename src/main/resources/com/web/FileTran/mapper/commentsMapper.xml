@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.FileTran.newdaogenerated.commentsMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.newpojo.comments">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="parent_comment_id" jdbcType="INTEGER" property="parentCommentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="posted_at" jdbcType="TIMESTAMP" property="postedAt" />
+    <result column="last_reply_at" jdbcType="TIMESTAMP" property="lastReplyAt" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.web.FileTran.newpojo.comments">
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, file_id, parent_comment_id, user_id, posted_at, last_reply_at
+  </sql>
+  <!-- 调用 AddCommentToFile 存储过程 -->
+  <select id="addCommentToFile" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL AddCommentToFile(
+    #{fileId}, #{parentCommentId}, #{userId}, #{commentMessage},
+    #{commentId, mode=OUT, jdbcType=INTEGER}, #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 调用 AddCommentToFolder 存储过程 -->
+  <select id="addCommentToFolder" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL AddCommentToFolder(
+    #{folderId}, #{parentCommentId}, #{userId}, #{commentMessage},
+    #{commentId, mode=OUT, jdbcType=INTEGER}, #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 调用 ReplyToComment 存储过程 -->
+  <select id="replyToComment" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL ReplyToComment(
+    #{parentCommentId}, #{userId}, #{commentMessage},
+    #{commentId, mode=OUT, jdbcType=INTEGER}, #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 调用 UpdateComment 存储过程 -->
+  <update id="updateComment" parameterType="java.util.Map">
+    {CALL UpdateComment(#{commentId}, #{commentMessage}, #{errorMessage, mode=OUT, jdbcType=VARCHAR})}
+  </update>
+
+  <!-- 调用 DeleteComment 存储过程 -->
+  <select id="deleteComment" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL DeleteComment(#{commentId}, #{errorMessage, mode=OUT, jdbcType=VARCHAR})}
+  </select>
+
+  <!-- 查询留言信息 -->
+  <select id="getCommentInfo" parameterType="int" resultType="java.util.HashMap">
+    SELECT *
+    FROM comments
+    WHERE id = #{commentId}
+  </select>
+
+</mapper>

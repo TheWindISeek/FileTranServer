@@ -1,0 +1,59 @@
+
+.common_child_pos_limit_5{
+    /*常规子节点位置限制*/
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+.common_child_pos_limit_10{
+    /*常规子节点位置限制*/
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+.common_child_spacing_limit_5 *{
+	/*常规子节点间距限制*/
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.common_child_spacing_limit_10 *{
+	/*常规子节点间距限制*/
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.child_box >*{
+	/*子类设置为常规格子*/
+    background-color: #D7D7D7;
+    border-style: inset;
+    border-color: #797979;
+}
+.child_horizontal >* {
+    display: inline;
+    text-align: center;
+}
+.child_vertical >* {
+	align-self:center;
+}
+.child_size_limit >*{
+    overflow-x: auto;
+    overflow-y: auto;
+}
+.child_block >*{
+	display: block;
+}
+.child_line_block >*{
+    text-align: center;
+    display: inline-block;
+}
+.child_center{
+    display: flex;
+}
+.child_center >* {
+	margin: auto;
+}

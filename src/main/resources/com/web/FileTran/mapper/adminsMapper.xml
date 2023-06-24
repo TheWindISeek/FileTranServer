@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.web.FileTran.newdaogenerated.adminsMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.newpojo.admins">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="permission" jdbcType="CHAR" property="permission" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, permission
+  </sql>
+
+  <!-- 调用 RegisterAdmin 存储过程 -->
+  <insert id="registerAdmin" parameterType="java.util.Map">
+    {CALL RegisterAdmin(#{adminName}, #{adminPassword}, #{adminId, mode=OUT, jdbcType=INTEGER})}
+  </insert>
+
+  <!-- 调用 DeleteAdmin 存储过程 -->
+  <delete id="deleteAdmin" parameterType="int">
+    {CALL DeleteAdmin(#{adminId})}
+  </delete>
+
+  <!-- 管理员登录验证 -->
+  <select id="adminLogin" parameterType="java.util.Map" resultType="java.util.HashMap">
+    SELECT id, password
+    FROM admins
+    WHERE username = #{username}
+  </select>
+</mapper>

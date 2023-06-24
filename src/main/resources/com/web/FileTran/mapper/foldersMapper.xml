@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.FileTran.newdaogenerated.foldersMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.newpojo.folders">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parent_folder_id" jdbcType="INTEGER" property="parentFolderId" />
+    <result column="folder_type" jdbcType="CHAR" property="folderType" />
+    <result column="shortcut_destination" jdbcType="INTEGER" property="shortcutDestination" />
+    <result column="quota_used" jdbcType="INTEGER" property="quotaUsed" />
+    <result column="permission" jdbcType="CHAR" property="permission" />
+    <result column="inherited_from_folder_id" jdbcType="INTEGER" property="inheritedFromFolderId" />
+    <result column="creator_id" jdbcType="INTEGER" property="creatorId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, parent_folder_id, folder_type, shortcut_destination, quota_used, permission, 
+    inherited_from_folder_id, creator_id
+  </sql><!-- 调用 CreateFolder 存储过程 -->
+  <select id="createFolder" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL CreateFolder(#{parentFolderId}, #{creatorId}, #{newFolderId, mode=OUT, jdbcType=INTEGER})}
+  </select>
+
+  <!-- 调用 RenameFolder 存储过程 -->
+  <select id="renameFolder" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL RenameFolder(#{folderId}, #{newFolderName}, #{success, mode=OUT, jdbcType=BOOLEAN})}
+  </select>
+
+  <!-- 调用 CreateFolderShortcut 存储过程 -->
+  <select id="createFolderShortcut" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL CreateFolderShortcut(#{parentFolderId}, #{shortcutName}, #{creatorId}, #{targetFolderId}, #{newShortcutId, mode=OUT, jdbcType=INTEGER})}
+  </select>
+
+  <!-- 调用 DeleteFolder 存储过程 -->
+  <delete id="deleteFolder" parameterType="int">
+    {CALL DeleteFolder(#{folderId})}
+  </delete>
+
+  <!-- 分页查询文件夹下的全部子文件夹和文件 -->
+  <select id="getChildrenFolders" parameterType="java.util.Map" resultType="java.util.List">
+    SELECT *
+    FROM folders
+    WHERE parent_folder_id = #{folderId}
+    LIMIT #{offset}, #{limit}
+  </select>
+  <!-- 分页查询文件夹下的全部子文件夹和文件 -->
+  <select id="getChildrenFiles" parameterType="java.util.Map" resultType="java.util.List">
+    SELECT *
+    FROM files
+    WHERE folder_id = #{folderId}
+    LIMIT #{offset}, #{limit}
+  </select>
+
+  <!-- 查询文件夹信息 -->
+  <select id="getFolderInfo" parameterType="int" resultType="java.util.HashMap">
+    SELECT *
+    FROM folders
+    WHERE id = #{folderId}
+  </select>
+
+  <!-- 查询文件夹是否存在 -->
+  <select id="checkFolderExists" parameterType="int" resultType="boolean">
+    SELECT COUNT(*) > 0
+    FROM folders
+    WHERE id = #{folderId}
+  </select>
+</mapper>

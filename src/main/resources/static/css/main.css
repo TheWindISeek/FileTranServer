@@ -1,0 +1,229 @@
+html,body{
+    max-width: 100%;
+    min-width: 600px;
+    min-height: 100%;
+    height: 100%;
+    overflow: auto;
+    color: #9cdcfe;
+    font-family: SimHei;
+    /*font-size:14pt*/
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+}
+a:link,a:visited{
+	font-family:Segoe UI Light;
+	/*font-size:24pt;*/
+	color:#bfbfbf;
+	text-decoration:none;
+    font-family: SimHei;
+}
+a:hover
+{
+	/*font-size:24pt*/
+	color:#dfdfdf;
+	text-decoration:none;
+    font-family: SimHei;
+}
+.sidebar-checkbox ul li {
+	/*去掉列表圆点*/
+    list-style-type: none;
+}
+.child_list_notype * li{
+	/*去掉列表圆点*/
+	list-style-type: none;
+}
+.fill_parent{
+	width: 100%;
+	height: 100%;
+}
+.FT-header {
+    width: 100%;
+    height: 48px;
+    line-height: 48px;
+    overflow-x: visible;
+    text-align: center;
+    overflow: hidden;
+    z-index: 3;
+    display: inline-flex;
+	flex: none;
+}
+.toolbar-left {
+    float: left;
+	padding: 0px;
+    height: 100%;
+	flex: initial;
+    display: inline-flex;
+}
+.toolbar-left >*{
+	float:left;
+}
+.toolbar-center {
+	flex: 1 0 300px;
+    height: inherit;
+}
+.toolbar-right {
+    float: right;
+	padding: 0px;
+    height: 100%;
+	flex: initial;
+    display: inline-flex;
+}
+.toolbar-logo{
+    width: 48px;
+    height: 48px;
+    float: left;
+}
+.toolbar_input{
+    width: max(calc(90% - 100px),200px);
+    height: 30px;
+    flex: 1;
+    background: #1e1e1e;
+    text-indent: 20px;
+    border: thin solid #7f7f7f;
+    color: #DFDFDF;
+    text-align: left;
+    flex-order: 2;
+    margin-right: 0px;
+}
+.toolbar_search{
+    width: 80px;
+    height: 30px;
+    flex: 48px;
+    flex-order: 1;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+.toolbar-right-onlyUser{
+    padding: 0px;
+    margin: 0px;
+    float: right;
+    height: 100%;
+}
+.toolbar-right-onlyUser >*{
+    height: 100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-width: 120px;
+    float: right;
+}
+.FT-body {
+    width: 100%;
+	max-width: 1200px;
+    z-index: 2;
+    display: flex;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+	flex: auto;
+}
+
+.FT-footer {
+    width: 100%;
+	max-width: 1200px;
+    height: 64px;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    z-index: 1;
+    text-align: center;
+	flex: none;
+}
+.footer_container{
+    width: 100%;
+    height: 100%;
+	display: flex;
+    display: -webkit-flex;
+	flex-wrap:wrap;
+}
+.footer_link {
+	display: flex;
+	flex: auto;
+}
+.footer_link >*{
+	flex: none;
+	margin: auto;
+}
+.index-sidebar {
+    width: 300px;
+    max-width: 30%;
+    min-width: 180px;
+    height: inherit;
+    float: left;
+    overflow-y: auto;
+}
+.sidebar-browse >*{
+    margin-bottom: 15px;
+    border-radius: 16px;
+    padding-left: 15px;
+    padding-top: 10px;
+    list-style-type: none;
+}
+.sidebar_browse_group {
+}
+
+.sidebar-checkbox >ul{
+    list-style-type: none;
+}
+.sidebar-checkbox_single >*{
+	/*单选列表父容器用*/
+	display: list-item;
+}
+.sidebar-checkbox_multiple >*{
+	/*多选列表父容器用*/
+	display: list-item;
+}
+.range_selector {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+.range_selector >* {
+    max-width: 33%;
+    text-align: center;
+}
+.file-choose{
+    height: inherit;
+    width: 100%;
+    background-color: #797979;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 10px;
+}
+.file-choose-filter {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.file-choose-filter-mddle >*{
+    margin-bottom: 5px;
+}
+.file_container >*{
+    /*子类被设置为文件格子*/
+    width: 150px;
+    height: 225px;
+    float: left;
+    border-radius: 10px;
+    border: medium solid rgba(0,0,0,1.00);
+}
+.file >p{
+	white-space: nowrap;
+    max-width: 128px;
+    overflow: hidden;    
+ 	text-overflow: ellipsis; 
+}
+.file_container >*:hover{
+    border: medium solid #7f7f7f;
+}
+.file_img{
+	width: 128px;
+    height: 128px;
+}

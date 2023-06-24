@@ -1,0 +1,250 @@
+.dialog_login_main {
+    width: 750px;
+    height: 500px;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #E9EEF3;
+}
+.dialog_login_main_header {
+    flex: none;
+
+    margin-bottom: 10px;
+
+    display: flex;
+    flex-direction: row;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+
+    background-color: #B3C0D1;
+}
+.dialog_login_main_body{
+    height:300px;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: row;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+
+    background-color: #B3C0D1;
+}
+.dialog_login_body_left{
+    width:170px;
+    height:inherit;
+
+    margin:auto;
+    margin-right: 10px;
+
+	display: flex;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+.dialog_login_body_right{
+    width:500px;
+    height:inherit;
+    box-sizing: border-box;
+
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+
+    padding-left: 20px;
+
+    display: flex;
+}
+.dialog_login_body_common{
+    flex:1;
+    width:500px;
+    height: 245px;
+    box-sizing: border-box;
+
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+}
+.dialog_login_body_common >*{
+    box-sizing: border-box;
+}
+.dialog_login_body_common div{
+    width: 400px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:14pt;
+}
+.dialog_login_body_common div p{
+    width: 100px;
+	margin: auto;
+}
+.dialog_login_body_common div input{
+    width:250px;
+	height: 20px;
+	flex: 1;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.dialog_login_body_common >button{
+    max-width: 200px;
+    height: 48px;
+    flex:1;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.dialog_login_body_common >a{
+    max-height: 20px;
+    flex:0.5;
+}
+
+/*以下是旧代码*/
+.login_info {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+    color: #ffffff;
+	font-size:14pt;
+}
+.login_info >*{
+	margin: auto;
+}
+.login_userName {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:14pt;
+}
+.login_userName >*{
+	margin: auto;
+}
+.login_password {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:14pt;
+}
+.login_password >*{
+	margin: auto;
+}
+.login_confirm {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:15pt;
+}
+.login_confirm >*{
+	margin: auto;
+}
+.register_info {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+    color: #ffffff;
+	font-size:14pt;
+}
+.register_info >*{
+	margin: auto;
+}
+.register_userName {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:14pt;
+}
+.register_userName >*{
+	margin: auto;
+}
+.register_password {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:14pt;
+}
+.register_password >*{
+	margin: auto;
+}
+.register_confirm {
+    width: 280px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    display: flex;
+    border-radius: 10px;
+	font-size:15pt;
+}
+.register_confirm >*{
+	margin: auto;
+}
+.login_link{
+	font-size:13pt;
+    font-family: SimHei;
+}
+.input_area{
+	display: inline-flex;
+}
+.input_area >p{
+    width:80px;
+    height: 20px;
+    flex: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+.input_area>input{
+	height: 20px;
+	flex: 1;
+	margin-top: auto;
+	margin-bottom: auto;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+	<meta charset="UTF-8">
+	<title>文件市场登录</title>
+	<link href="CSS/login.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/00_Styles.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/01_General_Box.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/02_Button.css" rel="stylesheet" type="text/css" />
+
+	<!--
+	<script src="./js/vue.js"></script>
+	<script src="./js/axios.js"></script>
+	<script type="text/javascript" src="./myjs/login.js"></script>
+	-->
+
+</head>
+
+<body>
+	<!--黑色半透明背景-->
+	<div id="login_vue" class="container_background">
+		<!--窗口主体,整体尽可能处于中部-->
+		<div class="container_box common_box_3">
+			<div class="top common_blue_box_2 child_center">
+				<!--标题-->
+				<div class="top-msg child_center">
+					<p>
+						文件市场
+					</p>
+				</div>
+			</div>
+			<!--底部面板-->
+			<div class="bottom common_box_1">
+				<!--容器-->
+				<div class="bottom_container">
+					<!--左侧子容器-->
+					<div class="left_container">
+						<!--左侧内容-->
+						<div class="left common_box_4">
+							<!--左侧图片-->
+							<div class="left-background">
+								<img class="left_logo" src="images/logo.jpg">
+							</div>
+						</div>
+					</div>
+					<!--右侧子容器,分两个模式,登录,注册-->
+					<div class="right_container">
+						<div class="right common_box_2">
+							<!--右侧登录界面-->
+							<div class="right_login">
+								<!--登录提示信息-->
+								<div class="login_info common_blue_box_2">
+									<p>用户登录</p>
+								</div>
+								<!--用户名输入区-->
+								<div class="login_userName common_box_4">
+									<div class="input_area">
+										<p>用户名</p>
+										<input v-model="login.User_Name" name="用户名" type="text" id="user-name" size="20"
+											value="" placeholder="用户名">
+									</div>
+									{{login.User_Name}}
+								</div>
+								<!--密码输入区-->
+								<div class="login_password common_box_4">
+									<div class="input_area">
+										<p>密码</p>
+										<input v-model="login.User_Password" name="密码" type="password" id="password"
+											size="20" value="" placeholder="请输入密码">
+										{{login.User_Password}}
+									</div>
+								</div>
+								<!--登录按钮-->
+								<button class="login_confirm common_box_4 btn-19" @click="userLogin">
+									<p>登&nbsp;录</p>
+								</button>
+								<!--跳转到注册-->
+								<a class="login_link" href="login.html">新用户点我注册</a>
+							</div>
+							<!--右侧注册界面-->
+							<div class="right_register">
+								<!--注册提示信息-->
+								<div class="register_info common_blue_box_2">
+									<p>用户注册</p>
+								</div>
+								<!--用户名输入区-->
+								<div class="register_userName common_box_4">
+									<div class="input_area">
+										<p>用户名</p>
+										<input class="userName" type="text" id="user-name" size="20" value=""
+											placeholder="用户名">
+									</div>
+								</div>
+								<!--密码输入区-->
+								<div class="register_password common_box_4">
+									<div class="input_area">
+										<p>密码</p>
+										<input class="password" type="password" id="password" size="20" value=""
+											placeholder="请输入密码">
+									</div>
+								</div>
+								<!--确认密码-->
+								<div class="register_password common_box_4">
+									<div class="input_area">
+										<p>确认密码</p>
+										<input class="password" type="text" id="password" size="20" value=""
+											placeholder="确认密码">
+									</div>
+								</div>
+								<!--登录按钮-->
+								<button class="register_confirm common_box_4 btn-19" @click="userRegister">
+									<p>注&nbsp;册</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+<script src="./js/vue.js"></script>
+<script src="./js/axios.js"></script>
+<script type="text/javascript" src="./myjs/login.js"></script>
+
+</html>

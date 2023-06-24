@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>主页</title>
+
+  <!--script type="text/javascript">
+  var GlobalKey=0;
+  function getProjectName(){
+    var curPageUrl = window.document.location.href;
+    var ProjectName = curPageUrl.split("//")[1].split("/")[1];
+    console.log("ProjectName?", ProjectName);
+    return ProjectName;
+  }
+  function getRootPath(){
+    var curPageUrl = window.document.location.href;
+    var rootPath = curPageUrl.split("//")[0] + curPageUrl.split("//")[1].split("/")[0]
+                   + "/" + curPageUrl.split("//")[1].split("/")[1];
+    console.log("root?", rootPath);
+    return rootPath;
+  }
+  function loadStyles(url){
+    url1="/"+getProjectName()+url
+	var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = url1;
+    var head = document.getElementsByTagName("head")[0];
+    head.appendChild(link);
+  }
+  function loadScript_head(url){
+    url1="/"+getProjectName()+url
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = url1;
+    document.head.appendChild(script);
+  }
+  function loadScript_body(url){
+    url1="/"+getProjectName()+url
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = url1;
+    document.body.appendChild(script);
+    mainvue.data()
+  }
+  loadStyles("/static/node_modules/element-ui/lib/theme-chalk/index.css");
+  loadStyles("/static/css/new_index.css");
+  loadStyles("/static/css/new_login.css");
+  loadScript_head("/static/node_modules/vue/dist/vue.js");
+  loadScript_head("/static/node_modules/element-ui/lib/index.js");
+  </script-->
+  <!-- 引入样式 -->
+  <!--link rel="stylesheet" href="$(getRootPath())/static/node_modules/element-ui/lib/theme-chalk/index.css" type="text/css"-->
+  <!--样式-->
+  <link rel="stylesheet" href="./static/node_modules/element-ui/lib/theme-chalk/index.css" type="text/css">
+  <link rel="stylesheet" href="./static/css/new_index.css" type="text/css">
+  <link rel="stylesheet" href="./static/css/new_login.css" type="text/css">
+  <script src="./static/node_modules/vue/dist/vue.js"></script>
+  <script src="./static/node_modules/element-ui/lib/index.js"></script>
+</head>
+
+<body><!--网页内容-->
+  <div :key="global_key" class="use_global_data index_container">
+    <el-container>
+      <el-header class="index_header"><!--顶部-->
+        <div class="index_header_left"><!--左侧栏-->
+          <!--logo图标-->
+          <i class="el-icon-eleme index_header_icon"></i>
+          <!--一系列跳转网页-->
+          <el-button class="index_header_button" type="primary">
+            <span>首页</span>
+          </el-button>
+          <el-button class="index_header_button" type="primary">
+            <span>局域网(未实装)</span>
+          </el-button>
+          <el-button class="index_header_button" type="primary">
+            <span>留言本</span>
+          </el-button>
+        </div>
+        <div class="index_header_center"><!--输入框与搜索键-->
+          <el-input v-model="SearchInput" class="index_header_input" maxlength="2000" autocomplete="off" type="text"
+            value="" placeholder="搜索"></el-input>
+          <el-button class="index_search_button" type="primary">
+            <span>搜索</span>
+          </el-button>
+        </div>
+        <div class="index_header_right"><!--右侧用户信息-->
+          <el-button class="index_header_button" type="primary">
+            <span>用户</span>
+          </el-button>
+          <el-button class="index_header_button" type="primary">
+            <span>购物车</span>
+          </el-button>
+          <el-button class="index_header_button" @click="Login_Window_Visible=true;set_Login_Window_Login()"
+            type="primary">
+            <span>登录/注册</span>
+          </el-button>
+          <el-switch v-model="Dark_mode" active-text="夜间模式" inactive-text="日间模式" @click="set_dark_mode()">
+          </el-switch>
+        </div>
+      </el-header>
+      <el-container class="index_main_container"><!--中部-->
+        <el-aside class="index_aside"><!--侧栏,选择栏,由内部元素数量调整大小 -->
+          <h3>tag暂未实现,所以暂不考虑</h3>
+          <div class="index_aside_browse">
+            <!--后缀选择-->
+            <section class="index_aside_browse_group">
+              <dl>
+                <dt class="index_aside_browse_group_title">
+                  <b title="示例">后缀</b>
+                </dt>
+                <dd class="index_aside_browse_group_data">
+                  <ul>
+                    <li>
+                      <input type="checkbox" value=".zip">
+                      <a href="javascript:void(0)" title=".zip">.zip</a>
+                    </li>
+                    <li>
+                      <input type="checkbox" value=".c">
+                      <a href="javascript:void(0)" title=".c">.c</a>
+                    </li>
+                    <li>
+                      <input type="checkbox" value=".pdf">
+                      <a href="javascript:void(0)" title=".pdf">.pdf</a>
+                    </li>
+                    <li>
+                      <input type="checkbox" value=".java">
+                      <a href="javascript:void(0)" title=".java">.java</a>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </section>
+            <!--用途选择-->
+            <section class="index_aside_browse_group">
+              <dl>
+                <dt class="index_aside_browse_group_title">
+                  <b title="只对前4万条记录分组">用途</b>
+                </dt>
+                <dd class="index_aside_browse_group_data">
+                  <ul>
+                    <li>
+                      <label>
+                        <input type="checkbox" value="程序">
+                        <a href="javascript:void(0)" title="程序">程序</a>
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input type="checkbox" value="表">
+                        <a href="javascript:void(0)" title="表">表</a>
+                      </label>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" title="查看更多">查看更多</a>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            </section>
+            <!--大小选择-->
+            <section class="index_aside_browse_group">
+              <dt class="index_aside_browse_group_title">
+                <b title="只对前4万条记录分组">大小</b>
+              </dt>
+              <template>
+                <div class="block">
+                  <el-slider v-model="sizesvalue" range show-stops :max="100">
+                  </el-slider>
+                </div>
+              </template>
+              <div class="index_aside_browse_group_inputrange">
+                <el-input id="sidebar-search-input-left" maxlength="2000" autocomplete="off" type="text" value=""
+                  placeholder="0"></el-input>
+                <p>~</p>
+                <el-input id="sidebar-search-input-right" maxlength="2000" autocomplete="off" type="text" value=""
+                  placeholder="50"></el-input>
+              </div>
+            </section>
+            <!--猜你喜欢-->
+            <section class="index_aside_browse_group">
+              <dl>
+                <dt class="index_aside_browse_group_title">
+                  <b title="只对前4万条记录分组">猜你喜欢</b>
+                </dt>
+                <dd class="index_aside_browse_group_data">
+                  <ul>
+                    <li>C语言源程序</li>
+                    <li>表格</li>
+                    <li>查看更多</li>
+                  </ul>
+                </dd>
+              </dl>
+            </section>
+          </div>
+          <section class="index_aside_author">
+            <h3>By JeffreySharp and Mr.L</h3>
+          </section>
+        </el-aside>
+        <el-main class="index_main"><!--页面主体-->
+          <div class="index_main_header">
+            <div class="index_main_header_breadcrumb">
+              <el-breadcrumb separator="/">
+                <el-breadcrumb-item v-for="(instance,index) in File_Browse_stack" :key="index">
+                  <a href="javascript:void(0)">{{instance.fileName}}</a>
+                </el-breadcrumb-item>
+              </el-breadcrumb>
+            </div>
+            <div class="index_main_header_switch">
+              <el-switch v-model="File_Browse_ShowDetail" active-text="详细信息" inactive-text="平铺">
+              </el-switch>
+            </div>
+          </div>
+          <el-empty v-show="File_List_Empty()" description="暂无文件"></el-empty>
+          <div v-show="show_File_Detail()" class="index_main_FileBrowse_Table"><!--详细信息模式-->
+            <el-table :data="File_Browse_FileList.filter(return_true)" style="width: 100%">
+              <el-table-column label="fileName" prop="fileName">
+              </el-table-column>
+              <el-table-column label="fileSize" prop="fileSize">
+              </el-table-column>
+              <el-table-column align="right">
+                <template slot-scope="scope">
+                  <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                  <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+          <div v-show="show_Fail_Tile()" class="index_main_FileBrowse_Table"><!--平铺模式-->
+            <div class="index_main_FileBrowse_Tile">
+              <a v-for="(instance,index) in File_Browse_FileList" :key="index" class="index_main_fileInfo"
+                href="javascript:void(0)">
+                <i class="el-icon-eleme index_main_fileIcon"></i>
+                <p class="index_main_fileInfo_Name">{{instance.fileName}}</p>
+                <p class="index_main_fileInfo_Size">{{instance.fileSize}}</p>
+              </a>
+            </div>
+          </div>
+          <div class="index_main_FileBrowse_Block" v-show="File_List_Not_Empty()">
+            <el-pagination layout="prev, pager, next" :total="File_Browse_MaxPage">
+            </el-pagination>
+          {{File_Browse_MaxPage}}
+          </div>
+        </el-main>
+      </el-container>
+      <el-footer class="index_footer"><!--底部栏-->
+        <div class="index_footer_links">
+          <div class="index_footer_link">
+            <a href="main.html">联系我们</a>
+          </div>
+          <div class="index_footer_link">
+            <a href="main.html">问题反馈</a>
+          </div>
+          <div class="index_footer_link">
+            <a href="main.html">加入我们</a>
+          </div>
+        </div>
+      </el-footer>
+    </el-container>
+
+    <el-dialog :visible.sync="Login_Window_Visible" width="750px" height="500px" title="登录/注册"><!--登录弹窗-->
+      <!--窗口主体,整体尽可能处于中部-->
+      <div class="dialog_login_main_header"><!--标题-->
+        <p>欢迎使用文件市场</p>
+      </div>
+      <div class="dialog_login_main_body"><!--底部面板,登录弹窗主体-->
+        <div class="dialog_login_body_left"><!--左侧容器-->
+          <div><!--左侧图片-->
+            <div>
+              <el-avatar :size="150" src="./static/images/logo.jpg"></el-avatar>
+            </div>
+          </div>
+        </div>
+        <div class="dialog_login_body_right">
+          <template><!--右侧容器,分三个模式,用户登录,用户注册,管理员登录-->
+            <el-tabs v-model="Login_Window_Mode" @tab-click="clear_Login_Window_Input()">
+              <el-tab-pane label="用户登录" name="UserLogin">
+                <div class="dialog_login_body_common"><!--右侧登录界面-->
+                  <!--登录提示信息-->
+                  <div><!--用户ID输入区-->
+                    <div>
+                      <p>用户ID</p>
+                      <el-input v-model="Login_Window_User_Login_Id_Input" name="用户ID" type="text" id="user-name"
+                        size="20" value="" placeholder="用户ID"></el-input>
+                      {{Login_Window_User_Login_Id_Input}}
+                    </div>
+                  </div>
+                  <div><!--密码输入区-->
+                    <div>
+                      <p>密码</p>
+                      <el-input v-model="Login_Window_User_Login_Password_Input" name="密码" type="password" id="password"
+                        size="20" value="" placeholder="请输入密码"></el-input>
+                      {{Login_Window_User_Login_Password_Input}}
+                    </div>
+                  </div>
+                  <button @click=""><!--登录按钮-->
+                    <p>登&nbsp;录</p>
+                  </button>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="用户注册" name="Register">
+                <div class="dialog_login_body_common"><!--右侧注册界面-->
+                  <div><!--用户名输入区-->
+                    <div class="">
+                      <p>用户名</p>
+                      <el-input v-model="Login_Window_User_Register_Name_Input" class="userName" type="text"
+                        id="user-name" size="20" value="" placeholder="用户名"></el-input>
+                      {{Login_Window_User_Register_Name_Input}}
+                    </div>
+                  </div>
+                  <div class=""><!--密码输入区-->
+                    <div class="">
+                      <p>密码</p>
+                      <el-input v-model="Login_Window_User_Register_Password_Input" class="password" type="password"
+                        id="password" size="20" value="" placeholder="请输入密码"></el-input>
+                      {{Login_Window_User_Register_Password_Input}}
+                    </div>
+                  </div>
+                  <div class=""><!--确认密码-->
+                    <div class="">
+                      <p>确认密码</p>
+                      <el-input v-model="Login_Window_User_Register_Confirm_Password_Input" class="password" type="text"
+                        id="password" size="20" value="" placeholder="确认密码"></el-input>
+                      {{Login_Window_User_Register_Confirm_Password_Input}}
+                    </div>
+                  </div>
+                  <button class="" @click=""><!--注册按钮-->
+                    <p>注&nbsp;册</p>
+                  </button>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="管理员登录" name="AdmLogin">
+                <div class="dialog_login_body_common"><!--右侧管理员登录界面-->
+                  <div class=""><!--用户名输入区-->
+                    <div class="">
+                      <p>管理员ID</p>
+                      <el-input v-model="Login_Window_Adm_Login_Adm_Login_Id_Input" name="管理员ID" type="text"
+                        id="user-name" size="20" value="" placeholder="管理员ID"></el-input>
+                      {{Login_Window_Adm_Login_Adm_Login_Id_Input}}
+                    </div>
+                  </div>
+                  <div class=""><!--密码输入区-->
+                    <div class="">
+                      <p>密码</p>
+                      <el-input v-model="Login_Window_Adm_Login_Adm_Login_Password_Input" name="密码" type="password"
+                        id="password" size="20" value="" placeholder="请输入密码"></el-input>
+                      {{Login_Window_Adm_Login_Adm_Login_Password_Input}}
+                    </div>
+                  </div>
+                  <button class="" @click=""><!--登录按钮-->
+                    <p>登&nbsp;录</p>
+                  </button>
+                </div>
+              </el-tab-pane>
+            </el-tabs>
+          </template>
+        </div>
+      </div>
+    </el-dialog>
+  </div>
+</body>
+<script>//js代码
+  mainvue = new Vue(
+    {
+      el: ".use_global_data",
+      data() {
+        return {
+          /*以下是全局信息*/
+          global_key: 0,                /*全局key,用于重新渲染全屏*/
+          Dark_mode: false,             /*夜间模式与日间模式的切换*/
+          IsAdmMode: false,             /*是否为管理员模式(即是否展示隐藏内容)*/
+          SearchInput: "",              /*搜索栏的输入*/
+          sizesvalue:[0,10],
+          /* Login_Window 登录相关*/
+          Login_Window_Visible: false,                            /*登录窗口可见*/
+          Login_Window_Mode: 'UserLogin',                         /*当前模式,登录 0 or 注册 1 or 管理员登录 2*/
+          /*用户登录*/
+          Login_Window_User_Login_Id_Input: "",                   /*输入的用户id*/
+          Login_Window_User_Login_Password_Input: "",             /*输入的用户密码*/
+          /*用户注册*/
+          Login_Window_User_Register_Name_Input: "",              /*输入的用户名*/
+          Login_Window_User_Register_Password_Input: "",          /*输入的用户密码*/
+          Login_Window_User_Register_Confirm_Password_Input: "",  /*输入的确认密码*/
+          /*管理员登录*/
+          Login_Window_Adm_Login_Adm_Login_Id_Input: "",          /*输入的管理员id*/
+          Login_Window_Adm_Login_Adm_Login_Password_Input: "",    /*输入的管理员密码*/
+          /* File_Browse 文件浏览相关*/
+          File_Browse_ShowDetail: true,             /*文件展示模式,true为显示详细模式,false为显示平铺模式*/
+          File_Browse_stack: new Array(5).fill(                   /*文件访问栈*/
+            {
+              fileId: 1,                                          /*文件id*/
+              fileName: "访问路径文件名示例",                       /*文件名*/
+              fileCreator: 1,                                     /*文件创建者*/
+            }
+          ),
+          File_Browse_SelectedPage: 10,                           /* 选择的页数(从1开始) */
+          File_Browse_MaxPage: 10,                                /* 最大页数(从1开始) */
+          File_Browse_PageSize: 10,                               /* 每页文件数量 */
+          File_Browse_CountInPath: 100,                           /* 当前路径下的文件总数*/
+          File_Browse_FileList: new Array(10).fill(               /* 当前目录下的所有文件*/
+            {
+              fileId: 1,                                            /*文件id*/
+              fileName: "文件夹内文件名示例",                         /*文件名*/
+              fileCreator: 1,                                       /*文件创建者*/
+            }
+          ),
+          /* User_Account_Info 用户登录信息 */
+          User_Info_ID: 0,
+          User_Info_Name: "",
+          User_File_List: 0,
+          User_Favorites: 0,
+          /* 管理员登录信息 */
+          Adm_Info_ID: 0,
+          Adm_Info_Name: "",
+          /* 上传列表 */
+          Upload_Queue: {
+          },
+          /* 下载列表 */
+          Download_Queue: {
+          }
+        }
+      },
+      methods: {
+        File_List_Empty() {//前端显示用,判定文件表是否为空
+          a = this.File_Browse_FileList.length == 0;
+          //console.log("Empty?", a);
+          return a;
+        },
+        File_List_Not_Empty() {//前端显示用,判定文件表是否非空
+          a = this.File_Browse_FileList.length != 0;
+          //console.log("Not Empty?", a);
+          return a;
+        },
+        show_File_Detail() {//显示用,切换为详细表格模式
+          a = this.File_List_Not_Empty() && this.File_Browse_ShowDetail;
+          //console.log("Detail?", a);
+          return a;
+        },
+        show_Fail_Tile() {//显示用,切换为平铺模式
+          a = this.File_List_Not_Empty() && (!this.File_Browse_ShowDetail);
+          //console.log("Tile?", a);
+          return a;
+        },
+        clear_Login_Window_Input() {//清空登录窗口
+          this.Login_Window_User_Login_Id_Input = "";
+          this.Login_Window_User_Login_Password_Input = "";
+          this.Login_Window_User_Register_Name_Input = "";
+          this.Login_Window_User_Register_Password_Input = "";
+          this.Login_Window_User_Register_Confirm_Password_Input = "";
+          this.Login_Window_Adm_Login_Adm_Login_Id_Input = "";
+          this.Login_Window_Adm_Login_Adm_Login_Password_Input = "";
+        },
+        set_Login_Window_Login()
+        {
+          this.Login_Window_Mode='UserLogin';
+        },
+        return_true()//返回true
+        {
+          return true;
+        },
+        //通过axios发送post请求
+        admLogin() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Admin/login",
+              data: _this.adm
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+            _this.adm.admId = resp.data.admId;
+            _this.adm.admPassword = resp.data.admPassword;
+            _this.adm.admName = resp.data.admName;
+          });
+        },
+        searchByKeyWords() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/byKeyWords",
+              data: _this.keywords
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchByLabels() {
+          var _this = this;
+          var params = {
+            'suffixs': _this.suffixs,
+            'usages': _this.usages,
+            'sizes': _this.sizes
+          };
+          console.log(params)
+
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/byLabels",
+              data: params
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchAllFiles() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/allFiles",
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchFileFromIndex() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/fileFromIndex",
+              data: {
+                'pageSize': _this.pageSize,
+                'index': _this.index
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        uploadFile() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Upload/file",
+              data: _this.files
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        uploadFiles() {
+          //自行调用uploadfile完成
+          console.log("自行调用upload file完成")
+        },
+        downloadFile() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Download/file",
+              data: _this.files
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        downloadFiles() {
+          console.log("自行调用download files完成")
+        },
+        searchUploadFiles() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/uploadFiles",
+              data: {
+                'users': _this.users,
+                'files': _this.files
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchDownloadFiles() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/downloadFiles",
+              data: {
+                'users': _this.users,
+                'files': _this.files
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchFavoriteFiles() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/favoriteFiles",
+              data: {
+                'users': _this.users,
+                'files': _this.files
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        searchContentsFromFile() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Search/contentsFromFileteFiles",
+              data: _this.files
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        deleteFileFromUser() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Delete/fileFromUser",
+              data: {
+                'files': _this.files,
+                'users': _this.users
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        updateFile() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/Update/file",
+              data: {
+                'files': _this.files,
+                'users': _this.users
+              }
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        userLogin() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/User/login",
+              data: _this.users
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        },
+        userRegister() {
+          var _this = this;
+          axios(
+            {
+              method: "post",
+              url: "http://localhost:8080/FileTranServer/User/register",
+              data: _this.users
+            }
+          ).then(function (resp) {
+            console.log(resp.data);
+          });
+        }
+      }
+    }
+  );
+</script>
+
+</html>

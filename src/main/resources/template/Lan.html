@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局域网文件传输</title>
+    <link href="CSS/lan.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/00_Styles.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/01_General_Box.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/02_Button.css" rel="stylesheet" type="text/css" />
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body class="body_box">
+<!--提示信息-->
+<div class="msg common_box_1">
+    <p>请输入</p>
+    <p id="ip-address">ip address</p>
+    <p>:</p>
+    <p id="port">port</p>
+    <p>来访问服务器</p>
+</div>
+<!--文件列表们-->
+<div class="fileLists common_box_1">
+	<div class="fileLists-left ">
+    <!--服务器文件列表-->
+    <div class="fileLists-serviceFileList common_box_2 child_common_box_3">
+        <!--服务器文件提示信息-->
+        <div class="fileLists_msg">
+            <p>服务器文件列表</p>
+        </div>
+        <!--文件头-->
+        <div class="fileHead">
+            <!--文件名称-->
+            <div class="fileHead-fileName">
+                <p>文件名</p>
+            </div>
+            <!--文件类型-->
+            <div class="fileHead-fileType">
+                <p>类型</p>
+            </div>
+            <!--文件大小-->
+            <div class="fileHead-fileSize">
+                <p>文件大小</p>
+            </div>
+        </div>
+        <!--具体文件内容-->
+        <div class="content-fileList-body child_common_box_5">
+            <!--具体项-->
+            <div class="file">
+                <p class="fileName">compile.c</p>
+                <p class="fileType">.c</p>
+                <p class="fileSize">12.3MB</p>
+            </div>
+        </div>
+    </div>
+	</div>
+    <!--上传-->
+	<div class="fileLists-right">
+    <div class="fileLists-upload common_box_2 child_common_box_3">
+        <!--上传文件提示信息-->
+        <div class="fileLists_msg">
+            <p>上传文件列表</p>
+        	<!--上传按钮-->
+        	<div class="fileLists-button">
+            	<!--如果有可能 希望这里是图片而不是文字-->
+            	<button><span>上传</span></button>
+        	</div>
+        </div>
+        <!--上传文件列表-->
+        <div class="fileLists-upload-fileList">
+            <!--文件头-->
+            <div class="fileHead">
+                <!--文件名称-->
+                <div class="fileHead-fileName">
+                    <p>文件名</p>
+                </div>
+                <!--文件类型-->
+                <div class="fileHead-fileType">
+                    <p>类型</p>
+                </div>
+                <!--文件大小-->
+                <div class="fileHead-fileSize">
+                    <p>文件大小</p>
+                </div>
+            </div>
+            <!--具体文件内容-->
+            <div class="content-fileList-body child_common_box_5">
+                <!--具体项-->
+                <div class="file">
+                    <p class="fileName">compile.c</p>
+                    <p class="fileType">.c</p>
+                    <p class="fileSize">12.3MB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--下载-->
+    <div class="fileLists-download common_box_2 child_common_box_3">
+        <!--下载文件提示信息-->
+        <div class="fileLists_msg">
+            <p>下载文件列表</p>
+        	<!--下载按钮-->
+        	<div class="fileLists-button">
+            	<button><span>下载</span></button>
+        	</div>
+        </div>
+        <!--下载文件列表-->
+        <div class="fileList-download-fileList">
+            <!--文件头-->
+            <div class="fileHead">
+                <!--文件名称-->
+                <div class="fileHead-fileName">
+                    <p>文件名</p>
+                </div>
+                <!--文件类型-->
+                <div class="fileHead-fileType">
+                    <p>类型</p>
+                </div>
+                <!--文件大小-->
+                <div class="fileHead-fileSize">
+                    <p>文件大小</p>
+                </div>
+            </div>
+            <!--具体文件内容-->
+            <div class="content-fileList-body child_common_box_5">
+                <!--具体项-->
+                <div class="file">
+                    <p class="fileName">compile.c</p>
+                    <p class="fileType">.c</p>
+                    <p class="fileSize">12.3MB</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+</div>
+
+</body>
+</html>

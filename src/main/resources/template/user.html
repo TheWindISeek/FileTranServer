@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户界面</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body>
+
+<!--通用导航栏-->
+<div id="FT-header">
+    <!--导航栏左部-->
+    <div class="toolbar-left">
+        <!--        logo图标-->
+        <div class="toolbar-logo">
+            <img src="images/logo.jpg" alt="logo">
+        </div>
+        <!--        一系列跳转网页-->
+        <ul class="toolbar-left-menus">
+            <li title="首页">
+                <!--modify-->
+                <a href="main.html">
+                    首页
+                </a>
+            </li>
+
+            <li title="局域网传输">
+                <!--modify-->
+                <a href="main.html">
+                    局域网传输
+                </a>
+            </li>
+            <li title="留言本">
+                <!--modify-->
+                <a href="main.html">
+                    留言本
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--导航栏中部-->
+    <div class="toolbar-middle">
+        <input id="toolbar-search-input" maxlength="2000" autocomplete="off" type="text" value=""
+               placeholder="add framework support" style="text-indent: 12px;">
+        <button id="toolbar-search-button"><i></i><span>搜索</span></button>
+    </div>
+    <!--导航栏右部-->
+    <div class="toolbar-right">
+        <div class="toolbar-right-onlyUser">
+            <div class="toolbar-right-btn-user">
+                <a href="main.html">
+                    用户
+                </a>
+            </div>
+            <div class="toolbar-right-btn-shopping">
+                <a href="main.html">
+                    购物车
+                </a>
+            </div>
+            <div class="toolbar-right-btn-logging">
+                <a href="main.html">
+                    登录
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--个人信息-->
+<div class="person-info">
+    <!--头像-->
+    <div class="">
+        <!--头像图片-->
+        <img src="images/blade.jpg" alt="头像">
+    </div>
+    <!--上传文件数-->
+    <div class="update-files">
+        <p>上传</p>
+        <p>...</p>
+        <p>文件</p>
+    </div>
+    <!--下载文件数-->
+    <div class="download-files">
+        <p>下载</p>
+        <p>...</p>
+        <p>文件</p>
+    </div>
+    <!--设置-->
+    <div class="setting">
+        <a href="user.html"></a>
+    </div>
+</div>
+
+<!--内容框-->
+<div class="content">
+    <!--左侧导航栏-->
+    <div class="content-guide">
+        <!--目录-->
+        <div class="content-guide-catalogue">
+            <a href="user.html">目录</a>
+        </div>
+        <!--上传-->
+        <div class="content-guide-upload">
+            <a href="user.html">上传</a>
+        </div>
+        <!--下载-->
+        <div class="content-guide-download">
+            <a href="user.html">下载</a>
+        </div>
+        <!--分享-->
+        <div class="content-guide-share">
+            <a href="user.html">分享</a>
+        </div>
+    </div>
+    <!--右侧文件列表-->
+    <div class="content-fileList">
+        <!--文件头-->
+        <div class="fileHead">
+            <!--文件名称-->
+            <div class="fileHead-fileName">
+                <p>文件名</p>
+            </div>
+            <!--文件类型-->
+            <div class="fileHead-fileType">
+                <p>类型</p>
+            </div>
+            <!--文件大小-->
+            <div class="fileHead-fileSize">
+                <p>文件大小</p>
+            </div>
+        </div>
+        <!--具体文件内容-->
+        <div class="content-fileList-body">
+            <!--具体项-->
+            <div class="file">
+                <p class="fileName">compile.c</p>
+                <p class="fileType">.c</p>
+                <p class="fileSize">12.3MB</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

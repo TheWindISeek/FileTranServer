@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.FileTran.dao.DefaultIconMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.pojo.po.DefaultIcon">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Name" jdbcType="CHAR" property="name" />
+    <result column="FileTypes" jdbcType="CHAR" property="filetypes" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.web.FileTran.pojo.po.DefaultIcon">
+    <result column="Icon" jdbcType="LONGVARBINARY" property="icon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Name, FileTypes
+  </sql>
+  <sql id="Blob_Column_List">
+    Icon
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from Default_Icon
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from Default_Icon
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.web.FileTran.pojo.po.DefaultIcon">
+    insert into Default_Icon (Id, Name, FileTypes, 
+      Icon)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{filetypes,jdbcType=CHAR}, 
+      #{icon,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.FileTran.pojo.po.DefaultIcon">
+    insert into Default_Icon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="name != null">
+        Name,
+      </if>
+      <if test="filetypes != null">
+        FileTypes,
+      </if>
+      <if test="icon != null">
+        Icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="filetypes != null">
+        #{filetypes,jdbcType=CHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.FileTran.pojo.po.DefaultIcon">
+    update Default_Icon
+    <set>
+      <if test="name != null">
+        Name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="filetypes != null">
+        FileTypes = #{filetypes,jdbcType=CHAR},
+      </if>
+      <if test="icon != null">
+        Icon = #{icon,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.web.FileTran.pojo.po.DefaultIcon">
+    update Default_Icon
+    set Name = #{name,jdbcType=CHAR},
+      FileTypes = #{filetypes,jdbcType=CHAR},
+      Icon = #{icon,jdbcType=LONGVARBINARY}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.FileTran.pojo.po.DefaultIcon">
+    update Default_Icon
+    set Name = #{name,jdbcType=CHAR},
+      FileTypes = #{filetypes,jdbcType=CHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

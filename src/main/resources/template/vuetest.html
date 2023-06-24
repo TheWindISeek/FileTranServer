@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>主页</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="./node_modules/element-ui/lib/theme-chalk/index.css" type="text/css">
+  <!--样式-->
+  <link rel="stylesheet" href="./css/new_index.css" type="text/css">
+  <link rel="stylesheet" href="./css/new_login.css" type="text/css">
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="./js/vue.js"></script>
+  <script src="./node_modules/element-ui/lib/index.js"></script>
+</head>
+
+<body><!--网页内容-->
+  <div class="use_global_data">
+    <button class="use_global_data" @click="awesome = !awesome">Toggle</button>
+
+    <h1 class="use_global_data" v-if="awesome">Vue is awesome!</h1>
+    <h1 class="use_global_data" v-else>Oh no 😢</h1>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: ".use_global_data",
+    data() {
+      return {
+        awesome: true,
+        IsAdmMode: 0,
+      }
+    }
+  });
+</script>
+</html>

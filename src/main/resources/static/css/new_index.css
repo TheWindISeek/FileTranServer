@@ -1,0 +1,303 @@
+html,
+body {
+    max-width: 100%;
+    min-width: 600px;
+    min-height: 100%;
+    height: 100%;
+    overflow: auto;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.el-header,
+.el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+}
+
+.el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+}
+
+.el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+}
+
+/*
+a:link,a:visited{
+	color:#bfbfbf;
+	text-decoration:none;
+}
+a:hover
+{
+	color:#dfdfdf;
+	text-decoration:none;
+}
+*/
+
+li {
+    list-style-type: none;
+}
+
+.index_container {
+    flex: auto 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.index_header {
+    width: 100%;
+    height: 48px !important;
+    flex: none;
+
+    margin: 0px;
+
+    display: inline-flex;
+}
+
+.index_main_container {
+    width: 100%;
+    flex: auto 1;
+
+    margin: 0px;
+
+    display: inline-flex;
+}
+
+.index_footer {
+    width: 100%;
+    height: 48px !important;
+    flex: none;
+
+    margin: 0px;
+
+    display: inline-flex;
+}
+
+.index_aside {
+    width: 300px;
+    height: inherit;
+    flex: none;
+
+    overflow-y: auto;
+}
+
+.index_main {
+    flex: auto 1;
+
+    margin: 0px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.index_header_left {
+    height: inherit;
+    padding: 0px;
+    flex: initial;
+
+    float: left;
+
+    display: inline-flex;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+
+.index_header_left>* {
+    margin: 0px;
+}
+
+.index_header_center {
+    height: inherit;
+    flex: 1 0 300px;
+
+    display: inline-flex;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+
+.index_header_right {
+    height: inherit;
+    padding: 0px;
+    flex: initial;
+
+    float: right;
+
+    display: inline-flex;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+
+.index_header_icon {
+    width: 60px;
+}
+
+.index_header_button {
+    width: 120px;
+    margin: 0px !important;
+}
+
+.index_search_button {
+    width: 120px;
+    margin: 0px !important;
+    text-align: center;
+}
+
+.index_header_input {
+    width: max(calc(90% - 100px), 200px);
+    /*flex: 1;*/
+
+    text-align: left;
+}
+
+.index_footer_links {
+    flex: 1;
+    flex-wrap: wrap;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index_footer_link {
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.index_aside_browse>section {
+    margin: 12px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+    list-style-type: none;
+}
+
+.index_aside_browse_group {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+}
+
+.index_aside_browse_group_title {
+    color: #333;
+}
+
+.index_aside_browse_group_data ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.index_aside_browse_group_data ul li {
+    text-align: left;
+}
+
+.index_aside_browse_group_inputrange {
+    margin: 10px;
+    padding: 0px;
+    display: inline-flex;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+
+.index_aside_browse_group_inputrange>p {
+    width: 30px;
+    flex: none;
+    font-size: 24px;
+    font-style: oblique;
+}
+
+.index_aside_browse_group_inputrange>* {
+    max-height: 36px;
+}
+
+.index_aside_author {
+    color: #7f7f7f;
+}
+
+.index_main_fileInfo {
+    width: 150px;
+    height: 225px;
+    float: left;
+    margin: 10px;
+    border-radius: 10px;
+    border: medium solid rgba(0, 0, 0, 1.00);
+
+    display: flex;
+    flex-direction: column;
+    /*主轴上的对齐方式为居中*/
+    justify-content: center;
+    /*交叉轴上对齐方式为居中*/
+    align-items: center;
+}
+
+.index_main_fileIcon {
+    width: 128px;
+    height: 128px;
+    flex: none;
+}
+
+.index_main_fileInfo_Name {
+    margin: 0px;
+    flex: 1;
+}
+
+.index_main_fileInfo_Size {
+    margin: 0px;
+    flex: 1;
+}
+
+.index_main_header {
+    height: 48px;
+}
+
+.index_main_header_breadcrumb {
+    float: left;
+}
+
+.index_main_header_switch {
+    float: right;
+}
+
+.index_main_FileBrowse_Table {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.index_main_FileBrowse_Tile {
+    width: 100%;
+    flex: 1;
+}
+
+.index_main_FileBrowse_Block {
+    width: 100%;
+    flex:none;
+}

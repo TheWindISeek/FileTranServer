@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link href="CSS/main.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/00_Styles.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/01_General_Box.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/02_Button.css" rel="stylesheet" type="text/css" />
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.js"></script>
+</head>
+<body class="common_box_1">
+<!--导航栏-->
+<div class="FT-header child_horizontal common_box_4">
+	<div class="toolbar-left">
+		<!--        logo图标-->
+        <img class="toolbar-logo" src="images/logo.jpg" title="(LOGO)" alt="logo">
+		<!--        一系列跳转网页-->
+        <a href="main.html" title="首页">
+			<button class="btnsize-120-48 custom-btn btn-17" >
+                <span>首页</span>
+			</button>
+        </a>
+        <a href="main.html" title="局域网传输">
+			<button class="btnsize-120-48 custom-btn btn-17">
+                <span>局域网</span>
+			</button>
+        </a>
+        <a href="main.html" title="留言本">
+			<button class="btnsize-120-48 custom-btn btn-17">
+            	<span>留言本</span>
+			</button>  
+		</a>
+	</div>
+		<!--跳转网页结束-->
+		<!--输入框与搜索键-->
+	<div class="toolbar-center">
+		<input class="toolbar_input" 
+			   id="toolbar-search-input"
+			   maxlength="2000"
+			   autocomplete="off"
+			   type="text"
+			   value=""
+               placeholder="add framework support"
+			   style="">
+        <button class="toolbar_search btn-18" id="toolbar-search-button">
+			<span>搜索</span>
+		</button>
+	</div>
+		<!--输入框与搜索键结束-->
+		<!--右侧用户信息-->
+	<div class="toolbar-right">
+		<div class="toolbar-right-onlyUser child_line_block">
+            <a href="main.html">
+				<button class="btnsize-120-48 custom-btn btn-17">
+                    <span>用户</span>
+				</button>
+            </a>
+            <a href="main.html">
+				<button class="btnsize-120-48 custom-btn btn-17">
+                    <span>购物车</span>
+				</button>
+            </a>
+            <a href="main.html">
+				<button class="btnsize-120-48 custom-btn btn-17">
+                    <span>登录</span>
+				</button>
+            </a>
+        </div>
+	</div>
+		<!--右侧用户信息结束-->
+</div>
+
+
+<!--主体栏,附带滚动翻页,大小固定-->
+<div class="FT-body">
+    <!--    选择栏,由内部元素数量调整大小 -->
+    <div class="index-sidebar common_child_pos_limit_10 common_box_2">
+		<!--    选择栏-->
+            <div class="sidebar-browse child_common_box_4 child_size_limit">
+                <!--                后缀选择-->
+                <section class="sidebar_browse_group">
+                    <dl>
+                        <dt class="tit">
+                            <b title="只对前4万条记录分组">后缀</b>
+                        </dt>
+                        <dd class="sidebar-checkbox sidebar-checkbox_multiple">
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value=".zip">
+                                        <a href="javascript:void(0)" title=".zip">.zip</a>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value=".c">
+                                        <a href="javascript:void(0)" title=".c">.c</a>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value=".pdf">
+                                        <a href="javascript:void(0)" title=".pdf">.pdf</a>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value=".java">
+                                        <a href="javascript:void(0)" title=".java">.java</a>
+                                    </label>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </section>
+				<!--后缀选择结束-->
+                <!--                用途选择-->
+                <section class="sidebar_browse_group sidebar-checkbox_multiple">
+                    <dl>
+                        <dt class="tit">
+                            <b title="只对前4万条记录分组">用途</b>
+                        </dt>
+                        <dd class="sidebar-checkbox">
+                            <ul>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="程序">
+                                        <a href="javascript:void(0)" title="程序">程序</a>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        <input type="checkbox" value="表">
+                                        <a href="javascript:void(0)" title="表">表</a>
+                                    </label>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" title="查看更多">查看更多</a>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </section>
+				<!--用途选择结束-->
+                <!--                大小选择-->
+                <section class="sidebar_browse_group">
+                    <b title="只对前4万条记录分组">大小</b>
+					<div class="range_selector child_line_block">
+                    	<input id="sidebar-search-input-left"
+							   maxlength="2000"
+							   autocomplete="off"
+							   type="text"
+							   value=""
+							   placeholder="0"
+							   style="text-indent: 12px;">
+                    	<p>-</p>
+                    	<input id="sidebar-search-input-right"
+							   maxlength="2000"
+							   autocomplete="off"
+							   type="text"
+							   value=""
+							   placeholder="50"
+							   style="text-indent: 12px;">
+					</div>
+                </section>
+				<!--大小选择结束-->
+                <!--                猜你喜欢-->
+                <section class="sidebar_browse_group">
+                    <dl>
+                        <dt class="tit">
+                            <b title="只对前4万条记录分组">猜你喜欢</b>
+                        </dt>
+                        <dd class="sidebar-checkbox sidebar-checkbox_multiple">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)" title="C语言源程序">C语言源程序</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" title="表格">表格</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" title="查看更多">查看更多</a>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </section>
+				<!--猜你喜欢结束-->
+            <!--            选择栏底框-->
+            <section class="blog_post_section">
+                <h2>By JeffreySharp and Mr.L</h2>
+            </section>
+            <!--选择栏底框结束-->
+        </div>
+	</div>
+    <!--    文件显示框-->
+    <div class="file-choose common_box_3 common_child_pos_limit">
+		<!--    文件显示框-->
+        <!--        过滤器-->
+        <div class="file-choose-filter common_box_4 child_list_notype">
+            <ul class="file-choose-filter-mddle">
+                <li class="file-choose-filter-item">
+                    名称
+                </li>
+                <li class="file-choose-filter-item">
+                    类型
+                </li>
+                <li class="file-choose-filter-item">
+                    大小
+                </li>
+            </ul>
+        </div>
+        <!--        文件容纳器-->
+        <div class="file-choose-container child_common_box_4 file_container common_child_spacing_limit_5 common_child_pos_limit_5">
+            <!--            文件块-->
+            <div>
+                <!--                点击链接跳转到更具体的介绍页面-->
+                <a class="file" href="javascript:void(0)">
+            		<img class="file_img" src="images/logo.jpg" title="(LOGO)">
+                    <!--                文件名称-->
+                    <p>
+                        Content
+                    </p>
+                    <!--                文件类型-->
+                    <p>
+                        .java
+                    </p>
+                    <!--                文件大小-->
+                    <p>
+                        1MB
+                    </p>
+                </a>
+            </div>
+            <div>
+                <!--                点击链接跳转到更具体的介绍页面-->
+                <a class="file" href="javascript:void(0)">
+            		<img class="file_img" src="images/logo.jpg" title="(LOGO)">
+                    <!--                文件名称-->
+                    <p>
+                        云计算导论
+                    </p>
+                    <!--                文件类型-->
+                    <p>
+                        .pdf
+                    </p>
+                    <!--                文件大小-->
+                    <p>
+                        16MB
+                    </p>
+                </a>
+            </div>
+            <div>
+                <!--                点击链接跳转到更具体的介绍页面-->
+                <a class="file" href="javascript:void(0)">
+            		<img class="file_img" src="images/logo.jpg" title="(LOGO)">
+                    <!--                文件名称-->
+                    <p>
+                        IDEA
+                    </p>
+                    <!--                文件类型-->
+                    <p>
+                      .zip-------------------------
+                    </p>
+                    <!--                文件大小-->
+                    <p>
+                        880MB
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--底部-->
+<div class="FT-footer">
+	<div class="footer_container">
+		<div class="footer_link">
+			<a href="main.html">
+				<p>
+				联系我们
+				</p>
+			</a>
+		</div>
+		<div class="footer_link">
+			<a href="main.html">
+				<p>
+				问题反馈
+				</p>
+			</a>
+		</div>
+		<div class="footer_link">
+			<a href="main.html">
+				<p>
+				加入我们
+				</p>
+			</a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

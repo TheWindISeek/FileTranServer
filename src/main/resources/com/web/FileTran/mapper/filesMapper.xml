@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.FileTran.newdaogenerated.filesMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.newpojo.files">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="folder_id" jdbcType="INTEGER" property="folderId" />
+    <result column="file_type" jdbcType="CHAR" property="fileType" />
+    <result column="permission" jdbcType="CHAR" property="permission" />
+    <result column="shortcut_destination" jdbcType="INTEGER" property="shortcutDestination" />
+    <result column="inherited_from_folder_id" jdbcType="INTEGER" property="inheritedFromFolderId" />
+    <result column="creator_id" jdbcType="INTEGER" property="creatorId" />
+    <result column="blob_id" jdbcType="INTEGER" property="blobId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, folder_id, file_type, permission, shortcut_destination, inherited_from_folder_id, 
+    creator_id, blob_id
+  </sql>
+
+  <!-- 调用 CreateFile 存储过程 -->
+  <select id="createFile" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL CreateFile(
+    #{parentFolderId}, #{creatorId}, #{fileName},
+    #{fileContent, jdbcType=BLOB}, #{newFileId, mode=OUT, jdbcType=INTEGER},
+    #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 调用 CreateFileShortcut 存储过程 -->
+  <select id="createFileShortcut" parameterType="java.util.Map" resultType="java.util.HashMap">
+    {CALL CreateFileShortcut(
+    #{parentFolderId}, #{creatorId}, #{fileName},
+    #{targetFileId}, #{newShortcutId, mode=OUT, jdbcType=INTEGER},
+    #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 调用 DeleteFile 存储过程 -->
+  <delete id="deleteFile" parameterType="int">
+    {CALL DeleteFile(#{fileId})}
+  </delete>
+
+  <!-- 调用 DownloadFile 存储过程 -->
+  <select id="downloadFile" parameterType="int" resultType="java.util.HashMap">
+    {CALL DownloadFile(
+    #{fileId},
+    #{fileBlob, mode=OUT, jdbcType=BLOB},
+    #{errorMessage, mode=OUT, jdbcType=VARCHAR}
+    )}
+  </select>
+
+  <!-- 查询文件信息 -->
+  <select id="getFileInfo" parameterType="int" resultType="java.util.HashMap">
+    SELECT *
+    FROM files
+    WHERE id = #{fileId}
+  </select>
+
+</mapper>

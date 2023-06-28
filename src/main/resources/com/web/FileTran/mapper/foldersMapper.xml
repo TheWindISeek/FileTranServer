@@ -35,14 +35,15 @@
     {CALL DeleteFolder(#{folderId})}
   </delete>
 
-  <!-- 分页查询文件夹下的全部子文件夹和文件 -->
+  <!-- 分页查询文件夹下的全部子文件夹 -->
   <select id="getChildrenFolders" parameterType="java.util.Map" resultType="java.util.List">
     SELECT *
     FROM folders
     WHERE parent_folder_id = #{folderId}
     LIMIT #{offset}, #{limit}
   </select>
-  <!-- 分页查询文件夹下的全部子文件夹和文件 -->
+
+  <!-- 分页查询文件夹下的全部子文件 -->
   <select id="getChildrenFiles" parameterType="java.util.Map" resultType="java.util.List">
     SELECT *
     FROM files

@@ -1,14 +1,14 @@
 package com.web.FileTran.web.newfunction;
 
-import com.web.FileTran.newdto.DownloadInfoDTO;
-import com.web.FileTran.newdto.FileDTO;
-import com.web.FileTran.newdto.FolderContentDTO;
-import com.web.FileTran.newdto.FolderDTO;
-import com.web.FileTran.newservice.FileService;
-import com.web.FileTran.newservice.FolderService;
-import com.web.FileTran.newvo.FileVO;
-import com.web.FileTran.newvo.FolderContentVO;
-import com.web.FileTran.newvo.FolderVO;
+import com.web.FileTran.dto.DownloadInfoDTO;
+import com.web.FileTran.dto.FileDTO;
+import com.web.FileTran.dto.FolderContentDTO;
+import com.web.FileTran.dto.FolderDTO;
+import com.web.FileTran.service.FileService;
+import com.web.FileTran.service.FolderService;
+import com.web.FileTran.vo.FileVO;
+import com.web.FileTran.vo.FolderContentVO;
+import com.web.FileTran.vo.FolderVO;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;

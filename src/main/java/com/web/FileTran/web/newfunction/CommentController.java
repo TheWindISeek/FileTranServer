@@ -1,14 +1,11 @@
 package com.web.FileTran.web.newfunction;
 
-import com.web.FileTran.newdto.CommentDTO;
-import com.web.FileTran.newvo.CommentVO;
-import com.web.FileTran.newservice.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.web.FileTran.dto.CommentDTO;
+import com.web.FileTran.vo.CommentVO;
+import com.web.FileTran.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/comments")

@@ -1,7 +1,7 @@
 package com.web.FileTran.web.newfunction;
 
-import com.web.FileTran.newvo.UserVO;
-import com.web.FileTran.newservice.UserService;
+import com.web.FileTran.vo.UserVO;
+import com.web.FileTran.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.web.FileTran.newdaogenerated.adminsMapper">
-  <resultMap id="BaseResultMap" type="com.web.FileTran.newpojo.admins">
+<mapper namespace="com.web.FileTran.dao.adminsMapper">
+  <resultMap id="BaseResultMap" type="com.web.FileTran.pojo.admins">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />

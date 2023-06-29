@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.web.FileTran.dao"})
+@MapperScan(basePackages = {"com.web.FileTran.olddao"})
 @ComponentScan(basePackages = {"com.*"})
 public class FileTranServerApplication {
     /**

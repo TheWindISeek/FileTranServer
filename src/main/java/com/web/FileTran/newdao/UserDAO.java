@@ -12,6 +12,7 @@ import java.util.Map;
 
 @Repository
 public class UserDAO {
+    /*
     private final JdbcTemplate jdbcTemplate;
     private static UserDAO instance = null;
     public static UserDAO getInstance()
@@ -126,5 +127,5 @@ public class UserDAO {
         INVALID_USERNAME,
         INVALID_PASSWORD
     }
-
+    */
 }

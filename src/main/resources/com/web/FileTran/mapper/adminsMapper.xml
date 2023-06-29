@@ -18,7 +18,7 @@
   </insert>
 
   <!-- 调用 DeleteAdmin 存储过程 -->
-  <delete id="deleteAdmin" parameterType="int">
+  <delete id="deleteAdmin" parameterType="long">
     {CALL DeleteAdmin(#{adminId})}
   </delete>
 

@@ -15,4 +15,5 @@ public interface filesMapper {
     Map<String, Object> downloadFile(int fileId);
     @MapKey("id")
     Map<String, Object> getFileInfo(int fileId);
+    boolean checkFileExists(long fileId);
 }

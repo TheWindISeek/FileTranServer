@@ -42,6 +42,7 @@ public class Folder_FileController {
     public ResponseEntity<FolderVO> getFolderInfo(
             @PathVariable long folderId,
             HttpSession session) {
+        // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FolderDTO folderInfoDTO = FolderService.getFolderInfoByID(folderId,session);
             FolderVO folderInfoVO = null;
@@ -60,7 +61,10 @@ public class Folder_FileController {
 
     // Endpoint for querying file information
     @GetMapping("/file/{fileId}/info")
-    public ResponseEntity<FileVO> getFileInfo(@PathVariable long fileId, HttpSession session) {
+    public ResponseEntity<FileVO> getFileInfo(
+            @PathVariable long fileId,
+            HttpSession session) {
+        // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FileDTO fileInfoDTO = fileService.getFileInfoByID(fileId,session);
             FileVO fileInfoVO = null;
@@ -79,8 +83,11 @@ public class Folder_FileController {
 
     // Endpoint for querying file information
     @GetMapping("/file/{fileId}/download")
-    public ResponseEntity<Resource> downloadFile(@PathVariable long fileId, HttpSession session) {
-        //需要实现下载功能
+    public ResponseEntity<Resource> downloadFile(
+            @PathVariable long fileId,
+            HttpSession session) {
+        // TODO 下载必须要登录,所以进入service层检测之前就应该检查用户登录状态,对未登录用户重定向
+        // 需要实现下载功能
         // 调用Service层方法获取要下载的文件
         DownloadInfoDTO downloadInfo = fileService.getDownloadInfo(fileId,session);
         String fileName = downloadInfo.getFileName();
@@ -116,6 +123,7 @@ public class Folder_FileController {
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize,
             HttpSession session) {
+        // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FolderContentDTO folderContentDTO = folderService.getFolderContent(folderId, page, pageSize,session);
             // TODO 将DTO转为VO并返回

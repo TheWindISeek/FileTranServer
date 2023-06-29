@@ -1,5 +1,6 @@
 package com.web.FileTran.newdaogenerated;
 
+import com.web.FileTran.newpojo.files;
 import com.web.FileTran.newpojo.folders;
 import org.apache.ibatis.annotations.MapKey;
 
@@ -19,7 +20,7 @@ public interface foldersMapper {
     List<Map<String, Object>> getChildrenFolders(Map<String, Object> params);
     @MapKey("id")
     List<Map<String, Object>> getChildrenFiles(Map<String, Object> params);
-    @MapKey("id")
-    Map<String, Object> getFolderInfo(int folderId);
+
+    files getFolderInfo(int folderId);
     boolean checkFolderExists(int folderId);
 }

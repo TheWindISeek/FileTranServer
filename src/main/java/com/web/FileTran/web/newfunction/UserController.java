@@ -22,9 +22,12 @@ public class UserController {
 
     // Endpoint for querying user information
     @GetMapping("/userinfo/{userId}")
-    public ResponseEntity<UserVO> getUserInfo(@PathVariable long userId, HttpSession session) {
+    public ResponseEntity<UserVO> getUserInfo(
+            @PathVariable long userId,
+            HttpSession session) {
+        // TODO 根据session进行检测,对未登录用户重定向
         try {
-            UserVO user = userService.getUserById(userId,session);
+            UserVO user = userService.getUserInfoById(userId,session);
             return ResponseEntity.ok(user);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

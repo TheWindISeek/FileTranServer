@@ -50,7 +50,7 @@
   </select>
 
   <!-- 查询留言信息 -->
-  <select id="getCommentInfo" parameterType="int" resultType="java.util.HashMap">
+  <select id="getCommentInfo" parameterType="long" resultType="java.util.HashMap">
     SELECT *
     FROM comments
     WHERE id = #{commentId}

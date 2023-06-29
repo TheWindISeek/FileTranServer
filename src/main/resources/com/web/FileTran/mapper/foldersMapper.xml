@@ -31,7 +31,7 @@
   </select>
 
   <!-- 调用 DeleteFolder 存储过程 -->
-  <delete id="deleteFolder" parameterType="int">
+  <delete id="deleteFolder" parameterType="long">
     {CALL DeleteFolder(#{folderId})}
   </delete>
 
@@ -52,14 +52,14 @@
   </select>
 
   <!-- 查询文件夹信息 -->
-  <select id="getFolderInfo" parameterType="int" resultType="java.util.HashMap">
+  <select id="getFolderInfo" parameterType="long" resultType="com.web.FileTran.newpojo.files">
     SELECT *
     FROM folders
     WHERE id = #{folderId}
   </select>
 
   <!-- 查询文件夹是否存在 -->
-  <select id="checkFolderExists" parameterType="int" resultType="boolean">
+  <select id="checkFolderExists" parameterType="long" resultType="boolean">
     SELECT COUNT(*) > 0
     FROM folders
     WHERE id = #{folderId}

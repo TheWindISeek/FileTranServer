@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Repository
 public class FolderDAO {
+    /*
     private final JdbcTemplate jdbcTemplate;
     private static FolderDAO instance = null;
     public static FolderDAO getInstance()
@@ -190,4 +191,5 @@ public class FolderDAO {
         });
         return folder;
     }
+    */
 }

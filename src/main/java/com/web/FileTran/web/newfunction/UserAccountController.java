@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/user")
 public class UserAccountController {
 
     private final UserService userService;
@@ -24,9 +24,14 @@ public class UserAccountController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserVO> registerUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
+    public ResponseEntity<UserVO> registerUser(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session) {
+        // 账号相关的逻辑完全交给service层完成controller只负责类型转换
         try {
             // User registration logic
+            // 具体逻辑由service层完成
             UserVO newUser = userService.registerUser(username, password,session);
             return ResponseEntity.ok(newUser);
         } catch (Exception e) {
@@ -35,33 +40,43 @@ public class UserAccountController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserVO> loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
+    public ResponseEntity<UserVO> loginUser(
+            @RequestParam String username,
+            @RequestParam String password,
+            HttpSession session) {
+        // 账号相关的逻辑完全交给service层完成controller只负责类型转换
         try {
-            // User login logic
+            // 具体逻辑由service层完成
             UserVO user = userService.loginUser(username, password,session);
-
-            // Set user session attribute
-            session.setAttribute("user", user);
-
             return ResponseEntity.ok(user);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+        /* TODO 细化异常类型
+        catch (Exception e) {
+
+        }
+        */
     }
 
     @PostMapping("/logout")
     public ResponseEntity<Boolean> logoutUser(HttpSession session) {
+        // 账号相关的逻辑完全交给service层完成controller只负责类型转换
         try {
-            // User logout logic
-
-            // Invalidate session
-            session.invalidate();
-
+            // 具体逻辑由service层完成
+            // TODO 用户退出登录的逻辑
             boolean result = userService.logoutUser(session);
             return ResponseEntity.ok(result);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+        /* TODO 细化异常类型
+        catch (Exception e) {
+
+        }
+        */
     }
 
     // Other controller methods for the remaining requirements

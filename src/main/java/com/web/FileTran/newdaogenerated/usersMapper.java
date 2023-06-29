@@ -12,8 +12,8 @@ public interface usersMapper {
     Map<String, Object> renameUser(Map<String, Object> params);
     @MapKey("id")
     Map<String, Object> changeUserPassword(Map<String, Object> params);
-    @MapKey("id")
-    Map<String, Object> userLogin(Map<String, Object> params);
-    @MapKey("id")
-    Map<String, Object> getUserInfo(int id);
+
+    users getUserInfoByUsername(String username);
+
+    users getUserInfoById(int id);
 }

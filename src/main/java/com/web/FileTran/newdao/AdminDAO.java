@@ -8,6 +8,7 @@ import java.util.Map;
 
 @Repository
 public class AdminDAO {
+    /*
     private final JdbcTemplate jdbcTemplate;
     private static AdminDAO instance = null;
     public static AdminDAO getInstance()
@@ -72,5 +73,5 @@ public class AdminDAO {
         INVALID_USERNAME,
         INVALID_PASSWORD
     }
-
+    */
 }

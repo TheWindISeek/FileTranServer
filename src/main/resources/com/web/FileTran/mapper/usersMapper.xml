@@ -21,7 +21,7 @@
     </insert>
 
     <!-- 调用 DeleteUser 存储过程 -->
-    <delete id="deleteUser" parameterType="int">
+    <delete id="deleteUser" parameterType="long">
       {CALL DeleteUser(#{userId})}
     </delete>
 
@@ -36,14 +36,14 @@
     </select>
 
     <!-- 用户登录验证 -->
-    <select id="userLogin" parameterType="java.util.Map" resultType="java.util.HashMap">
-      SELECT id, password
+    <select id="getUserInfoByUsername" parameterType="String" resultType="com.web.FileTran.newpojo.users">
+      SELECT *
       FROM users
       WHERE username = #{username}
     </select>
 
     <!-- 查询用户信息 -->
-    <select id="getUserInfo" parameterType="int" resultType="java.util.HashMap">
+    <select id="getUserInfoById" parameterType="long" resultType="com.web.FileTran.newpojo.users">
       SELECT *
       FROM users
       WHERE id = #{id}

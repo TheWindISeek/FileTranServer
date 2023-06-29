@@ -16,22 +16,22 @@
   </sql>
 
     <!-- 调用 RegisterUser 存储过程 -->
-    <insert id="registerUser" parameterType="java.util.Map">
+    <select id="registerUser" parameterType="java.util.Map" resultType="java.util.HashMap">
       {CALL RegisterUser(#{userName}, #{userPassword}, #{userId, mode=OUT, jdbcType=INTEGER})}
-    </insert>
+    </select>
 
     <!-- 调用 DeleteUser 存储过程 -->
-    <delete id="deleteUser" parameterType="long">
+    <select id="deleteUser" parameterType="long">
       {CALL DeleteUser(#{userId})}
-    </delete>
+    </select>
 
     <!-- 调用 RenameUser 存储过程 -->
-    <select id="renameUser" parameterType="java.util.Map" resultType="java.util.HashMap">
+    <select id="renameUser" parameterType="java.util.Map" resultType="boolean">
       {CALL RenameUser(#{userId}, #{newUserName}, #{success, mode=OUT, jdbcType=BOOLEAN})}
     </select>
 
     <!-- 调用 ChangeUserPassword 存储过程 -->
-    <select id="changeUserPassword" parameterType="java.util.Map" resultType="java.util.HashMap">
+    <select id="changeUserPassword" parameterType="java.util.Map" resultType="boolean">
       {CALL ChangeUserPassword(#{userId}, #{newUserPassword}, #{success, mode=OUT, jdbcType=BOOLEAN})}
     </select>
 

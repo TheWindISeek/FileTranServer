@@ -18,13 +18,13 @@
   </insert>
 
   <!-- 调用 DeleteAdmin 存储过程 -->
-  <delete id="deleteAdmin" parameterType="long">
+  <delete id="deleteAdmin" parameterType="java.util.Map">
     {CALL DeleteAdmin(#{adminId})}
   </delete>
 
-  <!-- 管理员登录验证 -->
-  <select id="adminLogin" parameterType="java.util.Map" resultType="java.util.HashMap">
-    SELECT id, password
+  <!-- 根据名称获取管理员信息 -->
+  <select id="getAdminInfoByUsername" parameterType="String" resultType="com.web.FileTran.pojo.admins">
+    SELECT *
     FROM admins
     WHERE username = #{username}
   </select>

@@ -21,7 +21,7 @@
   </select>
 
   <!-- 调用 RenameFolder 存储过程 -->
-  <select id="renameFolder" parameterType="java.util.Map" resultType="java.util.HashMap">
+  <select id="renameFolder" parameterType="java.util.Map" resultType="boolean">
     {CALL RenameFolder(#{folderId}, #{newFolderName}, #{success, mode=OUT, jdbcType=BOOLEAN})}
   </select>
 
@@ -47,12 +47,12 @@
   <select id="getChildrenFiles" parameterType="java.util.Map" resultType="java.util.List">
     SELECT *
     FROM files
-    WHERE folder_id = #{folderId}
+    WHERE folder_id = #{fileId}
     LIMIT #{offset}, #{limit}
   </select>
 
   <!-- 查询文件夹信息 -->
-  <select id="getFolderInfo" parameterType="long" resultType="com.web.FileTran.pojo.files">
+  <select id="getFolderInfo" parameterType="long" resultType="com.web.FileTran.pojo.folders">
     SELECT *
     FROM folders
     WHERE id = #{folderId}

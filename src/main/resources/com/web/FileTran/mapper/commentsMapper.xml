@@ -18,7 +18,7 @@
   <!-- 调用 AddCommentToFile 存储过程 -->
   <select id="addCommentToFile" parameterType="java.util.Map" resultType="java.util.HashMap">
     {CALL AddCommentToFile(
-    #{fileId}, #{parentCommentId}, #{userId}, #{commentMessage},
+    #{fileId}, null, #{userId}, #{commentMessage},
     #{commentId, mode=OUT, jdbcType=INTEGER}, #{errorMessage, mode=OUT, jdbcType=VARCHAR}
     )}
   </select>
@@ -26,7 +26,7 @@
   <!-- 调用 AddCommentToFolder 存储过程 -->
   <select id="addCommentToFolder" parameterType="java.util.Map" resultType="java.util.HashMap">
     {CALL AddCommentToFolder(
-    #{folderId}, #{parentCommentId}, #{userId}, #{commentMessage},
+    #{folderId}, null, #{userId}, #{commentMessage},
     #{commentId, mode=OUT, jdbcType=INTEGER}, #{errorMessage, mode=OUT, jdbcType=VARCHAR}
     )}
   </select>
@@ -40,9 +40,9 @@
   </select>
 
   <!-- 调用 UpdateComment 存储过程 -->
-  <update id="updateComment" parameterType="java.util.Map">
+  <select id="updateComment" parameterType="java.util.Map" resultType="java.util.HashMap">
     {CALL UpdateComment(#{commentId}, #{commentMessage}, #{errorMessage, mode=OUT, jdbcType=VARCHAR})}
-  </update>
+  </select>
 
   <!-- 调用 DeleteComment 存储过程 -->
   <select id="deleteComment" parameterType="java.util.Map" resultType="java.util.HashMap">
@@ -50,7 +50,7 @@
   </select>
 
   <!-- 查询留言信息 -->
-  <select id="getCommentInfo" parameterType="long" resultType="java.util.HashMap">
+  <select id="getCommentInfo" parameterType="long" resultType="com.web.FileTran.pojo.comments">
     SELECT *
     FROM comments
     WHERE id = #{commentId}

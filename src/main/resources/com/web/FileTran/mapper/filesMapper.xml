@@ -50,7 +50,7 @@
   </select>
 
   <!-- 查询文件信息 -->
-  <select id="getFileInfo" parameterType="long" resultType="java.util.HashMap">
+  <select id="getFileInfo" parameterType="long" resultType="com.web.FileTran.pojo.files">
     SELECT *
     FROM files
     WHERE id = #{fileId}

@@ -1,5 +1,6 @@
 package com.web.FileTran.web.newfunction;
 
+import com.web.FileTran.dto.UserDTO;
 import com.web.FileTran.vo.UserVO;
 import com.web.FileTran.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -32,8 +33,9 @@ public class UserAccountController {
         try {
             // User registration logic
             // 具体逻辑由service层完成
-            UserVO newUser = userService.registerUser(username, password,session);
-            return ResponseEntity.ok(newUser);
+            UserDTO newUser = userService.registerUser(username, password,session);
+            UserVO userVO = null;
+            return ResponseEntity.ok(userVO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -47,8 +49,9 @@ public class UserAccountController {
         // 账号相关的逻辑完全交给service层完成controller只负责类型转换
         try {
             // 具体逻辑由service层完成
-            UserVO user = userService.loginUser(username, password,session);
-            return ResponseEntity.ok(user);
+            UserDTO user = userService.loginUser(username, password,session);
+            UserVO userVO = null;
+            return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

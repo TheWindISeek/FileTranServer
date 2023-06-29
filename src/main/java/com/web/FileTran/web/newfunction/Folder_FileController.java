@@ -44,7 +44,7 @@ public class Folder_FileController {
             HttpSession session) {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
-            FolderDTO folderInfoDTO = FolderService.getFolderInfoByID(folderId,session);
+            FolderDTO folderInfoDTO = folderService.getFolderInfoByID(folderId,session);
             FolderVO folderInfoVO = null;
             // TODO 将DTO转为VO并返回
             return ResponseEntity.ok(folderInfoVO);

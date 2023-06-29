@@ -15,12 +15,11 @@ public class CommentController {
 
     @PostMapping("/addToFile")
     public ResponseEntity<CommentVO> addCommentToFile(@RequestParam("fileId") int fileId,
-                                                      @RequestParam("parentCommentId") int parentCommentId,
                                                       @RequestParam("commentMessage") String commentMessage,
                                                       HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.addCommentToFile(fileId,parentCommentId,commentMessage,session);
+        CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
         // DTO转为VO
         return null;
     }
@@ -28,12 +27,11 @@ public class CommentController {
     @PostMapping("/addToFolder")
     public ResponseEntity<CommentVO> addCommentToFolder(
             @RequestParam("folderId") int folderId,
-            @RequestParam("parentCommentId") int parentCommentId,
             @RequestParam("commentMessage") String commentMessage,
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.addCommentToFolder(folderId,parentCommentId,commentMessage,session);
+        CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
         // DTO转为VO
         return null;
     }

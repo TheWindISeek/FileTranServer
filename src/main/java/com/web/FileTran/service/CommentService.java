@@ -3,84 +3,54 @@ package com.web.FileTran.service;
 import com.web.FileTran.dao.commentsMapper;
 import com.web.FileTran.dto.CommentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.web.FileTran.service.publicFun.SessionFunctions.getUserIdFromSession;
+@Service
+public interface CommentService {
 
-public class CommentService {
-    @Autowired
-    private commentsMapper commentsMapper;
+    /**
+     * 在文件下发布留言
+     * @param fileId 文件id
+     * @param commentMessage 留言内容
+     * @param session 会话
+     * @return 留言 信息传输类
+     */
+    CommentDTO addCommentToFile(int fileId, String commentMessage, HttpSession session);
 
+    /**
+     * 在文件夹下发布留言
+     * @param folderId 文件夹id
+     * @param commentMessage 留言内容
+     * @param session 会话
+     * @return 留言 信息传输类
+     */
+    CommentDTO addCommentToFolder(int folderId, String commentMessage, HttpSession session);
 
+    /**
+     * 对某条留言进行回复
+     * @param parentCommentId 父留言id
+     * @param commentMessage 留言内容
+     * @param session 会话
+     * @return 留言 信息传输类
+     */
+    CommentDTO replyToComment(int parentCommentId, String commentMessage, HttpSession session);
 
-    // 在文件下发布留言
-    public CommentDTO addCommentToFile(int fileId, int parentCommentId, String commentMessage, HttpSession session)
-    {
-        // TODO
+    /**
+     * 修改留言
+     * @param commentId 留言id
+     * @param commentMessage 新内容
+     * @param session 会话
+     * @return 留言 信息传输类
+     */
+    CommentDTO updateComment(int commentId, String commentMessage, HttpSession session);
 
-        int userId = getUserIdFromSession(session);
-        Map<String, Object> params = new HashMap<>();
-        params.put("fileId", fileId);
-        params.put("parentCommentId", parentCommentId);
-        params.put("userId", userId);
-        params.put("commentMessage", commentMessage);
-        commentsMapper.addCommentToFile(params);
-        return null;
-    }
-
-    // 在文件夹下发布留言
-    public CommentDTO addCommentToFolder(int folderId, int parentCommentId, String commentMessage, HttpSession session)
-    {
-        // TODO
-
-        int userId = getUserIdFromSession(session);
-        Map<String, Object> params = new HashMap<>();
-        params.put("folderId", folderId);
-        params.put("parentCommentId", parentCommentId);
-        params.put("userId", userId);
-        params.put("commentMessage", commentMessage);
-        commentsMapper.addCommentToFolder(params);
-        return null;
-    }
-
-    // 对某条留言进行回复
-    public CommentDTO replyToComment(int parentCommentId, String commentMessage, HttpSession session)
-    {
-        // TODO
-        int userId = getUserIdFromSession(session);
-        Map<String, Object> params = new HashMap<>();
-        params.put("parentCommentId", parentCommentId);
-        params.put("userId", userId);
-        params.put("commentMessage", commentMessage);
-        commentsMapper.replyToComment(params);
-
-        return null;
-    }
-
-    // 修改留言
-    public CommentDTO updateComment(int commentId, String commentMessage, HttpSession session)
-    {
-        // TODO
-        Map<String, Object> params = new HashMap<>();
-        params.put("commentId", commentId);
-        params.put("commentMessage", commentMessage);
-
-        commentsMapper.updateComment(params);
-        return null;
-    }
-
-    // 删除留言
-    public boolean deleteComment(int commentId, HttpSession session)
-    {
-        // TODO
-
-        Map<String, Object> params = new HashMap<>();
-        params.put("commentId", commentId);
-        commentsMapper.deleteComment(params);
-
-        return false;
-    }
+    /**
+     * 删除留言
+     * @param commentId 留言id
+     * @param session 会话
+     * @return 是否成功操作
+     */
+    boolean deleteComment(int commentId, HttpSession session);
 }

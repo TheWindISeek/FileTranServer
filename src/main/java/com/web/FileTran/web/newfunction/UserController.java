@@ -1,6 +1,7 @@
 package com.web.FileTran.web.newfunction;
 
 import com.web.FileTran.vo.UserVO;
+import com.web.FileTran.dto.UserDTO;
 import com.web.FileTran.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,9 @@ public class UserController {
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         try {
-            UserVO user = userService.getUserInfoById(userId,session);
-            return ResponseEntity.ok(user);
+            UserDTO userDTO = userService.getUserInfoById(userId,session);
+            UserVO userVO = null;
+            return ResponseEntity.ok(userVO);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

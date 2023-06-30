@@ -19,6 +19,28 @@ public class FolderDTO {
 
     private int creatorId;
 
+    public FolderDTO(
+            int id,
+            String name,
+            int parentFolderId,
+            String folderType,
+            int shortcutDestination,
+            int quotaUsed,
+            String permission,
+            int inheritedFromFolderId,
+            int creatorId)
+    {
+        this.id = id;
+        this.name = name;
+        this.parentFolderId = parentFolderId;
+        this.folderType = folderType;
+        this.shortcutDestination = shortcutDestination;
+        this.quotaUsed = quotaUsed;
+        this.permission = permission;
+        this.inheritedFromFolderId = inheritedFromFolderId;
+        this.creatorId = creatorId;
+    }
+
     public int getId() {
         return id;
     }

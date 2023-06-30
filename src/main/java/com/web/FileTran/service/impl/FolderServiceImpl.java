@@ -76,7 +76,17 @@ public class FolderServiceImpl implements FolderService {
         }
         // 检查是否具有权限,若无权限抛出异常,权限为公开的文件夹允许未登录的session查看
         // TODO 从dao层调用方法获取相关信息,map类型(这里也许应该改成获取pojo类型的结果),从map类型的结果里取出各字段,封装成查询结果DTO
-        FolderDTO FolderDTO = new FolderDTO();
+        FolderDTO FolderDTO = new FolderDTO(
+                folderInfo.getId(),
+                folderInfo.getName(),
+                folderInfo.getParentFolderId(),
+                folderInfo.getFolderType(),
+                folderInfo.getShortcutDestination(),
+                folderInfo.getQuotaUsed(),
+                folderInfo.getPermission(),
+                folderInfo.getInheritedFromFolderId(),
+                folderInfo.getCreatorId()
+        );
         return null;
     }
 

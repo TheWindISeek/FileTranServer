@@ -18,7 +18,11 @@ public class FolderContentDTO {
         // Default constructor
     }
 
-    public FolderContentDTO(int totalItems, int currentPage, List<FileVO> files, List<FolderVO> folders) {
+    public FolderContentDTO(
+            int totalItems,
+            int currentPage,
+            List<FileVO> files,
+            List<FolderVO> folders) {
         this.totalItems = totalItems;
         this.currentPage = currentPage;
         // TODO 需要在此处把两个表合并

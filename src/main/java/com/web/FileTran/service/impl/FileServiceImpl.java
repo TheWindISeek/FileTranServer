@@ -99,7 +99,18 @@ public class FileServiceImpl implements FileService {
             throw new RuntimeException("错误的权限类型");
         }
         // 从dao层调用方法获取相关信息,map类型(这里也许应该改成获取pojo类型的结果),从map类型的结果里取出各字段,封装成查询结果DTO
-        FileDTO fileDTO = new FileDTO();
+        FileDTO fileDTO = new FileDTO(
+                fileInfo.getId(),
+                fileInfo.getName(),
+                fileInfo.getFolderId(),
+                fileInfo.getFileType(),
+                fileInfo.getPermission(),
+                fileInfo.getShortcutDestination(),
+                fileInfo.getInheritedFromFolderId(),
+                fileInfo.getCreatorId(),
+                fileInfo.getBlobId()
+        );
+
         return fileDTO;
     }
 

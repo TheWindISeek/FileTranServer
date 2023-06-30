@@ -41,7 +41,15 @@ public class UserServiceImpl implements UserService {
             throw new IllegalStateException("未知错误,注册失败");
         }
         int newUserIdConvert = newUserId.intValue();
-        UserDTO UserDTO = new UserDTO();
+        users newUserInfo = usersMapper.getUserInfoById(newUserIdConvert);
+        UserDTO UserDTO = new UserDTO(
+                newUserInfo.getId(),
+                newUserInfo.getUsername(),
+                newUserInfo.getPassword(),
+                newUserInfo.getRegistrationTimestamp(),
+                newUserInfo.getUserDirectoryId(),
+                newUserInfo.getFavoritesFolderId(),
+                newUserInfo.getQuotaLimit());
         // 如果创建失败,抛出异常
         // TODO 如果创建成功,从map类型的结果里取出各字段,封装成查询结果DTO
         return null;
@@ -65,7 +73,14 @@ public class UserServiceImpl implements UserService {
         if(userPassword.equals(password))
         {
             // TODO 输入一致,封装VO作为返回
-            UserDTO UserDTO = new UserDTO();
+            UserDTO UserDTO = new UserDTO(
+                    usersInfo.getId(),
+                    usersInfo.getUsername(),
+                    usersInfo.getPassword(),
+                    usersInfo.getRegistrationTimestamp(),
+                    usersInfo.getUserDirectoryId(),
+                    usersInfo.getFavoritesFolderId(),
+                    usersInfo.getQuotaLimit());
             return UserDTO;
         }
         else
@@ -105,7 +120,14 @@ public class UserServiceImpl implements UserService {
         // 调用dao层的getUserInfoById方法,得到
         users targetUserInfo = usersMapper.getUserInfoById(TargetUserId);
         // TODO 把用户的公开信息封装成VO
-        UserDTO UserDTO = new UserDTO();
+        UserDTO UserDTO = new UserDTO(
+                targetUserInfo.getId(),
+                targetUserInfo.getUsername(),
+                targetUserInfo.getPassword(),
+                targetUserInfo.getRegistrationTimestamp(),
+                targetUserInfo.getUserDirectoryId(),
+                targetUserInfo.getFavoritesFolderId(),
+                targetUserInfo.getQuotaLimit());
         return UserDTO;
     }
 }

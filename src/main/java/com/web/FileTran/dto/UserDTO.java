@@ -17,6 +17,24 @@ public class UserDTO {
 
     private int quotaLimit;
 
+    public UserDTO(
+            int id,
+            String username,
+            String password,
+            Timestamp registrationTimestamp,
+            int userDirectoryId,
+            int favoritesFolderId,
+            int quotaLimit)
+    {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.registrationTimestamp = registrationTimestamp;
+        this.userDirectoryId = userDirectoryId;
+        this.favoritesFolderId = favoritesFolderId;
+        this.quotaLimit = quotaLimit;
+    }
+
     public int getId() {
         return id;
     }

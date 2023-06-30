@@ -20,6 +20,28 @@ public class FileDTO {
 
     private int blobId;
 
+    public FileDTO(
+            int id,
+            String name,
+            int folderId,
+            String fileType,
+            String permission,
+            int shortcutDestination,
+            int inheritedFromFolderId,
+            int creatorId,
+            int blobId)
+    {
+        this.id = id;
+        this.name = name;
+        this.folderId = folderId;
+        this.fileType = fileType;
+        this.permission = permission;
+        this.shortcutDestination = shortcutDestination;
+        this.inheritedFromFolderId = inheritedFromFolderId;
+        this.creatorId = creatorId;
+        this.blobId = blobId;
+    }
+
     public int getId() {
         return id;
     }

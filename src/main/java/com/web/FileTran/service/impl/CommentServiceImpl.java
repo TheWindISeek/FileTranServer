@@ -91,7 +91,6 @@ public class CommentServiceImpl implements CommentService {
                     commentInfo.getPostedAt(),
                     commentInfo.getLastReplyAt(),
                     errorMessage);
-            // TODO 封装DTO
             return commentDTO;
         }
         else
@@ -132,7 +131,6 @@ public class CommentServiceImpl implements CommentService {
                     commentInfo.getPostedAt(),
                     commentInfo.getLastReplyAt(),
                     errorMessage);
-            // TODO 封装DTO
             return commentDTO;
         }
         else
@@ -178,7 +176,6 @@ public class CommentServiceImpl implements CommentService {
                     commentInfo.getPostedAt(),
                     commentInfo.getLastReplyAt(),
                     errorMessage);
-            // TODO 封装DTO
             return commentDTO;
         }
         else

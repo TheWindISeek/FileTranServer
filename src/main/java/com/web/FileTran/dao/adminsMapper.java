@@ -9,14 +9,14 @@ public interface adminsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 注册管理员
-     * @param params 参数 输入:String adminName,String adminPassword,输出 long adminId
+     * @param params 参数 输入:String adminName,String adminPassword,输出 int adminId
      */
     void registerAdmin(Map<String, Object> params);
 
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 注销管理员
-     * @param params 管理员id 输入:long adminId
+     * @param params 管理员id 输入:int adminId
      */
     void deleteAdmin(Map<String, Object> params);
 

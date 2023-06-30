@@ -26,14 +26,15 @@ public class UserController {
     // Endpoint for querying user information
     @GetMapping("/userinfo/{userId}")
     public ResponseEntity<UserVO> getUserInfo(
-            @PathVariable long userId,
+            @PathVariable int userId,
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         try {
             UserDTO userDTO = userService.getUserInfoById(userId,session);
             UserVO userVO = null;
             return ResponseEntity.ok(userVO);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

@@ -96,7 +96,7 @@ public class FolderDAO {
                 "FROM folders f " +
                 "WHERE f.id = ?";
         FolderContentVO folderContent = jdbcTemplate.queryForObject(query, new Object[]{folderId}, (rs, rowNum) -> {
-            long folderId = rs.getInt("id");
+            int folderId = rs.getInt("id");
             //String folderName = rs.getString("name");
             //UserVO creator =
             //folderType

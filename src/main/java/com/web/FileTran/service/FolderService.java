@@ -17,7 +17,7 @@ public interface FolderService {
      * @param session 会话
      * @return 文件夹 信息传输类
      */
-    FolderDTO getFolderInfoByID(long folderId, HttpSession session) throws FolderNotFoundException, LoginInfoException, InsufficientPermissionException;
+    FolderDTO getFolderInfoByID(int folderId, HttpSession session) throws FolderNotFoundException, LoginInfoException, InsufficientPermissionException;
 
     /**
      * Get folder content by ID, page, and page size
@@ -27,5 +27,5 @@ public interface FolderService {
      * @param session 会话
      * @return 文件夹 信息传输类
      */
-    FolderContentDTO getFolderContent(long folderId, int page, int pageSize, HttpSession session) throws FolderNotFoundException, InsufficientPermissionException, LoginInfoException;
+    FolderContentDTO getFolderContent(int folderId, int page, int pageSize, HttpSession session) throws FolderNotFoundException, InsufficientPermissionException, LoginInfoException;
 }

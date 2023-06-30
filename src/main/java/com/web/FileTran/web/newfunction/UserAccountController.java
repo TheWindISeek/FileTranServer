@@ -38,7 +38,8 @@ public class UserAccountController {
             UserDTO newUser = userService.registerUser(username, password,session);
             UserVO userVO = null;
             return ResponseEntity.ok(userVO);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

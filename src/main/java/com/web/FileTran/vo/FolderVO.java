@@ -2,7 +2,7 @@ package com.web.FileTran.vo;
 
 
 public class FolderVO {
-    private long folderId;
+    private int folderId;
     private String folderName;
     private UserVO creator;
     private String folderType;
@@ -13,7 +13,7 @@ public class FolderVO {
         // Default constructor
     }
 
-    public FolderVO(long folderId, String folderName, UserVO creator, String folderType, String accessPermission, ShortcutVO shortcut) {
+    public FolderVO(int folderId, String folderName, UserVO creator, String folderType, String accessPermission, ShortcutVO shortcut) {
         this.folderId = folderId;
         this.folderName = folderName;
         this.creator = creator;
@@ -22,11 +22,11 @@ public class FolderVO {
         this.shortcut = shortcut;
     }
 
-    public long getFolderId() {
+    public int getFolderId() {
         return folderId;
     }
 
-    public void setFolderId(long folderId) {
+    public void setFolderId(int folderId) {
         this.folderId = folderId;
     }
 

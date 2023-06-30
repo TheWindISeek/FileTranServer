@@ -9,8 +9,8 @@ public interface commentsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 向文件添加回复
-     * @param params 参数 输入:long fileId,long userId,String commentMessage
-     * @return 输出 long commentId,String errorMessage
+     * @param params 参数 输入:int fileId,int userId,String commentMessage
+     * @return 输出 int commentId,String errorMessage
      */
     @MapKey("id")
     Map<String, Object> addCommentToFile(Map<String, Object> params);
@@ -18,8 +18,8 @@ public interface commentsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 向文件夹添加回复
-     * @param params 参数 输入:long folderId,long userId,String commentMessage
-     * @return 输出 long commentId,String errorMessage
+     * @param params 参数 输入:int folderId,int userId,String commentMessage
+     * @return 输出 int commentId,String errorMessage
      */
     @MapKey("id")
     Map<String, Object> addCommentToFolder(Map<String, Object> params);
@@ -27,8 +27,8 @@ public interface commentsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 对某条留言进行回复
-     * @param params 参数 输入:long parentCommentId,long userId,String commentMessage
-     * @return 输出 long commentId,String errorMessage
+     * @param params 参数 输入:int parentCommentId,int userId,String commentMessage
+     * @return 输出 int commentId,String errorMessage
      */
     @MapKey("id")
     Map<String, Object> replyToComment(Map<String, Object> params);
@@ -36,7 +36,7 @@ public interface commentsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 修改某条留言
-     * @param params 参数 long commentId,String commentMessage
+     * @param params 参数 int commentId,String commentMessage
      * @return 输出 String errorMessage
      */
     @MapKey("id")
@@ -45,7 +45,7 @@ public interface commentsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 删除某条留言
-     * @param params 参数 long commentId
+     * @param params 参数 int commentId
      * @return 输出 String errorMessage
      */
     @MapKey("id")
@@ -56,5 +56,5 @@ public interface commentsMapper {
      * @param commentId 留言id
      * @return 留言pojo类
      */
-    comments getCommentInfo(long commentId);
+    comments getCommentInfo(int commentId);
 }

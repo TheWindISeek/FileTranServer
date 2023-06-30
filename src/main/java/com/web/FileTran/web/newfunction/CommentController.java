@@ -6,6 +6,7 @@ import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.vo.CommentVO;
 import com.web.FileTran.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
@@ -25,8 +26,9 @@ public class CommentController {
         // TODO 调用service层
         try {
             CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
-        } catch (LoginInfoException e) {
-            throw new RuntimeException(e);
+        }
+        catch (LoginInfoException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         // DTO转为VO
         return null;
@@ -41,8 +43,9 @@ public class CommentController {
         // TODO 调用service层
         try {
             CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
-        } catch (LoginInfoException e) {
-            throw new RuntimeException(e);
+        }
+        catch (LoginInfoException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         // DTO转为VO
         return null;
@@ -57,8 +60,9 @@ public class CommentController {
         // TODO 调用service层
         try {
             CommentDTO commentDTO = commentService.replyToComment(parentCommentId,commentMessage,session);
-        } catch (LoginInfoException e) {
-            throw new RuntimeException(e);
+        }
+        catch (LoginInfoException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         // DTO转为VO
         return null;
@@ -73,11 +77,18 @@ public class CommentController {
         // TODO 调用service层
         try {
             CommentDTO commentDTO = commentService.updateComment(commentId,commentMessage,session);
-        } catch (LoginInfoException e) {
-            throw new RuntimeException(e);
-        } catch (UnauthorizedCommentOperationException e) {
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        /*
+        catch (LoginInfoException e) {
             throw new RuntimeException(e);
         }
+        catch (UnauthorizedCommentOperationException e) {
+            throw new RuntimeException(e);
+        }
+        */
         // DTO转为VO
         return null;
     }
@@ -90,11 +101,18 @@ public class CommentController {
         // TODO 调用service层
         try {
             boolean delete_finish = commentService.deleteComment(commentId,session);
-        } catch (LoginInfoException e) {
-            throw new RuntimeException(e);
-        } catch (UnauthorizedCommentOperationException e) {
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        /*
+        catch (LoginInfoException e) {
             throw new RuntimeException(e);
         }
+        catch (UnauthorizedCommentOperationException e) {
+            throw new RuntimeException(e);
+        }
+         */
         // DTO转为VO
         return null;
     }

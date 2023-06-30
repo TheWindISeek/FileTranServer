@@ -10,7 +10,7 @@ public interface usersMapper {
     /**
      * 注册用户
      * @param params 输入 String userName,String userPassword
-     * @return 输出 long userId
+     * @return 输出 int userId
      */
     @MapKey("id")
     Map<String, Object> registerUser(Map<String, Object> params);
@@ -20,12 +20,12 @@ public interface usersMapper {
      * 注销用户
      * @param userId 用户id
      */
-    void deleteUser(long userId);
+    void deleteUser(int userId);
 
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 重命名用户
-     * @param params 输入 long userId,String newUserName
+     * @param params 输入 int userId,String newUserName
      * @return success
      */
     boolean renameUser(Map<String, Object> params);
@@ -33,7 +33,7 @@ public interface usersMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**
      * 修改用户密码
-     * @param params 输入 long userId,String newUserPassword
+     * @param params 输入 int userId,String newUserPassword
      * @return success
      */
     boolean changeUserPassword(Map<String, Object> params);
@@ -50,5 +50,5 @@ public interface usersMapper {
      * @param id 用户id
      * @return 用户pojo类
      */
-    users getUserInfoById(long id);
+    users getUserInfoById(int id);
 }

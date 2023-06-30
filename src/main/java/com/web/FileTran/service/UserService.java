@@ -1,6 +1,7 @@
 package com.web.FileTran.service;
 
 import com.web.FileTran.dto.UserDTO;
+import com.web.FileTran.exception.UserExceptions.IncorrectPasswordException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -22,7 +23,7 @@ public interface UserService {
      * @param session 会话
      * @return 用户 信息传输类
      */
-    UserDTO loginUser(String username, String password, HttpSession session);
+    UserDTO loginUser(String username, String password, HttpSession session) throws IncorrectPasswordException;
 
     /**
      * User logout logic
@@ -37,5 +38,5 @@ public interface UserService {
      * @param session 会话
      * @return 用户 信息传输类
      */
-    UserDTO getUserInfoById(long userId, HttpSession session);
+    UserDTO getUserInfoById(int userId, HttpSession session);
 }

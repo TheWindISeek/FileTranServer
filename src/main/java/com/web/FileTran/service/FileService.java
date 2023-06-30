@@ -18,7 +18,7 @@ public interface FileService {
      * @param session 会话
      * @return 文件 信息传输类
      */
-    public FileDTO getFileInfoByID(long fileId, HttpSession session) throws FileNotFoundException, LoginInfoException, InsufficientPermissionException;
+    public FileDTO getFileInfoByID(int fileId, HttpSession session) throws FileNotFoundException, LoginInfoException, InsufficientPermissionException;
 
     /**
      * 使用文件id下载
@@ -26,5 +26,5 @@ public interface FileService {
      * @param session 会话
      * @return 下载 信息传输类
      */
-    public DownloadInfoDTO getDownloadInfo(long fileId, HttpSession session) throws FileNotFoundException, InsufficientPermissionException, LoginInfoException;
+    public DownloadInfoDTO getDownloadInfo(int fileId, HttpSession session) throws FileNotFoundException, InsufficientPermissionException, LoginInfoException;
 }

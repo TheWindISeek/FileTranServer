@@ -4,7 +4,7 @@ package com.web.FileTran.vo;
 import java.time.LocalDateTime;
 
 public class CommentVO {
-    private long commentId;
+    private int commentId;
     private String message;
     private LocalDateTime postedAt;
     private LocalDateTime lastReplyAt;
@@ -13,18 +13,18 @@ public class CommentVO {
         // Default constructor
     }
 
-    public CommentVO(long commentId, String message, LocalDateTime postedAt, LocalDateTime lastReplyAt) {
+    public CommentVO(int commentId, String message, LocalDateTime postedAt, LocalDateTime lastReplyAt) {
         this.commentId = commentId;
         this.message = message;
         this.postedAt = postedAt;
         this.lastReplyAt = lastReplyAt;
     }
 
-    public long getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(long commentId) {
+    public void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 

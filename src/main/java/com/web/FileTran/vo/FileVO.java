@@ -4,7 +4,7 @@ package com.web.FileTran.vo;
 import java.util.List;
 
 public class FileVO {
-    private long fileId;
+    private int fileId;
     private String fileName;
     private UserVO creator;
     private String fileType;
@@ -16,7 +16,7 @@ public class FileVO {
         // Default constructor
     }
 
-    public FileVO(long fileId, String fileName, UserVO creator, String fileType, String accessPermission, ShortcutVO shortcut, List<CommentVO> comments) {
+    public FileVO(int fileId, String fileName, UserVO creator, String fileType, String accessPermission, ShortcutVO shortcut, List<CommentVO> comments) {
         this.fileId = fileId;
         this.fileName = fileName;
         this.creator = creator;
@@ -26,11 +26,11 @@ public class FileVO {
         this.comments = comments;
     }
 
-    public long getFileId() {
+    public int getFileId() {
         return fileId;
     }
 
-    public void setFileId(long fileId) {
+    public void setFileId(int fileId) {
         this.fileId = fileId;
     }
 

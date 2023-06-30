@@ -17,7 +17,7 @@ public interface CommentService {
      * @param session 会话
      * @return 留言 信息传输类
      */
-    CommentDTO addCommentToFile(long fileId, String commentMessage, HttpSession session) throws LoginInfoException;
+    CommentDTO addCommentToFile(int fileId, String commentMessage, HttpSession session) throws LoginInfoException;
 
     /**
      * 在文件夹下发布留言
@@ -26,7 +26,7 @@ public interface CommentService {
      * @param session 会话
      * @return 留言 信息传输类
      */
-    CommentDTO addCommentToFolder(long folderId, String commentMessage, HttpSession session) throws LoginInfoException;
+    CommentDTO addCommentToFolder(int folderId, String commentMessage, HttpSession session) throws LoginInfoException;
 
     /**
      * 对某条留言进行回复
@@ -35,7 +35,7 @@ public interface CommentService {
      * @param session 会话
      * @return 留言 信息传输类
      */
-    CommentDTO replyToComment(long parentCommentId, String commentMessage, HttpSession session) throws LoginInfoException;
+    CommentDTO replyToComment(int parentCommentId, String commentMessage, HttpSession session) throws LoginInfoException;
 
     /**
      * 修改留言
@@ -44,7 +44,7 @@ public interface CommentService {
      * @param session 会话
      * @return 留言 信息传输类
      */
-    CommentDTO updateComment(long commentId, String commentMessage, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException;
+    CommentDTO updateComment(int commentId, String commentMessage, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException;
 
     /**
      * 删除留言
@@ -52,5 +52,5 @@ public interface CommentService {
      * @param session 会话
      * @return 是否成功操作
      */
-    boolean deleteComment(long commentId, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException;
+    boolean deleteComment(int commentId, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException;
 }

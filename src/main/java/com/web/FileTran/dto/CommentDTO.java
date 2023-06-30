@@ -16,10 +16,15 @@ public class CommentDTO {
     private Date lastReplyAt;
 
     private String message;
-
-    public CommentDTO()
+    public CommentDTO(int id,int fileId,int parentCommentId,int userId,Date postedAt,Date lastReplyAt,String message)
     {
-
+        this.id = new Integer(id);
+        this.fileId = new Integer(fileId);
+        this.parentCommentId = parentCommentId;
+        this.userId = userId;
+        this.postedAt = postedAt;
+        this.lastReplyAt = lastReplyAt;
+        this.message = message;
     }
 
     public Integer getId() {

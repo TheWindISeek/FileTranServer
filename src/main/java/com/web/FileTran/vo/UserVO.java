@@ -1,27 +1,27 @@
 package com.web.FileTran.vo;
 
 public class UserVO {
-    private long userId;
+    private int userId;
     private String username;
-    private long userDirectoryId;
-    private long favorites;
+    private int userDirectoryId;
+    private int favorites;
 
     public UserVO() {
         // Default constructor
     }
 
-    public UserVO(long userId, String username, long userDirectoryId, long favorites) {
+    public UserVO(int userId, String username, int userDirectoryId, int favorites) {
         this.userId = userId;
         this.username = username;
         this.userDirectoryId = userDirectoryId;
         this.favorites = favorites;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -33,19 +33,19 @@ public class UserVO {
         this.username = username;
     }
 
-    public long getUserDirectoryId() {
+    public int getUserDirectoryId() {
         return userDirectoryId;
     }
 
-    public void setUserDirectoryId(long userDirectoryId) {
+    public void setUserDirectoryId(int userDirectoryId) {
         this.userDirectoryId = userDirectoryId;
     }
 
-    public long getFavorites() {
+    public int getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(long favorites) {
+    public void setFavorites(int favorites) {
         this.favorites = favorites;
     }
 }

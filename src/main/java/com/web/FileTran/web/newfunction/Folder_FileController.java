@@ -4,6 +4,9 @@ import com.web.FileTran.dto.DownloadInfoDTO;
 import com.web.FileTran.dto.FileDTO;
 import com.web.FileTran.dto.FolderContentDTO;
 import com.web.FileTran.dto.FolderDTO;
+import com.web.FileTran.exception.Folder_FileExceptions.FileNotFoundException;
+import com.web.FileTran.exception.Folder_FileExceptions.InsufficientPermissionException;
+import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.service.FileService;
 import com.web.FileTran.service.FolderService;
 import com.web.FileTran.vo.FileVO;
@@ -43,7 +46,7 @@ public class Folder_FileController {
     // Endpoint for querying file information
     @GetMapping("/folder/{fileId}/info")
     public ResponseEntity<FolderVO> getFolderInfo(
-            @PathVariable long folderId,
+            @PathVariable int folderId,
             HttpSession session) {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
@@ -65,7 +68,7 @@ public class Folder_FileController {
     // Endpoint for querying file information
     @GetMapping("/file/{fileId}/info")
     public ResponseEntity<FileVO> getFileInfo(
-            @PathVariable long fileId,
+            @PathVariable int fileId,
             HttpSession session) {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
@@ -87,12 +90,29 @@ public class Folder_FileController {
     // Endpoint for querying file information
     @GetMapping("/file/{fileId}/download")
     public ResponseEntity<Resource> downloadFile(
-            @PathVariable long fileId,
+            @PathVariable int fileId,
             HttpSession session) {
         // TODO 下载必须要登录,所以进入service层检测之前就应该检查用户登录状态,对未登录用户重定向
         // 需要实现下载功能
         // 调用Service层方法获取要下载的文件
-        DownloadInfoDTO downloadInfo = fileService.getDownloadInfo(fileId,session);
+        DownloadInfoDTO downloadInfo = null;
+        try {
+            downloadInfo = fileService.getDownloadInfo(fileId,session);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        /*
+        catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (InsufficientPermissionException e) {
+            throw new RuntimeException(e);
+        }
+        catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        }
+        */
         String fileName = downloadInfo.getFileName();
         Blob fileBlob = downloadInfo.getFileContent();
         Resource resource = null;
@@ -122,7 +142,7 @@ public class Folder_FileController {
     // Endpoint for querying folder content
     @GetMapping("/folder/{folderId}/content")
     public ResponseEntity<FolderContentVO> getFolderContent(
-            @PathVariable long folderId,
+            @PathVariable int folderId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int pageSize,
             HttpSession session) {

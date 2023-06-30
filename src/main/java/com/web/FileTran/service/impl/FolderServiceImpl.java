@@ -7,18 +7,19 @@ import com.web.FileTran.exception.Folder_FileExceptions.FolderNotFoundException;
 import com.web.FileTran.exception.Folder_FileExceptions.InsufficientPermissionException;
 import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.manager.SessionManager;
-import com.web.FileTran.pojo.files;
 import com.web.FileTran.pojo.folders;
 import com.web.FileTran.service.FolderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
 @Service
 public class FolderServiceImpl implements FolderService {
+    @Autowired
     private foldersMapper foldersMapper;
     @Override
-    public FolderDTO getFolderInfoByID(long folderId, HttpSession session) throws FolderNotFoundException, LoginInfoException, InsufficientPermissionException {
+    public FolderDTO getFolderInfoByID(int folderId, HttpSession session) throws FolderNotFoundException, LoginInfoException, InsufficientPermissionException {
         // 检查文件夹是否存在,若不存在抛出异常
         boolean folderExist = foldersMapper.checkFolderExists(folderId);
         if(!folderExist)
@@ -33,7 +34,7 @@ public class FolderServiceImpl implements FolderService {
         boolean privatePermission = "Private".equals(permission);
         boolean inheritPermission = "Inherited".equals(permission);
         // 当前文件夹的权限为继承时,直接检查继承来源的权限
-        long parentFolderId = folderInfo.getInheritedFromFolderId();
+        int parentFolderId = folderInfo.getInheritedFromFolderId();
         if(inheritPermission)
         {
             try {
@@ -52,7 +53,7 @@ public class FolderServiceImpl implements FolderService {
         }
         // 获取用户并比较,如果不是公开权限就会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
         }
@@ -63,8 +64,8 @@ public class FolderServiceImpl implements FolderService {
         else if(privatePermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = folderInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = folderInfo.getCreatorId();
             // 私有权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}
@@ -81,7 +82,7 @@ public class FolderServiceImpl implements FolderService {
 
     // Get folder content by ID, page, and page size
     @Override
-    public FolderContentDTO getFolderContent(long folderId, int page, int pageSize, HttpSession session) throws FolderNotFoundException, InsufficientPermissionException, LoginInfoException {
+    public FolderContentDTO getFolderContent(int folderId, int page, int pageSize, HttpSession session) throws FolderNotFoundException, InsufficientPermissionException, LoginInfoException {
         // TODO 实现service层
         // 检查文件夹是否存在,若不存在抛出异常
         boolean folderExist = foldersMapper.checkFolderExists(folderId);
@@ -97,7 +98,7 @@ public class FolderServiceImpl implements FolderService {
         boolean privatePermission = "Private".equals(permission);
         boolean inheritPermission = "Inherited".equals(permission);
         // 当前文件夹的权限为继承时,直接检查继承来源的权限
-        long parentFolderId = folderInfo.getInheritedFromFolderId();
+        int parentFolderId = folderInfo.getInheritedFromFolderId();
         if(inheritPermission)
         {
             try {
@@ -116,15 +117,15 @@ public class FolderServiceImpl implements FolderService {
         }
         // 获取用户并比较,如果不是公开权限就会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
         }
         else if(onlyReadPermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = folderInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = folderInfo.getCreatorId();
             // 私有权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}
@@ -132,8 +133,8 @@ public class FolderServiceImpl implements FolderService {
         else if(privatePermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = folderInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = folderInfo.getCreatorId();
             // 私有权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}

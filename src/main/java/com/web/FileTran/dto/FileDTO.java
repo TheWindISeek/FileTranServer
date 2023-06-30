@@ -2,29 +2,29 @@ package com.web.FileTran.dto;
 
 
 public class FileDTO {
-    private Integer id;
+    private int id;
 
     private String name;
 
-    private Integer folderId;
+    private int folderId;
 
     private String fileType;
 
     private String permission;
 
-    private Integer shortcutDestination;
+    private int shortcutDestination;
 
-    private Integer inheritedFromFolderId;
+    private int inheritedFromFolderId;
 
-    private Integer creatorId;
+    private int creatorId;
 
-    private Integer blobId;
+    private int blobId;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,11 +36,11 @@ public class FileDTO {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getFolderId() {
+    public int getFolderId() {
         return folderId;
     }
 
-    public void setFolderId(Integer folderId) {
+    public void setFolderId(int folderId) {
         this.folderId = folderId;
     }
 
@@ -60,35 +60,35 @@ public class FileDTO {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public Integer getShortcutDestination() {
+    public int getShortcutDestination() {
         return shortcutDestination;
     }
 
-    public void setShortcutDestination(Integer shortcutDestination) {
+    public void setShortcutDestination(int shortcutDestination) {
         this.shortcutDestination = shortcutDestination;
     }
 
-    public Integer getInheritedFromFolderId() {
+    public int getInheritedFromFolderId() {
         return inheritedFromFolderId;
     }
 
-    public void setInheritedFromFolderId(Integer inheritedFromFolderId) {
+    public void setInheritedFromFolderId(int inheritedFromFolderId) {
         this.inheritedFromFolderId = inheritedFromFolderId;
     }
 
-    public Integer getCreatorId() {
+    public int getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(Integer creatorId) {
+    public void setCreatorId(int creatorId) {
         this.creatorId = creatorId;
     }
 
-    public Integer getBlobId() {
+    public int getBlobId() {
         return blobId;
     }
 
-    public void setBlobId(Integer blobId) {
+    public void setBlobId(int blobId) {
         this.blobId = blobId;
     }
 }

@@ -25,7 +25,7 @@ public class FileServiceImpl implements FileService {
     foldersMapper foldersMapper;
     // Get file information by ID
     @Override
-    public FileDTO getFileInfoByID(long fileId, HttpSession session) throws FileNotFoundException, LoginInfoException, InsufficientPermissionException {
+    public FileDTO getFileInfoByID(int fileId, HttpSession session) throws FileNotFoundException, LoginInfoException, InsufficientPermissionException {
         // 检查文件是否存在,若不存在抛出异常
         boolean fileExist = filesMapper.checkFileExists(fileId);
         if(!fileExist)
@@ -40,7 +40,7 @@ public class FileServiceImpl implements FileService {
         boolean privatePermission = "Private".equals(permission);
         boolean inheritPermission = "Inherited".equals(permission);
         // 当前文件的权限为继承时,继续检查父文件夹的权限
-        long parentFolderId = fileInfo.getFolderId();
+        int parentFolderId = fileInfo.getFolderId();
         if(inheritPermission)
         {
             try {
@@ -77,7 +77,7 @@ public class FileServiceImpl implements FileService {
         }
         // 获取用户并比较,如果不是公开权限就会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
         }
@@ -88,8 +88,8 @@ public class FileServiceImpl implements FileService {
         else if(privatePermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = fileInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = fileInfo.getCreatorId();
             // 私有权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}
@@ -104,7 +104,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public DownloadInfoDTO getDownloadInfo(long fileId, HttpSession session) throws FileNotFoundException, InsufficientPermissionException, LoginInfoException {
+    public DownloadInfoDTO getDownloadInfo(int fileId, HttpSession session) throws FileNotFoundException, InsufficientPermissionException, LoginInfoException {
         // 检查文件是否存在,若不存在抛出异常
         boolean fileExist = filesMapper.checkFileExists(fileId);
         if(!fileExist)
@@ -119,7 +119,7 @@ public class FileServiceImpl implements FileService {
         boolean privatePermission = "Private".equals(permission);
         boolean inheritPermission = "Inherited".equals(permission);
         // 当前文件的权限为继承时,继续检查父文件夹的权限
-        long parentFolderId = fileInfo.getFolderId();
+        int parentFolderId = fileInfo.getFolderId();
         if(inheritPermission)
         {
             try {
@@ -156,15 +156,15 @@ public class FileServiceImpl implements FileService {
         }
         // 获取用户并比较,如果不是公开权限就会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
         }
         else if(onlyReadPermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = fileInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = fileInfo.getCreatorId();
             // 只读权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}
@@ -172,8 +172,8 @@ public class FileServiceImpl implements FileService {
         else if(privatePermission)
         {
             if(userId == null){throw new LoginInfoException("用户未登录");}
-            long userIdConvert = userId;
-            long creatorId = fileInfo.getCreatorId();
+            int userIdConvert = userId;
+            int creatorId = fileInfo.getCreatorId();
             // 私有权限时的非创建者
             if(userIdConvert != creatorId)
             {throw new InsufficientPermissionException("用户无权限");}

@@ -1,6 +1,6 @@
 package com.web.FileTran.pojo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class comments {
     private Integer id;
@@ -11,9 +11,9 @@ public class comments {
 
     private Integer userId;
 
-    private Date postedAt;
+    private Timestamp postedAt;
 
-    private Date lastReplyAt;
+    private Timestamp lastReplyAt;
 
     private String message;
 
@@ -49,19 +49,19 @@ public class comments {
         this.userId = userId;
     }
 
-    public Date getPostedAt() {
+    public Timestamp getPostedAt() {
         return postedAt;
     }
 
-    public void setPostedAt(Date postedAt) {
+    public void setPostedAt(Timestamp postedAt) {
         this.postedAt = postedAt;
     }
 
-    public Date getLastReplyAt() {
+    public Timestamp getLastReplyAt() {
         return lastReplyAt;
     }
 
-    public void setLastReplyAt(Date lastReplyAt) {
+    public void setLastReplyAt(Timestamp lastReplyAt) {
         this.lastReplyAt = lastReplyAt;
     }
 

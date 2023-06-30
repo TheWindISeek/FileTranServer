@@ -1,29 +1,29 @@
 package com.web.FileTran.dto;
 
 public class FolderDTO {
-    private Integer id;
+    private int id;
 
     private String name;
 
-    private Integer parentFolderId;
+    private int parentFolderId;
 
     private String folderType;
 
-    private Integer shortcutDestination;
+    private int shortcutDestination;
 
-    private Integer quotaUsed;
+    private int quotaUsed;
 
     private String permission;
 
-    private Integer inheritedFromFolderId;
+    private int inheritedFromFolderId;
 
-    private Integer creatorId;
+    private int creatorId;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,11 +35,11 @@ public class FolderDTO {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getParentFolderId() {
+    public int getParentFolderId() {
         return parentFolderId;
     }
 
-    public void setParentFolderId(Integer parentFolderId) {
+    public void setParentFolderId(int parentFolderId) {
         this.parentFolderId = parentFolderId;
     }
 
@@ -51,19 +51,19 @@ public class FolderDTO {
         this.folderType = folderType == null ? null : folderType.trim();
     }
 
-    public Integer getShortcutDestination() {
+    public int getShortcutDestination() {
         return shortcutDestination;
     }
 
-    public void setShortcutDestination(Integer shortcutDestination) {
+    public void setShortcutDestination(int shortcutDestination) {
         this.shortcutDestination = shortcutDestination;
     }
 
-    public Integer getQuotaUsed() {
+    public int getQuotaUsed() {
         return quotaUsed;
     }
 
-    public void setQuotaUsed(Integer quotaUsed) {
+    public void setQuotaUsed(int quotaUsed) {
         this.quotaUsed = quotaUsed;
     }
 
@@ -75,19 +75,19 @@ public class FolderDTO {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public Integer getInheritedFromFolderId() {
+    public int getInheritedFromFolderId() {
         return inheritedFromFolderId;
     }
 
-    public void setInheritedFromFolderId(Integer inheritedFromFolderId) {
+    public void setInheritedFromFolderId(int inheritedFromFolderId) {
         this.inheritedFromFolderId = inheritedFromFolderId;
     }
 
-    public Integer getCreatorId() {
+    public int getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(Integer creatorId) {
+    public void setCreatorId(int creatorId) {
         this.creatorId = creatorId;
     }
 }

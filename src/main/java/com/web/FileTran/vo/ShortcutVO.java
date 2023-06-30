@@ -2,7 +2,7 @@ package com.web.FileTran.vo;
 
 
 public class ShortcutVO {
-    private long targetId;
+    private int targetId;
     private String targetName;
     private UserVO creator;
 
@@ -10,17 +10,17 @@ public class ShortcutVO {
         // Default constructor
     }
 
-    public ShortcutVO(long targetId, String targetName, UserVO creator) {
+    public ShortcutVO(int targetId, String targetName, UserVO creator) {
         this.targetId = targetId;
         this.targetName = targetName;
         this.creator = creator;
     }
 
-    public long getTargetId() {
+    public int getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(long targetId) {
+    public void setTargetId(int targetId) {
         this.targetId = targetId;
     }
 

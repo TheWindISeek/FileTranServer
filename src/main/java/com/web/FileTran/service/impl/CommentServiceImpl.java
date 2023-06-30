@@ -22,13 +22,12 @@ public class CommentServiceImpl implements CommentService {
     private commentsMapper commentsMapper;
 
     // 在文件下发布留言
-
     @Transactional
     @Override
-    public CommentDTO addCommentToFile(long fileId, String commentMessage, HttpSession session) throws LoginInfoException {
+    public CommentDTO addCommentToFile(int fileId, String commentMessage, HttpSession session) throws LoginInfoException {
         // 检查session,得到用户id,如果没登录会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(userId == null)
         {
             throw new LoginInfoException("用户未登录");
@@ -39,13 +38,20 @@ public class CommentServiceImpl implements CommentService {
         params.put("userId", userId);
         params.put("commentMessage", commentMessage);
         commentsMapper.addCommentToFile(params);
-        long commentId = (Long)params.get("commentId");
+        int commentId = (int)params.get("commentId");
         String errorMessage = (String)params.get("errorMessage");
         boolean success = "".equals(errorMessage);
         if(success)
         {
-            CommentDTO commentDTO = new CommentDTO();
-            // TODO 封装DTO
+            comments commentInfo= commentsMapper.getCommentInfo(commentId);
+            CommentDTO commentDTO = new CommentDTO(
+                    commentId,
+                    commentInfo.getFileId(),
+                    commentInfo.getParentCommentId(),
+                    commentInfo.getUserId(),
+                    commentInfo.getPostedAt(),
+                    commentInfo.getLastReplyAt(),
+                    errorMessage);
             return commentDTO;
         }
         else
@@ -57,10 +63,10 @@ public class CommentServiceImpl implements CommentService {
     // 在文件夹下发布留言
     @Transactional
     @Override
-    public CommentDTO addCommentToFolder(long folderId, String commentMessage, HttpSession session) throws LoginInfoException {
+    public CommentDTO addCommentToFolder(int folderId, String commentMessage, HttpSession session) throws LoginInfoException {
         // 检查session,得到用户id,如果没登录会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(userId == null)
         {
             throw new LoginInfoException("用户未登录");
@@ -71,12 +77,20 @@ public class CommentServiceImpl implements CommentService {
         params.put("userId", userId);
         params.put("commentMessage", commentMessage);
         commentsMapper.addCommentToFolder(params);
-        long commentId = (Long)params.get("commentId");
+        int commentId = (int)params.get("commentId");
         String errorMessage = (String)params.get("errorMessage");
         boolean success = "".equals(errorMessage);
         if(success)
         {
-            CommentDTO commentDTO = new CommentDTO();
+            comments commentInfo= commentsMapper.getCommentInfo(commentId);
+            CommentDTO commentDTO = new CommentDTO(
+                    commentId,
+                    commentInfo.getFileId(),
+                    commentInfo.getParentCommentId(),
+                    commentInfo.getUserId(),
+                    commentInfo.getPostedAt(),
+                    commentInfo.getLastReplyAt(),
+                    errorMessage);
             // TODO 封装DTO
             return commentDTO;
         }
@@ -89,10 +103,10 @@ public class CommentServiceImpl implements CommentService {
     // 对某条留言进行回复
     @Transactional
     @Override
-    public CommentDTO replyToComment(long parentCommentId, String commentMessage, HttpSession session) throws LoginInfoException {
+    public CommentDTO replyToComment(int parentCommentId, String commentMessage, HttpSession session) throws LoginInfoException {
         // 检查session,得到用户id,如果没登录会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(userId == null)
         {
             throw new LoginInfoException("用户未登录");
@@ -104,12 +118,20 @@ public class CommentServiceImpl implements CommentService {
         params.put("userId", userId);
         params.put("commentMessage", commentMessage);
         commentsMapper.replyToComment(params);
-        long commentId = (Long)params.get("commentId");
+        int commentId = (int)params.get("commentId");
         String errorMessage = (String)params.get("errorMessage");
         boolean success = "".equals(errorMessage);
         if(success)
         {
-            CommentDTO commentDTO = new CommentDTO();
+            comments commentInfo= commentsMapper.getCommentInfo(commentId);
+            CommentDTO commentDTO = new CommentDTO(
+                    commentId,
+                    commentInfo.getFileId(),
+                    commentInfo.getParentCommentId(),
+                    commentInfo.getUserId(),
+                    commentInfo.getPostedAt(),
+                    commentInfo.getLastReplyAt(),
+                    errorMessage);
             // TODO 封装DTO
             return commentDTO;
         }
@@ -122,18 +144,18 @@ public class CommentServiceImpl implements CommentService {
     // 修改留言
     @Transactional
     @Override
-    public CommentDTO updateComment(long commentId, String commentMessage, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException {
+    public CommentDTO updateComment(int commentId, String commentMessage, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException {
         // 检查session,得到用户id,如果没登录会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(userId == null)
         {
             throw new LoginInfoException("用户未登录");
         }
         // 确认留言发布者和用户id一致,否则抛出无权限异常
         comments comment = commentsMapper.getCommentInfo(commentId);
-        long comment_creator = comment.getUserId();
-        long userIdConvert = userId.longValue();
+        int comment_creator = comment.getUserId();
+        int userIdConvert = userId.intValue();
         if(comment_creator != userIdConvert)
         {
             throw new UnauthorizedCommentOperationException("用户不一致");
@@ -147,7 +169,15 @@ public class CommentServiceImpl implements CommentService {
         boolean success = "".equals(errorMessage);
         if(success)
         {
-            CommentDTO commentDTO = new CommentDTO();
+            comments commentInfo= commentsMapper.getCommentInfo(commentId);
+            CommentDTO commentDTO = new CommentDTO(
+                    commentId,
+                    commentInfo.getFileId(),
+                    commentInfo.getParentCommentId(),
+                    commentInfo.getUserId(),
+                    commentInfo.getPostedAt(),
+                    commentInfo.getLastReplyAt(),
+                    errorMessage);
             // TODO 封装DTO
             return commentDTO;
         }
@@ -160,18 +190,18 @@ public class CommentServiceImpl implements CommentService {
     // 删除留言
     @Transactional
     @Override
-    public boolean deleteComment(long commentId, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException {
+    public boolean deleteComment(int commentId, HttpSession session) throws LoginInfoException, UnauthorizedCommentOperationException {
         // 检查session,得到用户id,如果没登录会抛出异常
         String sessionId = session.getId();
-        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(userId == null)
         {
             throw new LoginInfoException("用户未登录");
         }
         // 确认留言发布者和用户id一致,否则抛出无权限异常
         comments comment = commentsMapper.getCommentInfo(commentId);
-        long comment_creator = comment.getUserId();
-        long userIdConvert = userId.longValue();
+        int comment_creator = comment.getUserId();
+        int userIdConvert = userId.intValue();
         if(comment_creator != userIdConvert)
         {
             throw new UnauthorizedCommentOperationException("用户不一致");

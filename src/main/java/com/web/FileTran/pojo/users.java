@@ -1,6 +1,6 @@
 package com.web.FileTran.pojo;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class users {
     private Integer id;
@@ -9,7 +9,7 @@ public class users {
 
     private String password;
 
-    private Date registrationDate;
+    private Timestamp registrationTimestamp;
 
     private Integer userDirectoryId;
 
@@ -41,12 +41,12 @@ public class users {
         this.password = password == null ? null : password.trim();
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Timestamp getRegistrationTimestamp() {
+        return registrationTimestamp;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRegistrationTimestamp(Timestamp registrationTimestamp) {
+        this.registrationTimestamp = registrationTimestamp;
     }
 
     public Integer getUserDirectoryId() {

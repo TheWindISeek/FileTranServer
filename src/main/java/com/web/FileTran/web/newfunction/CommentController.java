@@ -1,6 +1,8 @@
 package com.web.FileTran.web.newfunction;
 
 import com.web.FileTran.dto.CommentDTO;
+import com.web.FileTran.exception.CommentExceptions.UnauthorizedCommentOperationException;
+import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.vo.CommentVO;
 import com.web.FileTran.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,11 @@ public class CommentController {
                                                       HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
+        try {
+            CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
+        } catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        }
         // DTO转为VO
         return null;
     }
@@ -33,7 +39,11 @@ public class CommentController {
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
+        try {
+            CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
+        } catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        }
         // DTO转为VO
         return null;
     }
@@ -45,7 +55,11 @@ public class CommentController {
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.replyToComment(parentCommentId,commentMessage,session);
+        try {
+            CommentDTO commentDTO = commentService.replyToComment(parentCommentId,commentMessage,session);
+        } catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        }
         // DTO转为VO
         return null;
     }
@@ -57,7 +71,13 @@ public class CommentController {
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        CommentDTO commentDTO = commentService.updateComment(commentId,commentMessage,session);
+        try {
+            CommentDTO commentDTO = commentService.updateComment(commentId,commentMessage,session);
+        } catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        } catch (UnauthorizedCommentOperationException e) {
+            throw new RuntimeException(e);
+        }
         // DTO转为VO
         return null;
     }
@@ -68,7 +88,13 @@ public class CommentController {
             HttpSession session) {
         // TODO 根据session进行检测,对未登录用户重定向
         // TODO 调用service层
-        boolean delete_finish = commentService.deleteComment(commentId,session);
+        try {
+            boolean delete_finish = commentService.deleteComment(commentId,session);
+        } catch (LoginInfoException e) {
+            throw new RuntimeException(e);
+        } catch (UnauthorizedCommentOperationException e) {
+            throw new RuntimeException(e);
+        }
         // DTO转为VO
         return null;
     }

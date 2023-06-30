@@ -1,5 +1,6 @@
 package com.web.FileTran.manager;
 
+import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -71,16 +72,16 @@ public class SessionManager {
         // TODO 重置过期时间(似乎不需要了)
     }
 
-    public static long getUserIdBySessionId(String sessionId) {
+    public static Long getUserIdBySessionId(String sessionId) {
         // 通过session得到用户id
-        long userid = SessionId_UserMap.get(sessionId);
+        Long userid = SessionId_UserMap.get(sessionId);
         return userid;
     }
 
     public static String getSessionIdByUserId(long userId) {
         // 通过id得到正在登录的此账号的sessionId
         String sessionId = User_SessionIdMap.get(userId);
-        return null;
+        return sessionId;
     }
 
     public static boolean LoginInfoCheck(HttpSession session)

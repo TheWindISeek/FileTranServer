@@ -56,6 +56,5 @@ public interface commentsMapper {
      * @param commentId 留言id
      * @return 留言pojo类
      */
-    @MapKey("id")
     comments getCommentInfo(long commentId);
 }

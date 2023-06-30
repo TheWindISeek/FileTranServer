@@ -17,6 +17,11 @@ public class CommentDTO {
 
     private String message;
 
+    public CommentDTO()
+    {
+
+    }
+
     public Integer getId() {
         return id;
     }

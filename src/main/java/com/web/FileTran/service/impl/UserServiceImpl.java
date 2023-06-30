@@ -1,6 +1,7 @@
 package com.web.FileTran.service.impl;
 
 import com.web.FileTran.dto.UserDTO;
+import com.web.FileTran.manager.SessionManager;
 import com.web.FileTran.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,12 @@ public class UserServiceImpl implements UserService {
     public UserDTO registerUser(String username, String password, HttpSession session) {
         // TODO 实现service层
         // 首先检查session是否为已经登录的用户,若已经登录,拒绝该请求,抛出异常
+        String sessionId = session.getId();
+        Long userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId != null)
+        {
+            throw new IllegalStateException("已经登录,需退出登录再注册");
+        }
         // 从dao层调用方法获取相关信息,map类型
         // 如果创建失败,抛出异常
         // 如果创建成功,从map类型的结果里取出各字段,封装成查询结果DTO

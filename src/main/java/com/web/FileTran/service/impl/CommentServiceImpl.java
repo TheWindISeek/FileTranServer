@@ -19,11 +19,13 @@ public class CommentServiceImpl implements CommentService {
     private commentsMapper commentsMapper;
 
     // 在文件下发布留言
+
     @Transactional
     @Override
     public CommentDTO addCommentToFile(int fileId, String commentMessage, HttpSession session)
     {
-        // TODO
+        // TODO 检查session,得到用户id
+        // TODO 如果没登录会抛出异常
 
         int userId = getUserIdFromSession(session);
         Map<String, Object> params = new HashMap<>();

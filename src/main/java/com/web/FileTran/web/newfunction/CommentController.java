@@ -3,6 +3,7 @@ package com.web.FileTran.web.newfunction;
 import com.web.FileTran.dto.CommentDTO;
 import com.web.FileTran.vo.CommentVO;
 import com.web.FileTran.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/comments")
 public class CommentController {
 
+    @Autowired
     CommentService commentService;
 
     @PostMapping("/addToFile")

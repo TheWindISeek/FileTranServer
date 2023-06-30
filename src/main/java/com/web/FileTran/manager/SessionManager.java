@@ -5,47 +5,87 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class SessionManager {
-    private static final String SESSION_KEY_PREFIX = "user-session:";
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
 
-    public static void setLoginInfo(HttpSession session, Long userid, String password)
+    //使用HashMap代替Redis实现键值对的存储,Redis学习成本太高后面再看
+    private static Map<String, Long> SessionId_UserMap = new HashMap<>();
+    private static Map<Long, String> User_SessionIdMap = new HashMap<>();
+
+    /**
+     * 给session设置登录信息,建立双向映射
+     * @param session 会话
+     * @param userid 用户id
+     */
+    public static void setLoginInfo(HttpSession session, Long userid)
     {
-        // TODO 只负责给session添加id密码并建立双向的映射
-        // TODO 学习在redis上建立映射的方法,实在不行用map也可以临时代替一下
+        // 只负责给session添加id密码并建立双向的映射
+        // 登录信息存储,生成sessionId和userid的双向映射
+        String sessionId = session.getId();
+        SessionId_UserMap.put(sessionId,userid);
+        User_SessionIdMap.put(userid,sessionId);
     }
-    public static int getUserIdFromSession(HttpSession session) {
-        // TODO 完成方法
-        return (int) session.getAttribute("userId");
+
+    /**
+     * 给session设置登录信息,建立双向映射
+     * @param sessionId 会话id
+     * @param userid 用户id
+     */
+    public static void setLoginInfo(String sessionId, Long userid)
+    {
+        // 只负责给session添加id密码并建立双向的映射
+        // 登录信息存储,生成sessionId和userid的双向映射
+        SessionId_UserMap.put(sessionId,userid);
+        User_SessionIdMap.put(userid,sessionId);
+    }
+
+    /**
+     * 把session的登录信息移除
+     * @param session 会话
+     */
+    public static void removeLoginInfo(HttpSession session) {
+        // 移除sessionId和UserID的双向映射
+        String sessionId = session.getId();
+        long userid = SessionId_UserMap.get(sessionId);
+        User_SessionIdMap.remove(userid);
+        SessionId_UserMap.remove(sessionId);
+    }
+
+    /**
+     * 把session的登录信息移除
+     * @param sessionId 会话id
+     */
+    public static void removeLoginInfo(String sessionId) {
+        // 移除sessionId和UserID的双向映射
+        long userid = SessionId_UserMap.get(sessionId);
+        User_SessionIdMap.remove(userid);
+        SessionId_UserMap.remove(sessionId);
+    }
+
+    public static void resetExpire(HttpSession session)
+    {
+        // TODO 重置过期时间(似乎不需要了)
+    }
+
+    public static long getUserIdBySessionId(String sessionId) {
+        // 通过session得到用户id
+        long userid = SessionId_UserMap.get(sessionId);
+        return userid;
+    }
+
+    public static String getSessionIdByUserId(long userId) {
+        // 通过id得到正在登录的此账号的sessionId
+        String sessionId = User_SessionIdMap.get(userId);
+        return null;
     }
 
     public static boolean LoginInfoCheck(HttpSession session)
     {
-        // TODO 检查登录是否有效
+        // TODO 检查登录是否有效(似乎不需要了)
         return false;
-    }
-
-    public void setSessionId(int userId, String sessionId) {
-        String key = getSessionKey(userId);
-        redisTemplate.opsForValue().set(key, sessionId);
-        redisTemplate.expire(key, 30, TimeUnit.MINUTES); // 设置过期时间为30分钟
-    }
-
-    public String getSessionId(int userId) {
-        String key = getSessionKey(userId);
-        return redisTemplate.opsForValue().get(key);
-    }
-
-    public void removeSessionId(int userId) {
-        String key = getSessionKey(userId);
-        redisTemplate.delete(key);
-    }
-
-    private String getSessionKey(int userId) {
-        return SESSION_KEY_PREFIX + userId;
     }
 }

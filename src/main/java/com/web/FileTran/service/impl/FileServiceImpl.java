@@ -5,12 +5,14 @@ import com.web.FileTran.dao.filesMapper;
 import com.web.FileTran.dto.DownloadInfoDTO;
 import com.web.FileTran.dto.FileDTO;
 import com.web.FileTran.service.FileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
 @Service
 public class FileServiceImpl implements FileService {
+    @Autowired
     filesMapper filesMapper;
     // Get file information by ID
     @Override

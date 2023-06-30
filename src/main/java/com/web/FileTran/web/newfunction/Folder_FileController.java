@@ -9,6 +9,7 @@ import com.web.FileTran.service.FolderService;
 import com.web.FileTran.vo.FileVO;
 import com.web.FileTran.vo.FolderContentVO;
 import com.web.FileTran.vo.FolderVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,9 @@ import java.sql.SQLException;
 @RequestMapping("/folder_files")
 public class Folder_FileController {
 
+    @Autowired
     private final FileService fileService;
+    @Autowired
     private final FolderService folderService;
 
     // Constructor with dependency injection

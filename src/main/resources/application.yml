@@ -20,10 +20,10 @@ spring:
     mode: HTML
     prefix: classpath:/template/
     suffix: .html
-  session:
-    store-type: redis
-    redis:
-      namespace: example
+  #session:
+  #  store-type: redis
+  #  redis:
+  #    namespace: example
   web:
     resources:
       static-locations: classpath:/static/

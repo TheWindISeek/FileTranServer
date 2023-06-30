@@ -159,15 +159,18 @@
         </dependency>
 
         <!-- Spring Session Data Redis -->
+        <!--
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
-
+        -->
         <!-- Redis Client -->
+        <!--
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+        -->
     </dependencies>
 </project>

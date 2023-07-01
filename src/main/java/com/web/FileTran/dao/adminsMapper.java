@@ -2,9 +2,11 @@ package com.web.FileTran.dao;
 
 import com.web.FileTran.pojo.admins;
 import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
 
+@Mapper
 public interface adminsMapper {
     // TODO 需要修改存储过程,添加错误信息输出
     /**

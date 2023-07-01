@@ -1,7 +1,6 @@
-package com.web.FileTran.web.newfunction;
+package com.web.FileTran.web.function;
 
 import com.web.FileTran.dto.CommentDTO;
-import com.web.FileTran.exception.CommentExceptions.UnauthorizedCommentOperationException;
 import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.vo.CommentVO;
 import com.web.FileTran.service.CommentService;

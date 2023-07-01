@@ -34,6 +34,6 @@
         <!--加载map文件-->
         <!--<mapper resource="com/example/api/olddao/UserMapper.xml"/>-->
         <!--Mapper代理 包扫描-->
-        <package name="com.web.FileTran.olddao"/>
+        <package name="com.web.FileTran.dao"/>
     </mappers>
 </configuration>

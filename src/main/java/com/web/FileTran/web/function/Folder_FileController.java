@@ -1,12 +1,9 @@
-package com.web.FileTran.web.newfunction;
+package com.web.FileTran.web.function;
 
 import com.web.FileTran.dto.DownloadInfoDTO;
 import com.web.FileTran.dto.FileDTO;
 import com.web.FileTran.dto.FolderContentDTO;
 import com.web.FileTran.dto.FolderDTO;
-import com.web.FileTran.exception.Folder_FileExceptions.FileNotFoundException;
-import com.web.FileTran.exception.Folder_FileExceptions.InsufficientPermissionException;
-import com.web.FileTran.exception.UserExceptions.LoginInfoException;
 import com.web.FileTran.service.FileService;
 import com.web.FileTran.service.FolderService;
 import com.web.FileTran.vo.FileVO;
@@ -56,6 +53,7 @@ public class Folder_FileController {
             return ResponseEntity.ok(folderInfoVO);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型
@@ -78,6 +76,7 @@ public class Folder_FileController {
             return ResponseEntity.ok(fileInfoVO);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型
@@ -100,6 +99,7 @@ public class Folder_FileController {
             downloadInfo = fileService.getDownloadInfo(fileId,session);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /*
@@ -122,6 +122,7 @@ public class Folder_FileController {
             resource = new FileSystemResource((Path) blobBytes);
         }
         catch (SQLException e) {
+            System.out.println(e);
             throw new RuntimeException(e);
         }
         /* TODO 细化异常类型

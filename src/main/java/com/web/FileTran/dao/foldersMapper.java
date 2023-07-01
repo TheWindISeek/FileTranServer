@@ -2,10 +2,12 @@ package com.web.FileTran.dao;
 
 import com.web.FileTran.pojo.folders;
 import org.apache.ibatis.annotations.MapKey;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
 
+@Mapper
 public interface foldersMapper {
     // TODO 需要修改存储过程添加文件夹名参数
     /**

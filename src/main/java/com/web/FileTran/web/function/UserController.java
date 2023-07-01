@@ -1,4 +1,4 @@
-package com.web.FileTran.web.newfunction;
+package com.web.FileTran.web.function;
 
 import com.web.FileTran.vo.UserVO;
 import com.web.FileTran.dto.UserDTO;
@@ -32,6 +32,7 @@ public class UserController {
         try {
             UserDTO userDTO = userService.getUserInfoById(userId,session);
             UserVO userVO = null;
+            // TODO DTO转VO
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {

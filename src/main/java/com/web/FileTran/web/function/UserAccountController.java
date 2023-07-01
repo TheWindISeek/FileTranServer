@@ -1,4 +1,4 @@
-package com.web.FileTran.web.newfunction;
+package com.web.FileTran.web.function;
 
 import com.web.FileTran.dto.UserDTO;
 import com.web.FileTran.vo.UserVO;
@@ -40,6 +40,7 @@ public class UserAccountController {
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -57,6 +58,7 @@ public class UserAccountController {
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         /* TODO 细化异常类型
@@ -76,6 +78,7 @@ public class UserAccountController {
             return ResponseEntity.ok(result);
         }
         catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型

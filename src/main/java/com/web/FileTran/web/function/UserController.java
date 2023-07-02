@@ -17,8 +17,6 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-    // Constructor with dependency injection
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -28,11 +26,10 @@ public class UserController {
     public ResponseEntity<UserVO> getUserInfo(
             @PathVariable int userId,
             HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
+        // 根据session进行检测,对未登录用户重定向
         try {
             UserDTO userDTO = userService.getUserInfoById(userId,session);
-            UserVO userVO = null;
-            // TODO DTO转VO
+            UserVO userVO = new UserVO(userDTO.getId(), userDTO.getUsername(),userDTO.getUserDirectoryId(),userDTO.getFavoritesFolderId());
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {

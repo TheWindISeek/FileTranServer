@@ -2,34 +2,34 @@ package com.web.FileTran.dto;
 
 
 public class FileDTO {
-    private int id;
+    private Integer id;
 
     private String name;
 
-    private int folderId;
+    private Integer folderId;
 
     private String fileType;
 
     private String permission;
 
-    private int shortcutDestination;
+    private Integer shortcutDestination;
 
-    private int inheritedFromFolderId;
+    private Integer inheritedFromFolderId;
 
-    private int creatorId;
+    private Integer creatorId;
 
-    private int blobId;
+    private Integer blobId;
 
     public FileDTO(
-            int id,
+            Integer id,
             String name,
-            int folderId,
+            Integer folderId,
             String fileType,
             String permission,
-            int shortcutDestination,
-            int inheritedFromFolderId,
-            int creatorId,
-            int blobId)
+            Integer shortcutDestination,
+            Integer inheritedFromFolderId,
+            Integer creatorId,
+            Integer blobId)
     {
         this.id = id;
         this.name = name;
@@ -42,11 +42,11 @@ public class FileDTO {
         this.blobId = blobId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -58,11 +58,11 @@ public class FileDTO {
         this.name = name == null ? null : name.trim();
     }
 
-    public int getFolderId() {
+    public Integer getFolderId() {
         return folderId;
     }
 
-    public void setFolderId(int folderId) {
+    public void setFolderId(Integer folderId) {
         this.folderId = folderId;
     }
 
@@ -82,35 +82,35 @@ public class FileDTO {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public int getShortcutDestination() {
+    public Integer getShortcutDestination() {
         return shortcutDestination;
     }
 
-    public void setShortcutDestination(int shortcutDestination) {
+    public void setShortcutDestination(Integer shortcutDestination) {
         this.shortcutDestination = shortcutDestination;
     }
 
-    public int getInheritedFromFolderId() {
+    public Integer getInheritedFromFolderId() {
         return inheritedFromFolderId;
     }
 
-    public void setInheritedFromFolderId(int inheritedFromFolderId) {
+    public void setInheritedFromFolderId(Integer inheritedFromFolderId) {
         this.inheritedFromFolderId = inheritedFromFolderId;
     }
 
-    public int getCreatorId() {
+    public Integer getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(int creatorId) {
+    public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
     }
 
-    public int getBlobId() {
+    public Integer getBlobId() {
         return blobId;
     }
 
-    public void setBlobId(int blobId) {
+    public void setBlobId(Integer blobId) {
         this.blobId = blobId;
     }
 }

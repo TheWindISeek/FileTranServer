@@ -2,6 +2,7 @@ package com.web.FileTran.web.function;
 
 import com.web.FileTran.dto.CommentDTO;
 import com.web.FileTran.exception.UserExceptions.LoginInfoException;
+import com.web.FileTran.manager.SessionManager;
 import com.web.FileTran.vo.CommentVO;
 import com.web.FileTran.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,29 @@ public class CommentController {
     public ResponseEntity<CommentVO> addCommentToFile(@RequestParam("fileId") int fileId,
                                                       @RequestParam("commentMessage") String commentMessage,
                                                       HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
-        // TODO 调用service层
+        // 根据session进行检测,对未登录用户重定向
+        String sessionId = session.getId();
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId == null) {
+            // 无权限
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
         try {
+            // 调用service层
             CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
+            // DTO转为VO
+            CommentVO commentVO = new CommentVO(
+                    commentDTO.getId(),
+                    commentDTO.getMessage(),
+                    commentDTO.getPostedAt(),
+                    commentDTO.getLastReplyAt()
+            );
+            return ResponseEntity.ok(commentVO);
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        // DTO转为VO
-        return null;
     }
 
     @PostMapping("/addToFolder")
@@ -38,16 +52,28 @@ public class CommentController {
             @RequestParam("folderId") int folderId,
             @RequestParam("commentMessage") String commentMessage,
             HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
-        // TODO 调用service层
+        // 根据session进行检测,对未登录用户重定向
+        String sessionId = session.getId();
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId == null) {
+            // 无权限
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 调用service层
         try {
             CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
+            // DTO转为VO
+            CommentVO commentVO = new CommentVO(
+                    commentDTO.getId(),
+                    commentDTO.getMessage(),
+                    commentDTO.getPostedAt(),
+                    commentDTO.getLastReplyAt()
+            );
+            return ResponseEntity.ok(commentVO);
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        // DTO转为VO
-        return null;
     }
 
     @PostMapping("/replyToComment")
@@ -55,16 +81,28 @@ public class CommentController {
             @RequestParam("parentCommentId") int parentCommentId,
             @RequestParam("commentMessage") String commentMessage,
             HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
-        // TODO 调用service层
+        // 根据session进行检测,对未登录用户重定向
+        String sessionId = session.getId();
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId == null) {
+            // 无权限
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 调用service层
         try {
             CommentDTO commentDTO = commentService.replyToComment(parentCommentId,commentMessage,session);
+            // DTO转为VO
+            CommentVO commentVO = new CommentVO(
+                    commentDTO.getId(),
+                    commentDTO.getMessage(),
+                    commentDTO.getPostedAt(),
+                    commentDTO.getLastReplyAt()
+            );
+            return ResponseEntity.ok(commentVO);
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        // DTO转为VO
-        return null;
     }
 
     @PostMapping("/update")
@@ -72,10 +110,24 @@ public class CommentController {
             @RequestParam("commentId") int commentId,
             @RequestParam("commentMessage") String commentMessage,
             HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
-        // TODO 调用service层
+        // 根据session进行检测,对未登录用户重定向
+        String sessionId = session.getId();
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId == null) {
+            // 无权限
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 调用service层
         try {
             CommentDTO commentDTO = commentService.updateComment(commentId,commentMessage,session);
+            // DTO转为VO
+            CommentVO commentVO = new CommentVO(
+                    commentDTO.getId(),
+                    commentDTO.getMessage(),
+                    commentDTO.getPostedAt(),
+                    commentDTO.getLastReplyAt()
+            );
+            return ResponseEntity.ok(commentVO);
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -88,18 +140,23 @@ public class CommentController {
             throw new RuntimeException(e);
         }
         */
-        // DTO转为VO
-        return null;
     }
 
     @PostMapping("/delete")
     public ResponseEntity<Boolean> deleteComment(
             @RequestParam("commentId") int commentId,
             HttpSession session) {
-        // TODO 根据session进行检测,对未登录用户重定向
-        // TODO 调用service层
+        // 根据session进行检测,对未登录用户重定向
+        String sessionId = session.getId();
+        Integer userId = SessionManager.getUserIdBySessionId(sessionId);
+        if(userId == null) {
+            // 无权限
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 调用service层
         try {
             boolean delete_finish = commentService.deleteComment(commentId,session);
+            return ResponseEntity.ok(delete_finish);
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -112,7 +169,5 @@ public class CommentController {
             throw new RuntimeException(e);
         }
          */
-        // DTO转为VO
-        return null;
     }
 }

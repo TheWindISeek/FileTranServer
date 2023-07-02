@@ -89,9 +89,9 @@ SET foreign_key_checks = 1;
 -- 创建触发器
 DELIMITER //
 
-DROP TRIGGER IF EXISTS `AfterInsertOnUsers` //
-CREATE TRIGGER AfterInsertOnUsers AFTER INSERT ON users FOR EACH ROW 
-BEGIN 
+DROP TRIGGER IF EXISTS `BeforeInsertOnUsers` //
+CREATE TRIGGER BeforeInsertOnUsers BEFORE INSERT ON users FOR EACH ROW
+BEGIN
 	DECLARE userDirId INT;
 	DECLARE favoritesId INT;
 	-- 创建用户目录
@@ -99,12 +99,14 @@ BEGIN
 	    folders (
 	        name,
 	        parent_folder_id,
-	        folder_type
+	        folder_type,
+            permission
 	    )
 	VALUES (
 	        'User Directory',
 	        NULL,
-	        'UserDirectory'
+	        'UserDirectory',
+            'Readable'
 	    );
 	SET userDirId = LAST_INSERT_ID();
 	-- 创建用户收藏夹
@@ -112,16 +114,22 @@ BEGIN
 	    folders (
 	        name,
 	        parent_folder_id,
-	        folder_type
+	        folder_type,
+            permission
 	    )
-	VALUES ('Favorites', NULL, 'Favorites');
+	VALUES ('Favorites', NULL, 'Favorites','Readable');
 	SET favoritesId = LAST_INSERT_ID();
 	-- 更新用户记录的目录和收藏夹ID
-	UPDATE users
 	SET
-	    user_directory_id = userDirId,
-	    favorites_folder_id = favoritesId
-	WHERE id = NEW.id;
+	    new.user_directory_id = userDirId,
+	    new.favorites_folder_id = favoritesId,
+        new.quota_limit = 1048576;
+END //
+
+DROP TRIGGER IF EXISTS `AfterInsertOnUsers` //
+CREATE TRIGGER AfterInsertOnUsers AFTER INSERT ON users FOR EACH ROW
+BEGIN
+    UPDATE folders SET creator_id = new.id where folders.id = new.user_directory_id or folders.id = new.favorites_folder_id;
 END // 
 
 DROP TRIGGER IF EXISTS `AfterInsertOnFiles` //

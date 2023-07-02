@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private usersMapper usersMapper;
     // User registration logic
-    //@Transactional
+    @Transactional
     @Override
     public UserDTO registerUser(String username, String password, HttpSession session) {
         // TODO 实现service层
@@ -71,8 +71,13 @@ public class UserServiceImpl implements UserService {
         // 比较用户密码和输入是否一致,输入不一致抛出异常
         if(userPassword.equals(password))
         {
+            // 已经在使用此账号登录的session
+            String currentSessionId = SessionManager.getSessionIdByUserId(usersInfo.getId());
+            // 将这个session断开连接
+            SessionManager.removeLoginInfo(currentSessionId);
+            // 记录登录信息(设置双向映射)
             SessionManager.setLoginInfo(sessionId,usersInfo.getId());
-            // TODO 输入一致,封装VO作为返回
+            // 输入一致,封装VO作为返回
             UserDTO UserDTO = new UserDTO(
                     usersInfo.getId(),
                     usersInfo.getUsername(),
@@ -101,6 +106,7 @@ public class UserServiceImpl implements UserService {
         }
         else
         {
+            // 清除登录信息
             SessionManager.removeLoginInfo(sessionId);
             return true;
         }
@@ -119,7 +125,7 @@ public class UserServiceImpl implements UserService {
         }
         // 调用dao层的getUserInfoById方法,得到
         users targetUserInfo = usersMapper.getUserInfoById(TargetUserId);
-        // TODO 把用户的公开信息封装成VO
+        // 把用户的公开信息封装成VO
         UserDTO UserDTO = new UserDTO(
                 targetUserInfo.getId(),
                 targetUserInfo.getUsername(),

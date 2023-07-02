@@ -17,7 +17,7 @@
 
     <!-- 调用 RegisterUser 存储过程 -->
     <select id="registerUser" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
-      {CALL newDB.RegisterUser(#{userName}, #{userPassword}, #{userId, mode=OUT, jdbcType=INTEGER})}
+      {CALL RegisterUser(#{userName}, #{userPassword}, #{userId, mode=OUT, jdbcType=INTEGER})}
     </select>
 
     <!-- 调用 DeleteUser 存储过程 -->

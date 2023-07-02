@@ -8,48 +8,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FolderContentDTO {
-    private int totalItems;
-    private int currentPage;
-
-    // 包括子文件夹和子文件
-    private List<Object> subItems;
+    private Integer totalItems;
+    private Integer currentPage;
+    private List<FileVO> files;
+    private List<FolderVO> folders;
 
     public FolderContentDTO() {
         // Default constructor
     }
 
     public FolderContentDTO(
-            int totalItems,
-            int currentPage,
+            Integer totalItems,
+            Integer currentPage,
             List<FileVO> files,
             List<FolderVO> folders) {
         this.totalItems = totalItems;
         this.currentPage = currentPage;
-        // TODO 需要在此处把两个表合并
-        this.subItems = new ArrayList<>();
+        this.files = files;
+        this.folders = folders;
     }
 
-    public int getTotalItems() {
+    public Integer getTotalItems() {
         return totalItems;
     }
 
-    public void setTotalItems(int totalItems) {
+    public void setTotalItems(Integer totalItems) {
         this.totalItems = totalItems;
     }
 
-    public int getCurrentPage() {
+    public Integer getCurrentPage() {
         return currentPage;
     }
 
-    public void setCurrentPage(int currentPage) {
+    public void setCurrentPage(Integer currentPage) {
         this.currentPage = currentPage;
     }
 
-    public List<Object> getSubItems() {
-        return subItems;
+    public List<FileVO> getFiles() {
+        return files;
     }
 
-    public void setSubItems(List<Object> subItems) {
-        this.subItems = subItems;
+    public void setFiles(List<FileVO> files)
+    {
+        this.files = files;
+    }
+
+    public List<FolderVO> getFolders() {
+        return folders;
+    }
+
+    public void setFolder(List<FolderVO> folders)
+    {
+        this.folders = folders;
     }
 }

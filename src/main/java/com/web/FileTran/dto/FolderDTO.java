@@ -1,34 +1,34 @@
 package com.web.FileTran.dto;
 
 public class FolderDTO {
-    private int id;
+    private Integer id;
 
     private String name;
 
-    private int parentFolderId;
+    private Integer parentFolderId;
 
     private String folderType;
 
-    private int shortcutDestination;
+    private Integer shortcutDestination;
 
-    private int quotaUsed;
+    private Integer quotaUsed;
 
     private String permission;
 
-    private int inheritedFromFolderId;
+    private Integer inheritedFromFolderId;
 
-    private int creatorId;
+    private Integer creatorId;
 
     public FolderDTO(
-            int id,
+            Integer id,
             String name,
-            int parentFolderId,
+            Integer parentFolderId,
             String folderType,
-            int shortcutDestination,
-            int quotaUsed,
+            Integer shortcutDestination,
+            Integer quotaUsed,
             String permission,
-            int inheritedFromFolderId,
-            int creatorId)
+            Integer inheritedFromFolderId,
+            Integer creatorId)
     {
         this.id = id;
         this.name = name;
@@ -41,11 +41,11 @@ public class FolderDTO {
         this.creatorId = creatorId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -57,11 +57,11 @@ public class FolderDTO {
         this.name = name == null ? null : name.trim();
     }
 
-    public int getParentFolderId() {
+    public Integer getParentFolderId() {
         return parentFolderId;
     }
 
-    public void setParentFolderId(int parentFolderId) {
+    public void setParentFolderId(Integer parentFolderId) {
         this.parentFolderId = parentFolderId;
     }
 
@@ -73,19 +73,19 @@ public class FolderDTO {
         this.folderType = folderType == null ? null : folderType.trim();
     }
 
-    public int getShortcutDestination() {
+    public Integer getShortcutDestination() {
         return shortcutDestination;
     }
 
-    public void setShortcutDestination(int shortcutDestination) {
+    public void setShortcutDestination(Integer shortcutDestination) {
         this.shortcutDestination = shortcutDestination;
     }
 
-    public int getQuotaUsed() {
+    public Integer getQuotaUsed() {
         return quotaUsed;
     }
 
-    public void setQuotaUsed(int quotaUsed) {
+    public void setQuotaUsed(Integer quotaUsed) {
         this.quotaUsed = quotaUsed;
     }
 
@@ -97,19 +97,19 @@ public class FolderDTO {
         this.permission = permission == null ? null : permission.trim();
     }
 
-    public int getInheritedFromFolderId() {
+    public Integer getInheritedFromFolderId() {
         return inheritedFromFolderId;
     }
 
-    public void setInheritedFromFolderId(int inheritedFromFolderId) {
+    public void setInheritedFromFolderId(Integer inheritedFromFolderId) {
         this.inheritedFromFolderId = inheritedFromFolderId;
     }
 
-    public int getCreatorId() {
+    public Integer getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(int creatorId) {
+    public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
     }
 }

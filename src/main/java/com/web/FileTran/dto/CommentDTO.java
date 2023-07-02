@@ -1,6 +1,6 @@
 package com.web.FileTran.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class CommentDTO {
     private Integer id;
@@ -11,15 +11,15 @@ public class CommentDTO {
 
     private Integer userId;
 
-    private Date postedAt;
+    private Timestamp postedAt;
 
-    private Date lastReplyAt;
+    private Timestamp lastReplyAt;
 
     private String message;
-    public CommentDTO(int id,int fileId,int parentCommentId,int userId,Date postedAt,Date lastReplyAt,String message)
+    public CommentDTO(Integer id,Integer fileId,Integer parentCommentId,Integer userId,Timestamp postedAt,Timestamp lastReplyAt,String message)
     {
-        this.id = new Integer(id);
-        this.fileId = new Integer(fileId);
+        this.id = id;
+        this.fileId = fileId;
         this.parentCommentId = parentCommentId;
         this.userId = userId;
         this.postedAt = postedAt;
@@ -59,19 +59,19 @@ public class CommentDTO {
         this.userId = userId;
     }
 
-    public Date getPostedAt() {
+    public Timestamp getPostedAt() {
         return postedAt;
     }
 
-    public void setPostedAt(Date postedAt) {
+    public void setPostedAt(Timestamp postedAt) {
         this.postedAt = postedAt;
     }
 
-    public Date getLastReplyAt() {
+    public Timestamp getLastReplyAt() {
         return lastReplyAt;
     }
 
-    public void setLastReplyAt(Date lastReplyAt) {
+    public void setLastReplyAt(Timestamp lastReplyAt) {
         this.lastReplyAt = lastReplyAt;
     }
 

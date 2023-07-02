@@ -3,7 +3,7 @@ package com.web.FileTran.dto;
 import java.sql.Timestamp;
 
 public class UserDTO {
-    private int id;
+    private Integer id;
 
     private String username;
 
@@ -11,20 +11,20 @@ public class UserDTO {
 
     private Timestamp registrationTimestamp;
 
-    private int userDirectoryId;
+    private Integer userDirectoryId;
 
-    private int favoritesFolderId;
+    private Integer favoritesFolderId;
 
-    private int quotaLimit;
+    private Integer quotaLimit;
 
     public UserDTO(
-            int id,
+            Integer id,
             String username,
             String password,
             Timestamp registrationTimestamp,
-            int userDirectoryId,
-            int favoritesFolderId,
-            int quotaLimit)
+            Integer userDirectoryId,
+            Integer favoritesFolderId,
+            Integer quotaLimit)
     {
         this.id = id;
         this.username = username;
@@ -35,11 +35,11 @@ public class UserDTO {
         this.quotaLimit = quotaLimit;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -67,27 +67,27 @@ public class UserDTO {
         this.registrationTimestamp = registrationTimestamp;
     }
 
-    public int getUserDirectoryId() {
+    public Integer getUserDirectoryId() {
         return userDirectoryId;
     }
 
-    public void setUserDirectoryId(int userDirectoryId) {
+    public void setUserDirectoryId(Integer userDirectoryId) {
         this.userDirectoryId = userDirectoryId;
     }
 
-    public int getFavoritesFolderId() {
+    public Integer getFavoritesFolderId() {
         return favoritesFolderId;
     }
 
-    public void setFavoritesFolderId(int favoritesFolderId) {
+    public void setFavoritesFolderId(Integer favoritesFolderId) {
         this.favoritesFolderId = favoritesFolderId;
     }
 
-    public int getQuotaLimit() {
+    public Integer getQuotaLimit() {
         return quotaLimit;
     }
 
-    public void setQuotaLimit(int quotaLimit) {
+    public void setQuotaLimit(Integer quotaLimit) {
         this.quotaLimit = quotaLimit;
     }
 }

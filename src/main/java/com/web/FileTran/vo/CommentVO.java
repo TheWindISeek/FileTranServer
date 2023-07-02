@@ -1,19 +1,20 @@
 package com.web.FileTran.vo;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class CommentVO {
     private int commentId;
     private String message;
-    private LocalDateTime postedAt;
-    private LocalDateTime lastReplyAt;
+    private Timestamp postedAt;
+    private Timestamp lastReplyAt;
 
     public CommentVO() {
         // Default constructor
     }
 
-    public CommentVO(int commentId, String message, LocalDateTime postedAt, LocalDateTime lastReplyAt) {
+    public CommentVO(int commentId, String message, Timestamp postedAt, Timestamp lastReplyAt) {
         this.commentId = commentId;
         this.message = message;
         this.postedAt = postedAt;
@@ -36,19 +37,19 @@ public class CommentVO {
         this.message = message;
     }
 
-    public LocalDateTime getPostedAt() {
+    public Timestamp getPostedAt() {
         return postedAt;
     }
 
-    public void setPostedAt(LocalDateTime postedAt) {
+    public void setPostedAt(Timestamp postedAt) {
         this.postedAt = postedAt;
     }
 
-    public LocalDateTime getLastReplyAt() {
+    public Timestamp getLastReplyAt() {
         return lastReplyAt;
     }
 
-    public void setLastReplyAt(LocalDateTime lastReplyAt) {
+    public void setLastReplyAt(Timestamp lastReplyAt) {
         this.lastReplyAt = lastReplyAt;
     }
 }

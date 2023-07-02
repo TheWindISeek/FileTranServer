@@ -1,5 +1,7 @@
 package com.web.FileTran.pojo;
 
+import com.web.FileTran.dto.FileDTO;
+
 public class files {
     private Integer id;
 
@@ -89,5 +91,20 @@ public class files {
 
     public void setBlobId(Integer blobId) {
         this.blobId = blobId;
+    }
+
+    public FileDTO convertToFileDTO()
+    {
+        return new FileDTO(
+            this.getId(),
+                this.getName(),
+                this.getFolderId(),
+                this.getFileType(),
+                this.getPermission(),
+                this.getShortcutDestination(),
+                this.getInheritedFromFolderId(),
+                this.getCreatorId(),
+                this.getBlobId()
+        );
     }
 }

@@ -33,14 +33,7 @@ public class CommentController {
         try {
             // 调用service层
             CommentDTO commentDTO = commentService.addCommentToFile(fileId,commentMessage,session);
-            // DTO转为VO
-            CommentVO commentVO = new CommentVO(
-                    commentDTO.getId(),
-                    commentDTO.getMessage(),
-                    commentDTO.getPostedAt(),
-                    commentDTO.getLastReplyAt()
-            );
-            return ResponseEntity.ok(commentVO);
+            return ResponseEntity.ok(commentDTO.convertToCommentVO());
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -62,14 +55,7 @@ public class CommentController {
         // 调用service层
         try {
             CommentDTO commentDTO = commentService.addCommentToFolder(folderId,commentMessage,session);
-            // DTO转为VO
-            CommentVO commentVO = new CommentVO(
-                    commentDTO.getId(),
-                    commentDTO.getMessage(),
-                    commentDTO.getPostedAt(),
-                    commentDTO.getLastReplyAt()
-            );
-            return ResponseEntity.ok(commentVO);
+            return ResponseEntity.ok(commentDTO.convertToCommentVO());
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -91,14 +77,7 @@ public class CommentController {
         // 调用service层
         try {
             CommentDTO commentDTO = commentService.replyToComment(parentCommentId,commentMessage,session);
-            // DTO转为VO
-            CommentVO commentVO = new CommentVO(
-                    commentDTO.getId(),
-                    commentDTO.getMessage(),
-                    commentDTO.getPostedAt(),
-                    commentDTO.getLastReplyAt()
-            );
-            return ResponseEntity.ok(commentVO);
+            return ResponseEntity.ok(commentDTO.convertToCommentVO());
         }
         catch (LoginInfoException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -120,14 +99,7 @@ public class CommentController {
         // 调用service层
         try {
             CommentDTO commentDTO = commentService.updateComment(commentId,commentMessage,session);
-            // DTO转为VO
-            CommentVO commentVO = new CommentVO(
-                    commentDTO.getId(),
-                    commentDTO.getMessage(),
-                    commentDTO.getPostedAt(),
-                    commentDTO.getLastReplyAt()
-            );
-            return ResponseEntity.ok(commentVO);
+            return ResponseEntity.ok(commentDTO.convertToCommentVO());
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

@@ -2,6 +2,7 @@ package com.web.FileTran.dto;
 
 
 import com.web.FileTran.vo.FileVO;
+import com.web.FileTran.vo.FolderContentVO;
 import com.web.FileTran.vo.FolderVO;
 
 import java.util.ArrayList;
@@ -26,6 +27,15 @@ public class FolderContentDTO {
         this.currentPage = currentPage;
         this.files = files;
         this.folders = folders;
+    }
+
+    public String toString()
+    {
+        return "FolderContentDTO{"+
+                " totalItems="+totalItems+
+                "; currentPage="+currentPage+
+                "; files="+files.toString()+
+                "; folders="+folders.toString()+"}";
     }
 
     public Integer getTotalItems() {
@@ -60,5 +70,15 @@ public class FolderContentDTO {
     public void setFolder(List<FolderVO> folders)
     {
         this.folders = folders;
+    }
+
+    public FolderContentVO convertToFolderContentVO()
+    {
+        return new FolderContentVO(
+                this.getTotalItems(),
+                this.getCurrentPage(),
+                this.getFiles(),
+                this.getFolders()
+        );
     }
 }

@@ -1,6 +1,14 @@
 package com.web.FileTran.dto;
 
+import com.web.FileTran.dao.usersMapper;
+import com.web.FileTran.service.UserService;
+import com.web.FileTran.vo.FolderVO;
+import com.web.FileTran.vo.ShortcutVO;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class FolderDTO {
+    @Autowired
+    private static usersMapper usersMapper;
     private Integer id;
 
     private String name;
@@ -111,5 +119,17 @@ public class FolderDTO {
 
     public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public FolderVO convertToFolderVO()
+    {
+        return new FolderVO(
+                this.getId(),
+                this.getName(),
+                usersMapper.getUserInfoById(this.getCreatorId()).convertToUserDTO().convertToUserVO(),
+                this.getFolderType(),
+                this.getPermission(),
+                ShortcutVO.ShortcutVOAutoCreate_Folder(this.shortcutDestination)
+        );
     }
 }

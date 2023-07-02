@@ -1,5 +1,6 @@
 package com.web.FileTran.dao;
 
+import com.web.FileTran.pojo.files;
 import com.web.FileTran.pojo.folders;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
@@ -49,15 +50,15 @@ public interface foldersMapper {
      * @return list
      */
     @MapKey("id")
-    List<Map<String, Object>> getChildrenFolders(Map<String, Object> params);
+    List<folders> getChildrenFolders(Map<String, Object> params);
 
     /**
      * 查询子文件 注:需要service层控制查找的起点和长度
-     * @param params 输入 int fileId,int offset,int limit
+     * @param params 输入 int folderId,int offset,int limit
      * @return list
      */
     @MapKey("id")
-    List<Map<String, Object>> getChildrenFiles(Map<String, Object> params);
+    List<files> getChildrenFiles(Map<String, Object> params);
 
     /**
      * 获得文件夹信息
@@ -72,4 +73,18 @@ public interface foldersMapper {
      * @return 文件夹是否存在
      */
     boolean checkFolderExists(int folderId);
+
+    /**
+     * 子文件数量
+     * @param folderId 文件夹id
+     * @return 数量
+     */
+    int getSubfolderCount(int folderId);
+
+    /**
+     * 查询文件夹下子文件的数量
+     * @param folderId 文件夹id
+     * @return 文件数量
+     */
+    int getSubfileCount(int folderId);
 }

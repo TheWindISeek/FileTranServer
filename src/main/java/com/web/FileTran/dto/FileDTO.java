@@ -1,7 +1,14 @@
 package com.web.FileTran.dto;
 
 
+import com.web.FileTran.dao.usersMapper;
+import com.web.FileTran.vo.FileVO;
+import com.web.FileTran.vo.ShortcutVO;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class FileDTO {
+    @Autowired
+    private static usersMapper usersMapper;
     private Integer id;
 
     private String name;
@@ -112,5 +119,17 @@ public class FileDTO {
 
     public void setBlobId(Integer blobId) {
         this.blobId = blobId;
+    }
+
+    public FileVO convertToFileVO() {
+        return new FileVO(
+                this.getId(),
+                this.getName(),
+                usersMapper.getUserInfoById(this.getCreatorId()).convertToUserDTO().convertToUserVO(),
+                this.getFileType(),
+                this.getPermission(),
+                ShortcutVO.ShortcutVOAutoCreate_File(this.getShortcutDestination()),
+                null
+        );
     }
 }

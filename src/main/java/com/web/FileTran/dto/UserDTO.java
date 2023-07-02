@@ -1,5 +1,7 @@
 package com.web.FileTran.dto;
 
+import com.web.FileTran.vo.UserVO;
+
 import java.sql.Timestamp;
 
 public class UserDTO {
@@ -89,5 +91,14 @@ public class UserDTO {
 
     public void setQuotaLimit(Integer quotaLimit) {
         this.quotaLimit = quotaLimit;
+    }
+
+    public UserVO convertToUserVO() {
+        return new UserVO(
+                this.getId(),
+                this.getUsername(),
+                this.getUserDirectoryId(),
+                this.getFavoritesFolderId()
+        );
     }
 }

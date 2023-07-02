@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
             // 已经在使用此账号登录的session
             String currentSessionId = SessionManager.getSessionIdByUserId(usersInfo.getId());
             // 将这个session断开连接
-            SessionManager.removeLoginInfo(currentSessionId);
+            if(currentSessionId != null) { SessionManager.removeLoginInfo(currentSessionId); }
             // 记录登录信息(设置双向映射)
             SessionManager.setLoginInfo(sessionId,usersInfo.getId());
             // 输入一致,封装VO作为返回

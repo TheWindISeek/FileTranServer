@@ -1,5 +1,7 @@
 package com.web.FileTran.pojo;
 
+import com.web.FileTran.dto.CommentDTO;
+
 import java.sql.Timestamp;
 
 public class comments {
@@ -71,5 +73,18 @@ public class comments {
 
     public void setMessage(String message) {
         this.message = message == null ? null : message.trim();
+    }
+
+    public CommentDTO convertToCommentDTO()
+    {
+        return new CommentDTO(
+                this.getId(),
+                this.getFileId(),
+                this.getParentCommentId(),
+                this.getUserId(),
+                this.getPostedAt(),
+                this.getLastReplyAt(),
+                this.getMessage()
+        );
     }
 }

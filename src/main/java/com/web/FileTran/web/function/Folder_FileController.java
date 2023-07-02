@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.sql.Blob;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/folder_files")
@@ -54,12 +55,7 @@ public class Folder_FileController {
             {
                 // 仅当文件创建者存在时创建子VO
                 UserDTO creatorDTO = userService.getUserInfoById(creatorId,session);
-                creatorVO = new UserVO(
-                        creatorDTO.getId(),
-                        creatorDTO.getUsername(),
-                        creatorDTO.getUserDirectoryId(),
-                        creatorDTO.getFavoritesFolderId()
-                );
+                creatorVO = creatorDTO.convertToUserVO();
             }
             // 根据快捷方式目标得到快捷方式视图
             Integer shortcutId = folderInfoDTO.getShortcutDestination();
@@ -74,28 +70,16 @@ public class Folder_FileController {
                 {
                     // 仅当目标创建者存在时获得VO
                     UserDTO targetCreatorDTO = userService.getUserInfoById(targetCreatorId,session);
-                    targetCreatorVO = new UserVO(
-                            targetCreatorDTO.getId(),
-                            targetCreatorDTO.getUsername(),
-                            targetCreatorDTO.getUserDirectoryId(),
-                            targetCreatorDTO.getFavoritesFolderId()
-                    );
+                    targetCreatorVO = targetCreatorDTO.convertToUserVO();
                 }
                 shortcutVO = new ShortcutVO(targetFolderDTO.getId(),targetFolderDTO.getName(),targetCreatorVO);
             }
             // 把视图和其他信息组装
-            FolderVO folderInfoVO = new FolderVO(
-                    folderInfoDTO.getId(),
-                    folderInfoDTO.getName(),
-                    creatorVO,
-                    folderInfoDTO.getFolderType(),
-                    folderInfoDTO.getPermission(),
-                    shortcutVO);
-            // 将DTO转为VO并返回
-            return ResponseEntity.ok(folderInfoVO);
+            return ResponseEntity.ok(folderInfoDTO.convertToFolderVO());
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型
@@ -132,29 +116,15 @@ public class Folder_FileController {
                 {
                     // 仅当目标创建者存在时获得VO
                     UserDTO targetCreatorDTO = userService.getUserInfoById(targetCreatorId,session);
-                    targetCreatorVO = new UserVO(
-                            targetCreatorDTO.getId(),
-                            targetCreatorDTO.getUsername(),
-                            targetCreatorDTO.getUserDirectoryId(),
-                            targetCreatorDTO.getFavoritesFolderId()
-                    );
+                    targetCreatorVO = targetCreatorDTO.convertToUserVO();
                 }
                 shortcutVO = new ShortcutVO(targetFileDTO.getId(),targetFileDTO.getName(),targetCreatorVO);
             }
-            // 将DTO转为VO并返回
-            FileVO fileInfoVO = new FileVO(
-                    fileInfoDTO.getId(),
-                    fileInfoDTO.getName(),
-                    CreatorVO,
-                    fileInfoDTO.getFileType(),
-                    fileInfoDTO.getPermission(),
-                    shortcutVO,
-                    null);
-            // TODO commentsVO还未实现,这里使用null暂时代替
-            return ResponseEntity.ok(fileInfoVO);
+            return ResponseEntity.ok(fileInfoDTO.convertToFileVO());
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型
@@ -183,7 +153,8 @@ public class Folder_FileController {
             downloadInfo = fileService.getDownloadInfo(fileId,session);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /*
@@ -207,7 +178,8 @@ public class Folder_FileController {
             resource = new FileSystemResource((Path) blobBytes);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型
@@ -235,16 +207,13 @@ public class Folder_FileController {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FolderContentDTO folderContentDTO = folderService.getFolderContent(folderId, page, pageSize,session);
-            // 将DTO转为VO并返回
-            FolderContentVO folderContentVO = new FolderContentVO(
-                    folderContentDTO.getTotalItems(),
-                    folderContentDTO.getCurrentPage(),
-                    folderContentDTO.getFiles(),
-                    folderContentDTO.getFolders()
-            );
-            return ResponseEntity.ok(folderContentVO);
+            System.out.println(folderContentDTO);
+            System.out.println(folderContentDTO.toString());
+            return ResponseEntity.ok(folderContentDTO.convertToFolderContentVO());
         }
         catch (Exception e) {
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* TODO 细化异常类型

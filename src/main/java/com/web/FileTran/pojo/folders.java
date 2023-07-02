@@ -1,5 +1,7 @@
 package com.web.FileTran.pojo;
 
+import com.web.FileTran.dto.FolderDTO;
+
 public class folders {
     private Integer id;
 
@@ -18,6 +20,19 @@ public class folders {
     private Integer inheritedFromFolderId;
 
     private Integer creatorId;
+
+    public String toString() {
+        return "folders{"+
+                " id="+id+
+                "; name="+name+
+                "; parentFolderId="+parentFolderId+
+                "; folderType="+folderType+
+                "; shortcutDestination="+shortcutDestination+
+                "; quotaUsed="+quotaUsed+
+                "; permission="+permission+
+                "; inheritedFromFolderId="+inheritedFromFolderId+
+                "; creatorId="+creatorId+"}";
+    };
 
     public Integer getId() {
         return id;
@@ -89,5 +104,20 @@ public class folders {
 
     public void setCreatorId(Integer creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public FolderDTO convertToFolderDTO()
+    {
+        return new FolderDTO(
+                this.getId(),
+                this.getName(),
+                this.getParentFolderId(),
+                this.getFolderType(),
+                this.getShortcutDestination(),
+                this.getQuotaUsed(),
+                this.getPermission(),
+                this.getInheritedFromFolderId(),
+                this.getCreatorId()
+        );
     }
 }

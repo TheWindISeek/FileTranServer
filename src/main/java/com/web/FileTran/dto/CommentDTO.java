@@ -1,5 +1,7 @@
 package com.web.FileTran.dto;
 
+import com.web.FileTran.vo.CommentVO;
+
 import java.sql.Timestamp;
 
 public class CommentDTO {
@@ -81,5 +83,15 @@ public class CommentDTO {
 
     public void setMessage(String message) {
         this.message = message == null ? null : message.trim();
+    }
+
+    public CommentVO convertToCommentVO()
+    {
+        return new CommentVO(
+                this.getId(),
+                this.getMessage(),
+                this.getPostedAt(),
+                this.getLastReplyAt()
+        );
     }
 }

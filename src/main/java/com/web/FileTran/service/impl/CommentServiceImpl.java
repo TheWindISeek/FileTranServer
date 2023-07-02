@@ -44,15 +44,7 @@ public class CommentServiceImpl implements CommentService {
         if(success)
         {
             comments commentInfo= commentsMapper.getCommentInfo(commentId);
-            CommentDTO commentDTO = new CommentDTO(
-                    commentId,
-                    commentInfo.getFileId(),
-                    commentInfo.getParentCommentId(),
-                    commentInfo.getUserId(),
-                    commentInfo.getPostedAt(),
-                    commentInfo.getLastReplyAt(),
-                    errorMessage);
-            return commentDTO;
+            return commentInfo.convertToCommentDTO();
         }
         else
         {
@@ -83,15 +75,7 @@ public class CommentServiceImpl implements CommentService {
         if(success)
         {
             comments commentInfo= commentsMapper.getCommentInfo(commentId);
-            CommentDTO commentDTO = new CommentDTO(
-                    commentId,
-                    commentInfo.getFileId(),
-                    commentInfo.getParentCommentId(),
-                    commentInfo.getUserId(),
-                    commentInfo.getPostedAt(),
-                    commentInfo.getLastReplyAt(),
-                    errorMessage);
-            return commentDTO;
+            return commentInfo.convertToCommentDTO();
         }
         else
         {
@@ -123,15 +107,7 @@ public class CommentServiceImpl implements CommentService {
         if(success)
         {
             comments commentInfo= commentsMapper.getCommentInfo(commentId);
-            CommentDTO commentDTO = new CommentDTO(
-                    commentId,
-                    commentInfo.getFileId(),
-                    commentInfo.getParentCommentId(),
-                    commentInfo.getUserId(),
-                    commentInfo.getPostedAt(),
-                    commentInfo.getLastReplyAt(),
-                    errorMessage);
-            return commentDTO;
+            return commentInfo.convertToCommentDTO();
         }
         else
         {
@@ -168,15 +144,7 @@ public class CommentServiceImpl implements CommentService {
         if(success)
         {
             comments commentInfo= commentsMapper.getCommentInfo(commentId);
-            CommentDTO commentDTO = new CommentDTO(
-                    commentId,
-                    commentInfo.getFileId(),
-                    commentInfo.getParentCommentId(),
-                    commentInfo.getUserId(),
-                    commentInfo.getPostedAt(),
-                    commentInfo.getLastReplyAt(),
-                    errorMessage);
-            return commentDTO;
+            return commentInfo.convertToCommentDTO();
         }
         else
         {

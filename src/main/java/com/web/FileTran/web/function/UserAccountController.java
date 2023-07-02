@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/user")
@@ -42,6 +43,7 @@ public class UserAccountController {
         }
         catch (Exception e) {
             System.out.println(e);
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -59,7 +61,8 @@ public class UserAccountController {
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         /* 暂时不管了TODO 细化异常类型
@@ -79,7 +82,8 @@ public class UserAccountController {
             return ResponseEntity.ok(result);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
+            Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
         /* 暂时不管了TODO 细化异常类型

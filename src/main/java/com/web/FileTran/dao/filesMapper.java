@@ -56,4 +56,5 @@ public interface filesMapper {
      * @return 文件是否存在
      */
     boolean checkFileExists(int fileId);
+
 }

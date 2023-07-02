@@ -1,5 +1,7 @@
 package com.web.FileTran.pojo;
 
+import com.web.FileTran.dto.UserDTO;
+
 import java.sql.Timestamp;
 
 public class users {
@@ -71,5 +73,18 @@ public class users {
 
     public void setQuotaLimit(Integer quotaLimit) {
         this.quotaLimit = quotaLimit;
+    }
+
+    public UserDTO convertToUserDTO()
+    {
+        return new UserDTO(
+                this.getId(),
+                this.getUsername(),
+                this.getPassword(),
+                this.getRegistrationTimestamp(),
+                this.getUserDirectoryId(),
+                this.getFavoritesFolderId(),
+                this.getQuotaLimit()
+        );
     }
 }

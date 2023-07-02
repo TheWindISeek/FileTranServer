@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Blob;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -80,6 +81,7 @@ public class FileServiceImpl implements FileService {
         Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
+            // do nothing
         }
         else if(onlyReadPermission)
         {
@@ -98,20 +100,7 @@ public class FileServiceImpl implements FileService {
         {
             throw new RuntimeException("错误的权限类型");
         }
-        // 从dao层调用方法获取相关信息,map类型(这里也许应该改成获取pojo类型的结果),从map类型的结果里取出各字段,封装成查询结果DTO
-        FileDTO fileDTO = new FileDTO(
-                fileInfo.getId(),
-                fileInfo.getName(),
-                fileInfo.getFolderId(),
-                fileInfo.getFileType(),
-                fileInfo.getPermission(),
-                fileInfo.getShortcutDestination(),
-                fileInfo.getInheritedFromFolderId(),
-                fileInfo.getCreatorId(),
-                fileInfo.getBlobId()
-        );
-
-        return fileDTO;
+        return fileInfo.convertToFileDTO();
     }
 
     @Override
@@ -170,6 +159,7 @@ public class FileServiceImpl implements FileService {
         Integer userId = SessionManager.getUserIdBySessionId(sessionId);
         if(publicPermission)
         {
+            // do nothing
         }
         else if(onlyReadPermission)
         {
@@ -193,8 +183,10 @@ public class FileServiceImpl implements FileService {
         {
             throw new RuntimeException("错误的权限类型");
         }
-        // TODO 从dao层调用方法获取相关信息,map类型,从map类型的结果里取出各字段,封装成查询结果DTO
-        // DownloadInfoDTO DownloadInfoDTO = new DownloadInfoDTO();
-        return null;
+        // 从dao层调用方法获取相关信息,map类型,从map类型的结果里取出各字段,封装成查询结果DTO
+        return new DownloadInfoDTO(
+                fileInfo.getName(),
+                (Blob)filesMapper.downloadFile(fileInfo.getId()).get("fileBlob")
+        );
     }
 }

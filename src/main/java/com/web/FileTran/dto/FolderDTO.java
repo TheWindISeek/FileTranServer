@@ -1,7 +1,6 @@
 package com.web.FileTran.dto;
 
 import com.web.FileTran.dao.usersMapper;
-import com.web.FileTran.service.UserService;
 import com.web.FileTran.vo.FolderVO;
 import com.web.FileTran.vo.ShortcutVO;
 import org.springframework.beans.factory.annotation.Autowired;

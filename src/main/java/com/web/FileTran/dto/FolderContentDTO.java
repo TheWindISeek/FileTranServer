@@ -5,7 +5,6 @@ import com.web.FileTran.vo.FileVO;
 import com.web.FileTran.vo.FolderContentVO;
 import com.web.FileTran.vo.FolderVO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FolderContentDTO {
@@ -29,6 +28,7 @@ public class FolderContentDTO {
         this.folders = folders;
     }
 
+    @Override
     public String toString()
     {
         return "FolderContentDTO{"+

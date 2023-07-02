@@ -42,7 +42,7 @@ public class UserAccountController {
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             Stream.of(e.getStackTrace()).forEach(System.out::println);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

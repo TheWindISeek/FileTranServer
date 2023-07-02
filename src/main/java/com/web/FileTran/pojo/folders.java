@@ -21,6 +21,7 @@ public class folders {
 
     private Integer creatorId;
 
+    @Override
     public String toString() {
         return "folders{"+
                 " id="+id+
@@ -32,7 +33,7 @@ public class folders {
                 "; permission="+permission+
                 "; inheritedFromFolderId="+inheritedFromFolderId+
                 "; creatorId="+creatorId+"}";
-    };
+    }
 
     public Integer getId() {
         return id;

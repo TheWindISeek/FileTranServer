@@ -43,15 +43,7 @@ public class UserServiceImpl implements UserService {
         }
         // 如果创建成功,从map类型的结果里取出各字段,封装成查询结果DTO
         users newUserInfo = usersMapper.getUserInfoById(newUserId);
-        UserDTO newUserDTO = new UserDTO(
-                newUserInfo.getId(),
-                newUserInfo.getUsername(),
-                newUserInfo.getPassword(),
-                newUserInfo.getRegistrationTimestamp(),
-                newUserInfo.getUserDirectoryId(),
-                newUserInfo.getFavoritesFolderId(),
-                newUserInfo.getQuotaLimit());
-        return newUserDTO;
+        return newUserInfo.convertToUserDTO();
     }
 
     // User login logic
@@ -77,16 +69,8 @@ public class UserServiceImpl implements UserService {
             if(currentSessionId != null) { SessionManager.removeLoginInfo(currentSessionId); }
             // 记录登录信息(设置双向映射)
             SessionManager.setLoginInfo(sessionId,usersInfo.getId());
-            // 输入一致,封装VO作为返回
-            UserDTO UserDTO = new UserDTO(
-                    usersInfo.getId(),
-                    usersInfo.getUsername(),
-                    usersInfo.getPassword(),
-                    usersInfo.getRegistrationTimestamp(),
-                    usersInfo.getUserDirectoryId(),
-                    usersInfo.getFavoritesFolderId(),
-                    usersInfo.getQuotaLimit());
-            return UserDTO;
+            // 输入一致,封装DTO作为返回
+            return usersInfo.convertToUserDTO();
         }
         else
         {
@@ -126,14 +110,6 @@ public class UserServiceImpl implements UserService {
         // 调用dao层的getUserInfoById方法,得到
         users targetUserInfo = usersMapper.getUserInfoById(TargetUserId);
         // 把用户的公开信息封装成VO
-        UserDTO UserDTO = new UserDTO(
-                targetUserInfo.getId(),
-                targetUserInfo.getUsername(),
-                targetUserInfo.getPassword(),
-                targetUserInfo.getRegistrationTimestamp(),
-                targetUserInfo.getUserDirectoryId(),
-                targetUserInfo.getFavoritesFolderId(),
-                targetUserInfo.getQuotaLimit());
-        return UserDTO;
+        return targetUserInfo.convertToUserDTO();
     }
 }

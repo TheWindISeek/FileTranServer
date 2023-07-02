@@ -19,10 +19,6 @@ public class ShortcutVO {
     private String targetName;
     private UserVO creator;
 
-    public ShortcutVO() {
-        // Default constructor
-    }
-
     public ShortcutVO(int targetId, String targetName, UserVO creator) {
         this.targetId = targetId;
         this.targetName = targetName;

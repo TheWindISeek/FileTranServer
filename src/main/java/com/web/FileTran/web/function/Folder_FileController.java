@@ -48,32 +48,6 @@ public class Folder_FileController {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FolderDTO folderInfoDTO = folderService.getFolderInfoByID(folderId,session);
-            // 根据创建者得到用户信息视图
-            Integer creatorId = folderInfoDTO.getCreatorId();
-            UserVO creatorVO = null;
-            if(creatorId != null)
-            {
-                // 仅当文件创建者存在时创建子VO
-                UserDTO creatorDTO = userService.getUserInfoById(creatorId,session);
-                creatorVO = creatorDTO.convertToUserVO();
-            }
-            // 根据快捷方式目标得到快捷方式视图
-            Integer shortcutId = folderInfoDTO.getShortcutDestination();
-            ShortcutVO shortcutVO = null;
-            if(shortcutId != null)
-            {
-                // 仅当是快捷方式时创建子VO
-                FolderDTO targetFolderDTO = folderService.getFolderInfoByID(shortcutId,session);
-                Integer targetCreatorId = targetFolderDTO.getCreatorId();
-                UserVO targetCreatorVO = null;
-                if(targetCreatorId != null)
-                {
-                    // 仅当目标创建者存在时获得VO
-                    UserDTO targetCreatorDTO = userService.getUserInfoById(targetCreatorId,session);
-                    targetCreatorVO = targetCreatorDTO.convertToUserVO();
-                }
-                shortcutVO = new ShortcutVO(targetFolderDTO.getId(),targetFolderDTO.getName(),targetCreatorVO);
-            }
             // 把视图和其他信息组装
             return ResponseEntity.ok(folderInfoDTO.convertToFolderVO());
         }
@@ -97,29 +71,6 @@ public class Folder_FileController {
         // 因为public权限的文件或文件夹不需要登录也允许查看,故全部权限检测在service层完成,本层只负责接收抛出的异常
         try {
             FileDTO fileInfoDTO = fileService.getFileInfoByID(fileId,session);
-            Integer creatorId = fileInfoDTO.getCreatorId();
-            UserVO CreatorVO = null;
-            if(creatorId != null)
-            {
-                UserDTO targetCreatorDTO = userService.getUserInfoById(creatorId,session);
-                CreatorVO = new UserVO(targetCreatorDTO.getId(),targetCreatorDTO.getUsername(),targetCreatorDTO.getUserDirectoryId(),targetCreatorDTO.getFavoritesFolderId());
-            }
-            Integer shortcutId = fileInfoDTO.getShortcutDestination();
-            ShortcutVO shortcutVO = null;
-            if(shortcutId != null)
-            {
-                // 仅当是快捷方式时创建子VO
-                FileDTO targetFileDTO = fileService.getFileInfoByID(shortcutId,session);
-                Integer targetCreatorId = targetFileDTO.getCreatorId();
-                UserVO targetCreatorVO = null;
-                if(targetCreatorId != null)
-                {
-                    // 仅当目标创建者存在时获得VO
-                    UserDTO targetCreatorDTO = userService.getUserInfoById(targetCreatorId,session);
-                    targetCreatorVO = targetCreatorDTO.convertToUserVO();
-                }
-                shortcutVO = new ShortcutVO(targetFileDTO.getId(),targetFileDTO.getName(),targetCreatorVO);
-            }
             return ResponseEntity.ok(fileInfoDTO.convertToFileVO());
         }
         catch (Exception e) {

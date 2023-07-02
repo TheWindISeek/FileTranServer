@@ -3,6 +3,7 @@ package com.web.FileTran.dao;
 import com.web.FileTran.pojo.users;
 import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public interface usersMapper {
      * @param params 输入 String userName,String userPassword
      * @return 输出 int userId
      */
-    @MapKey("id")
+    @MapKey("userId")
     Map<String, Object> registerUser(Map<String, Object> params);
 
     // TODO 需要修改存储过程,添加错误信息输出
@@ -53,5 +54,5 @@ public interface usersMapper {
      * @param id 用户id
      * @return 用户pojo类
      */
-    users getUserInfoById(int id);
+    users getUserInfoById(Integer id);
 }

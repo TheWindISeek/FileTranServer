@@ -50,7 +50,7 @@
   </select>
 
   <!-- 查询留言信息 -->
-  <select id="getCommentInfo" parameterType="long" resultType="com.web.FileTran.pojo.comments">
+  <select id="getCommentInfo" parameterType="int" resultType="com.web.FileTran.pojo.comments">
     SELECT *
     FROM comments
     WHERE id = #{commentId}

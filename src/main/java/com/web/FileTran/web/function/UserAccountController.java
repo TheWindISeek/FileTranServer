@@ -34,9 +34,10 @@ public class UserAccountController {
         // 账号相关的逻辑完全交给service层完成controller只负责类型转换
         try {
             // User registration logic
-            // 具体逻辑由service层完成
-            UserDTO newUser = userService.registerUser(username, password,session);
-            UserVO userVO = null;
+            // 注册并自动登录
+            userService.registerUser(username, password,session);
+            UserDTO newUser = userService.loginUser(username, password,session);
+            UserVO userVO = new UserVO(newUser.getId(), newUser.getUsername(),newUser.getUserDirectoryId(),newUser.getFavoritesFolderId());
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {
@@ -51,10 +52,11 @@ public class UserAccountController {
             @RequestParam String password,
             HttpSession session) {
         // 账号相关的逻辑完全交给service层完成controller只负责类型转换
+        System.out.println("loginUser"+username+password);
         try {
             // 具体逻辑由service层完成
             UserDTO user = userService.loginUser(username, password,session);
-            UserVO userVO = null;
+            UserVO userVO = new UserVO(user.getId(), user.getUsername(),user.getUserDirectoryId(),user.getFavoritesFolderId());
             return ResponseEntity.ok(userVO);
         }
         catch (Exception e) {

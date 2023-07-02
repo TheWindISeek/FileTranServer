@@ -5,7 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="registration_date" jdbcType="TIMESTAMP" property="registrationDate" />
+    <result column="registration_date" jdbcType="TIMESTAMP" property="registrationTimestamp" />
     <result column="user_directory_id" jdbcType="INTEGER" property="userDirectoryId" />
     <result column="favorites_folder_id" jdbcType="INTEGER" property="favoritesFolderId" />
     <result column="quota_limit" jdbcType="INTEGER" property="quotaLimit" />
@@ -16,12 +16,12 @@
   </sql>
 
     <!-- 调用 RegisterUser 存储过程 -->
-    <select id="registerUser" parameterType="java.util.Map" resultType="java.util.HashMap">
-      {CALL RegisterUser(#{userName}, #{userPassword}, #{userId, mode=OUT, jdbcType=INTEGER})}
+    <select id="registerUser" parameterType="java.util.Map" resultType="java.util.HashMap" statementType="CALLABLE">
+      {CALL newDB.RegisterUser(#{userName}, #{userPassword}, #{userId, mode=OUT, jdbcType=INTEGER})}
     </select>
 
     <!-- 调用 DeleteUser 存储过程 -->
-    <select id="deleteUser" parameterType="long">
+    <select id="deleteUser" parameterType="int">
       {CALL DeleteUser(#{userId})}
     </select>
 
@@ -36,14 +36,14 @@
     </select>
 
     <!-- 用户登录验证 -->
-    <select id="getUserInfoByUsername" parameterType="String" resultType="com.web.FileTran.pojo.users">
+    <select id="getUserInfoByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
       SELECT *
       FROM users
       WHERE username = #{username}
     </select>
 
     <!-- 查询用户信息 -->
-    <select id="getUserInfoById" parameterType="long" resultType="com.web.FileTran.pojo.users">
+    <select id="getUserInfoById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
       SELECT *
       FROM users
       WHERE id = #{id}

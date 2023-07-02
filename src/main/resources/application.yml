@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: Jeffrey
-    url: jdbc:mysql://8.130.77.8:3306/LyDBTest?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://8.130.77.8:3306/newDB?useSSL=false&serverTimezone=UTC
     username: Jeffrey
   mvc:
     static-path-pattern:
@@ -27,6 +27,11 @@ spring:
   web:
     resources:
       static-locations: classpath:/static/
+mybatis:
+  mapper-locations: classpath:dao/*.xml
+  type-aliases-package: com.web.FileTran.dao
+mybatis-plus:
+  dao-locations=classpath:com/web/FileTran/dao/*.xml
 
 
 

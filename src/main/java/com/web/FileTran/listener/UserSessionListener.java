@@ -14,6 +14,7 @@ public class UserSessionListener implements HttpSessionListener {
         HttpSession session = se.getSession();
         // 将 SessionID 存入 SessionManager
         SessionStorage.addSession(session.getId(), session);
+        printSessionId(session);
     }
 
     @Override
@@ -23,5 +24,11 @@ public class UserSessionListener implements HttpSessionListener {
         SessionManager.removeLoginInfo(sessionId);
         // Session 销毁时从 SessionManager 中删除对应的键值对
         SessionStorage.removeSession(sessionId);
+    }
+
+    private void printSessionId(HttpSession session)
+    {
+        /* 用于检查session */
+        System.out.println(session.getId());
     }
 }

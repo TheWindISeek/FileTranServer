@@ -23,7 +23,7 @@
   </delete>
 
   <!-- 根据名称获取管理员信息 -->
-  <select id="getAdminInfoByUsername" parameterType="String" resultType="com.web.FileTran.pojo.admins">
+  <select id="getAdminInfoByUsername" parameterType="java.lang.String" resultType="com.web.FileTran.pojo.admins">
     SELECT *
     FROM admins
     WHERE username = #{username}

@@ -36,12 +36,12 @@
   </select>
 
   <!-- 调用 DeleteFile 存储过程 -->
-  <delete id="deleteFile" parameterType="long">
+  <delete id="deleteFile" parameterType="int">
     {CALL DeleteFile(#{fileId})}
   </delete>
 
   <!-- 调用 DownloadFile 存储过程 -->
-  <select id="downloadFile" parameterType="long" resultType="java.util.HashMap">
+  <select id="downloadFile" parameterType="int" resultType="java.util.HashMap">
     {CALL DownloadFile(
     #{fileId},
     #{fileBlob, mode=OUT, jdbcType=BLOB},
@@ -50,14 +50,14 @@
   </select>
 
   <!-- 查询文件信息 -->
-  <select id="getFileInfo" parameterType="long" resultType="com.web.FileTran.pojo.files">
+  <select id="getFileInfo" parameterType="int" resultType="com.web.FileTran.pojo.files">
     SELECT *
     FROM files
     WHERE id = #{fileId}
   </select>
 
   <!-- 查询文件是否存在 -->
-  <select id="checkFileExists" parameterType="long" resultType="boolean">
+  <select id="checkFileExists" parameterType="int" resultType="boolean">
     SELECT COUNT(*) > 0
     FROM files
     WHERE id = #{fileId}

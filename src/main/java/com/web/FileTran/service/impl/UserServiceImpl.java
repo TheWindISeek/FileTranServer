@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private usersMapper usersMapper;
     // User registration logic
-    @Transactional
+    //@Transactional
     @Override
     public UserDTO registerUser(String username, String password, HttpSession session) {
         // TODO 实现service层
@@ -38,11 +38,12 @@ public class UserServiceImpl implements UserService {
         Integer newUserId = (Integer) params.get("userId");
         if(newUserId == null)
         {
+            // 如果创建失败,抛出异常
             throw new IllegalStateException("未知错误,注册失败");
         }
-        int newUserIdConvert = newUserId.intValue();
-        users newUserInfo = usersMapper.getUserInfoById(newUserIdConvert);
-        UserDTO UserDTO = new UserDTO(
+        // 如果创建成功,从map类型的结果里取出各字段,封装成查询结果DTO
+        users newUserInfo = usersMapper.getUserInfoById(newUserId);
+        UserDTO newUserDTO = new UserDTO(
                 newUserInfo.getId(),
                 newUserInfo.getUsername(),
                 newUserInfo.getPassword(),
@@ -50,9 +51,7 @@ public class UserServiceImpl implements UserService {
                 newUserInfo.getUserDirectoryId(),
                 newUserInfo.getFavoritesFolderId(),
                 newUserInfo.getQuotaLimit());
-        // 如果创建失败,抛出异常
-        // TODO 如果创建成功,从map类型的结果里取出各字段,封装成查询结果DTO
-        return null;
+        return newUserDTO;
     }
 
     // User login logic
@@ -72,6 +71,7 @@ public class UserServiceImpl implements UserService {
         // 比较用户密码和输入是否一致,输入不一致抛出异常
         if(userPassword.equals(password))
         {
+            SessionManager.setLoginInfo(sessionId,usersInfo.getId());
             // TODO 输入一致,封装VO作为返回
             UserDTO UserDTO = new UserDTO(
                     usersInfo.getId(),
